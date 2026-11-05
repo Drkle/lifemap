@@ -1,5 +1,5 @@
 # Etapa base: dependencias de ejecución y código de la API
-FROM python:3.11-slim AS base
+FROM python:3.11-slim-bookworm AS base
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1
 # Java para cargar el modelo de Spark en /predict (Spark local dentro de la API).
 RUN apt-get update && apt-get install -y --no-install-recommends openjdk-17-jre-headless procps \
