@@ -41,3 +41,4 @@ models/
 .idea/
 .DS_Store
 Thumbs.db
+!config/area.env
