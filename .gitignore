@@ -1,0 +1,43 @@
+# --- Secretos: NUNCA al repositorio ---
+.env
+*.env
+!.env.example
+kaggle.json
+.kaggle/
+secrets/
+
+# --- Datos (se descargan desde Kaggle en el pipeline) ---
+data/
+*.csv
+*.parquet
+*.sqlite
+*.zip
+!api/tests/fixtures/*.csv
+# Evidencias propias (tiempos de balanceo, etc.)
+!docs/evidencias/*.csv
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.coverage
+htmlcov/
+*.egg-info/
+tmp/
+
+# --- Spark / Dask ---
+spark-warehouse/
+metastore_db/
+derby.log
+dask-worker-space/
+
+# --- Modelos entrenados (viven en el volumen 'modelos') ---
+models/
+
+# --- IDE / SO ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

@@ -1,0 +1,16 @@
+# Normaliza finales de línea: los contenedores Linux fallan con CRLF.
+* text=auto eol=lf
+
+*.sh        text eol=lf
+*.py        text eol=lf
+Jenkinsfile text eol=lf
+Dockerfile  text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+*.env.example text eol=lf
+
+# Binarios
+*.png  binary
+*.jpg  binary
+*.docx binary
+*.pdf  binary

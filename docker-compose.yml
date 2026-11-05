@@ -1,0 +1,267 @@
+# LifeMap — reputación, ubicación y supervivencia de negocios.
+#
+#   Aplicación:              docker compose up -d --build
+#   CI (Jenkins + webhook):  docker compose --profile ci up -d --build
+#   URL pública (ngrok):     docker compose --profile public up -d ngrok
+#   Jobs puntuales:          docker compose run --rm dask-job python pipeline_ingesta.py
+#
+# Reglas de este archivo:
+#  - Sin bind mounts de código: todo se copia a las imágenes. Cuando Jenkins despliega a
+#    través del socket, las rutas de un bind mount se resolverían en el host.
+#  - Los secretos llegan por variables de entorno: .env en local, credenciales en Jenkins.
+#  - Solo la API se publica a internet (por el túnel); MongoDB queda en 127.0.0.1.
+
+name: lifemap
+
+x-mongo-env: &mongo-env
+  MONGO_HOST: mongodb
+  MONGO_PORT: "27017"
+  MONGO_DB: ${MONGO_DB:-lifemap}
+  MONGO_ROOT_USER: ${MONGO_ROOT_USER:-admin}
+  MONGO_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD:?Definir MONGO_ROOT_PASSWORD en .env o en la credencial mongo-root de Jenkins}"
+
+services:
+
+  # ---------------------------------------------------------------- MongoDB
+  mongodb:
+    build: ./mongo
+    image: lifemap-mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER:-admin}
+      MONGO_INITDB_ROOT_PASSWORD: "${MONGO_ROOT_PASSWORD:?Definir MONGO_ROOT_PASSWORD}"
+      MONGO_DB: ${MONGO_DB:-lifemap}
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    deploy:
+      resources:
+        limits:
+          memory: ${MONGO_MEM:-2g}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------- Spark
+  spark-master:
+    build: ./spark
+    image: lifemap-spark:latest
+    hostname: spark-master          # los executors se conectan de vuelta al driver por este nombre
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.master.Master",
+              "--host", "spark-master", "--port", "7077", "--webui-port", "8080"]
+    environment:
+      <<: *mongo-env
+      SPARK_MASTER_URL: spark://spark-master:7077
+      SPARK_EXECUTOR_MEMORY: ${SPARK_EXECUTOR_MEMORY:-1200m}
+    ports:
+      - "8081:8080"                 # UI del master (8080 del host queda para Jenkins)
+    volumes:
+      - kaggle_data:/data
+      - modelos:/models             # modelos entrenados: los comparte con la API (/predict)
+    healthcheck:
+      test: ["CMD", "bash", "-c", "echo > /dev/tcp/spark-master/7077"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 15s
+    deploy:
+      resources:
+        limits:
+          memory: ${SPARK_MASTER_MEM:-1536m}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  spark-worker:
+    build: ./spark
+    image: lifemap-spark:latest
+    hostname: spark-worker
+    command: ["/opt/spark/bin/spark-class", "org.apache.spark.deploy.worker.Worker",
+              "spark://spark-master:7077",
+              "--cores", "${SPARK_WORKER_CORES:-2}", "--memory", "${SPARK_WORKER_MEMORY:-2g}"]
+    environment:
+      <<: *mongo-env
+    volumes:
+      - kaggle_data:/data
+      - modelos:/models
+    depends_on:
+      spark-master:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: ${SPARK_WORKER_CONTAINER_MEM:-2560m}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------- Dask
+  dask-scheduler:
+    build: ./ingest
+    image: lifemap-dask:latest
+    command: ["dask", "scheduler", "--dashboard-address", ":8787"]
+    ports:
+      - "8787:8787"                 # dashboard de Dask
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('localhost', 8786), 2)"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: ${DASK_SCHEDULER_MEM:-512m}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  dask-worker-1: &dask-worker
+    build: ./ingest
+    image: lifemap-dask:latest
+    command: ["dask", "worker", "tcp://dask-scheduler:8786", "--name", "dask-worker-1",
+              "--nthreads", "${DASK_WORKER_THREADS:-2}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
+    environment:
+      <<: *mongo-env
+    volumes:
+      - kaggle_data:/data
+    depends_on:
+      dask-scheduler:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: ${DASK_WORKER_CONTAINER_MEM:-2g}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  dask-worker-2:
+    <<: *dask-worker
+    command: ["dask", "worker", "tcp://dask-scheduler:8786", "--name", "dask-worker-2",
+              "--nthreads", "${DASK_WORKER_THREADS:-2}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
+
+  # Contenedor cliente para jobs puntuales de Dask (verificación e ingesta).
+  dask-job:
+    build: ./ingest
+    image: lifemap-dask:latest
+    profiles: [jobs]
+    env_file: [./config/area.env]   # área y familia del equipo (versionado, sin secretos)
+    environment:
+      <<: *mongo-env
+      DASK_SCHEDULER: tcp://dask-scheduler:8786
+      KAGGLE_API_TOKEN: ${KAGGLE_API_TOKEN:-}
+      KAGGLE_DATASET: ${KAGGLE_DATASET:-yelp-dataset/yelp-dataset}
+      INGEST_MAX_PARTICIONES: ${INGEST_MAX_PARTICIONES:-0}
+      INGEST_BATCH_SIZE: ${INGEST_BATCH_SIZE:-5000}
+      REVIEW_BLOCKSIZE: ${REVIEW_BLOCKSIZE:-32MB}
+      FORCE_RELOAD: ${FORCE_RELOAD:-false}
+    volumes:
+      - kaggle_data:/data
+    depends_on:
+      dask-scheduler:
+        condition: service_healthy
+      mongodb:
+        condition: service_healthy
+    networks: [lifemap]
+
+  # ---------------------------------------------------------------- API
+  api:
+    build:
+      context: ./api
+      target: runtime
+      args:
+        GIT_COMMIT: ${GIT_COMMIT:-desconocido}   # Jenkins pasa el hash del commit construido
+    image: lifemap-api:${API_TAG:-latest}       # Jenkins etiqueta cada versión con el número de build
+    environment:
+      <<: *mongo-env
+      NEGOCIOS_COLLECTION: ${NEGOCIOS_COLLECTION:-negocios}
+      TASAS_PREFIX: ${TASAS_PREFIX:-}
+      APP_VERSION: ${API_TAG:-latest}
+      SPARK_UI_URL: http://spark-master:8080
+      DASK_DASHBOARD_URL: http://dask-scheduler:8787
+      MODELO_PATH: /models/sentimiento_v1
+    ports:
+      - "${API_PORT:-5000}:5000"
+    volumes:
+      - modelos:/models:ro
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: ${API_MEM:-1536m}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------- URL pública (perfil "public")
+  # ngrok con el dominio estático gratuito de la cuenta: la URL no cambia entre reinicios.
+  # El deploy de Jenkins recrea solo "api"; el túnel sigue apuntando a api:5000.
+  ngrok:
+    image: ngrok/ngrok:3
+    profiles: [public]
+    command: ["http", "http://api:5000", "--url", "${NGROK_URL:-}"]
+    environment:
+      NGROK_AUTHTOKEN: ${NGROK_AUTHTOKEN:-}
+    ports:
+      - "127.0.0.1:4040:4040"       # inspector local de ngrok
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # Alternativa sin cuenta: túnel rápido de Cloudflare (la URL cambia si se reinicia;
+  # se lee con  docker compose logs cloudflared | grep trycloudflare).
+  cloudflared:
+    image: cloudflare/cloudflared:2024.12.2
+    profiles: [public-cf]
+    command: ["tunnel", "--no-autoupdate", "--url", "http://api:5000"]
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------- CI/CD (perfil "ci")
+  # Separado en un perfil para que el deploy del pipeline NUNCA recree Jenkins.
+  jenkins:
+    build: ./jenkins
+    image: lifemap-jenkins:latest
+    profiles: [ci]
+    user: root                      # necesario para usar el socket de Docker
+    environment:
+      JAVA_OPTS: "-Xmx1g"
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      resources:
+        limits:
+          memory: ${JENKINS_MEM:-2g}
+    networks: [lifemap]
+    restart: unless-stopped
+
+  # Reenvía los webhooks de GitHub a Jenkins sin exponer Jenkins a internet.
+  smee:
+    image: node:20-alpine
+    profiles: [ci]
+    environment:
+      SMEE_URL: ${SMEE_URL:-}
+    command:
+      - sh
+      - -c
+      - |
+        if [ -z "$$SMEE_URL" ]; then echo "Definir SMEE_URL en .env (ver README)"; exit 1; fi
+        exec npx --yes smee-client@2 --url "$$SMEE_URL" --target http://jenkins:8080/github-webhook/
+    depends_on: [jenkins]
+    networks: [lifemap]
+    restart: unless-stopped
+
+networks:
+  lifemap:
+    name: lifemap-net
+
+volumes:
+  mongo_data:
+  kaggle_data:
+  modelos:
+  jenkins_home:
