@@ -63,10 +63,7 @@ pipeline {
         DASK_WORKER_THREADS = '1'
         REVIEW_BLOCKSIZE = '16MB'
         INGEST_MAX_EN_VUELO = '2'
-        EJECUTAR_ENTREGA2 = 'false'
-        MODELO_PATH = '/models/sentimiento_v1'
         RIESGO_PATH = '/models/entrega2/riesgo_v1.json'
-        MANIFEST_PATH = ''
     }
 
     stages {
@@ -80,18 +77,19 @@ pipeline {
                 }
                 sh 'git log -1 --pretty="Commit %H de %an: %s"'
                 script {
-                    env.EJECUTAR_ENTREGA2 = params.ENTREGA2 ? 'true' : 'false'
-                    // Un build SCM posterior conserva la E2 ya activa.
+                    // Variables dinámicas fuera de environment{}: Declarative fija sus valores.
+                    def activa = ''
                     if (!params.PREPARAR_ENTREGA2) {
-                        def activa = sh(returnStdout: true, script: "docker inspect --format '{{range .Config.Env}}{{if eq . \"STREAMING_ENABLED=true\"}}true{{end}}{{end}}' lifemap-api-1 2>/dev/null || true").trim()
-                        if (activa == 'true') { env.EJECUTAR_ENTREGA2 = 'true' }
+                        activa = sh(returnStdout: true, script: "docker inspect --format '{{range .Config.Env}}{{if eq . \"STREAMING_ENABLED=true\"}}true{{end}}{{end}}' lifemap-api-1 2>/dev/null || true").trim()
                     }
-                    if (env.EJECUTAR_ENTREGA2 == 'true') {
-                        env.MODELO_PATH = '/models/entrega2/sentimiento_e2_v1'
-                        env.MANIFEST_PATH = '/models/entrega2/manifest.json'
-                    }
-                    if (params.FORZAR_FALLO_STREAMING && !params.PREPARAR_ENTREGA2 && env.EJECUTAR_ENTREGA2 != 'true') {
-                        error('FORZAR_FALLO_STREAMING requiere PREPARAR_ENTREGA2 o ENTREGA2.')
+                    def modos = load 'jenkins/modo.groovy'
+                    def seleccionado = modos.resolver(params, activa == 'true')
+                    env.EJECUTAR_ENTREGA2 = seleccionado.ejecutar
+                    env.MODELO_PATH = seleccionado.modelo
+                    env.MANIFEST_PATH = seleccionado.manifest
+                    echo "[modo] ENTREGA2=${params.ENTREGA2}; PREPARAR_ENTREGA2=${params.PREPARAR_ENTREGA2}; E2_previa=${activa == 'true'}; ejecutar_E2=${env.EJECUTAR_ENTREGA2}; modo=${seleccionado.nombre}"
+                    if (params.ENTREGA2 && env.EJECUTAR_ENTREGA2 != 'true') {
+                        error('ENTREGA2 fue solicitada pero el modo efectivo no permite activarla.')
                     }
                 }
                 script {

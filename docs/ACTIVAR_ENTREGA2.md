@@ -35,6 +35,11 @@ la API con el modelo temporal. No arranca el productor real de Yelp.
 
 ## Resultado esperado
 
+En Checkout debe aparecer `[modo] ENTREGA2=true` junto con `ejecutar_E2=true` y
+`modo=ACTIVAR_E2`. El build #17 omitió E2 por un error del Jenkinsfile: sus variables
+dinámicas estaban fijadas en `environment`. La corrección las calcula fuera de ese bloque
+y añade pruebas para impedir que vuelva a ocurrir.
+
 - SUCCESS, con `[smoke] E2: Kafka/consumidor y los cuatro endpoints nuevos OK`.
 - `/health`: versión/commit del nuevo build, Kafka ok, tres particiones, consumidor_activo=true
   y retraso_mensajes presente. Sin productor, un retraso de cero es normal.
