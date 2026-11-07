@@ -42,3 +42,6 @@ models/
 .DS_Store
 Thumbs.db
 !config/area.env
+
+# Artefactos locales de builds de Jenkins (publicar solo evidencia revisada).
+.ci-evidencias/

@@ -1,0 +1,255 @@
+{
+  "fuente": "Salida de consola build Jenkins lifemap-main #8 aportada por el equipo",
+  "sha256_log_aportado": "80f002e8bc8c3cafff2338d8bc7c54aef2e8871fde1e5e6ba3bee29cafdc60a0",
+  "commit": "b5f6745eef2efe51cfb53b3dcf4966337ac9008d",
+  "build": 8,
+  "resultado": "SUCCESS",
+  "ingesta": {
+    "dataset": "yelp-dataset/yelp-dataset",
+    "area_estados": [
+      "FL"
+    ],
+    "familia": "Restaurants",
+    "caja": null,
+    "particiones_business": 7,
+    "particiones_review": 333,
+    "particiones_procesadas": 333,
+    "fecha_corte": "2022-01-19T19:48:45",
+    "negocios": {
+      "total_inicial": 150346,
+      "N1_coord_nulas": 0,
+      "N2_coord_fuera_rango": 0,
+      "N3_fuera_area": 124016,
+      "N4_sin_categoria": 17599,
+      "N5_is_open_invalido": 0,
+      "N6_duplicado": 0,
+      "N7_sin_resenas": 0,
+      "total_final": 8731
+    },
+    "resenas": {
+      "total_inicial": 6990280,
+      "R1_negocio_no_valido": 6198147,
+      "R2_texto_vacio": 0,
+      "R3_estrellas_invalidas": 0,
+      "R4_fecha_invalida": 0,
+      "R5_duplicado": 0,
+      "total_final": 792133,
+      "por_etiqueta_antes_R5": {
+        "positivo": 546868,
+        "negativo": 162629,
+        "neutral": 82636
+      }
+    },
+    "vida": {
+      "cierres_observados": 2811,
+      "censurados": 5920,
+      "dias_negocio_total": 19734885,
+      "dias_negocio_mediana": 2115.0,
+      "negocios_con_una_resena": 0
+    },
+    "duracion_segundos": 590.8,
+    "fecha_utc": "2026-11-07T05:15:08.520442+00:00"
+  },
+  "sentimiento": {
+    "resenas_usadas": 300361,
+    "entrenamiento": 244621,
+    "prueba": 55740,
+    "negocios_cruzados": 0,
+    "resultados": {
+      "naive_bayes": {
+        "accuracy": 0.7898,
+        "f1_macro": 0.6746,
+        "por_clase": {
+          "negativo": {
+            "precision": 0.7415450338198647,
+            "recall": 0.736237518777061,
+            "f1": 0.738881745222365,
+            "soporte": 11317
+          },
+          "neutral": {
+            "precision": 0.30503022031585103,
+            "recall": 0.5509772847332277,
+            "f1": 0.3926711426240823,
+            "soporte": 5679
+          },
+          "positivo": {
+            "precision": 0.950913975354786,
+            "recall": 0.8405172413793104,
+            "f1": 0.8923140156185779,
+            "soporte": 38744
+          }
+        },
+        "matriz_confusion": [
+          [
+            8332,
+            2561,
+            424
+          ],
+          [
+            1293,
+            3129,
+            1257
+          ],
+          [
+            1611,
+            4568,
+            32565
+          ]
+        ]
+      },
+      "regresion_logistica": {
+        "accuracy": 0.8215,
+        "f1_macro": 0.7008,
+        "por_clase": {
+          "negativo": {
+            "precision": 0.7818966276305362,
+            "recall": 0.78466024564814,
+            "f1": 0.7832759989415189,
+            "soporte": 11317
+          },
+          "neutral": {
+            "precision": 0.33976016929226427,
+            "recall": 0.5088924106356753,
+            "f1": 0.40747268241099754,
+            "soporte": 5679
+          },
+          "positivo": {
+            "precision": 0.9481840733617638,
+            "recall": 0.8780198224241172,
+            "f1": 0.9117540638694202,
+            "soporte": 38744
+          }
+        },
+        "matriz_confusion": [
+          [
+            8880,
+            1936,
+            501
+          ],
+          [
+            1431,
+            2890,
+            1358
+          ],
+          [
+            1046,
+            3680,
+            34018
+          ]
+        ]
+      }
+    },
+    "seleccionado": "regresion_logistica",
+    "version": "20261107052058"
+  },
+  "balanceo_repeticiones": [
+    {
+      "particiones": 2,
+      "repeticion": 1,
+      "segundos": 2.864
+    },
+    {
+      "particiones": 2,
+      "repeticion": 2,
+      "segundos": 1.592
+    },
+    {
+      "particiones": 2,
+      "repeticion": 3,
+      "segundos": 1.657
+    },
+    {
+      "particiones": 8,
+      "repeticion": 1,
+      "segundos": 2.364
+    },
+    {
+      "particiones": 8,
+      "repeticion": 2,
+      "segundos": 2.261
+    },
+    {
+      "particiones": 8,
+      "repeticion": 3,
+      "segundos": 2.168
+    },
+    {
+      "particiones": 32,
+      "repeticion": 1,
+      "segundos": 4.891
+    },
+    {
+      "particiones": 32,
+      "repeticion": 2,
+      "segundos": 4.432
+    },
+    {
+      "particiones": 32,
+      "repeticion": 3,
+      "segundos": 4.582
+    },
+    {
+      "particiones": 200,
+      "repeticion": 1,
+      "segundos": 31.457
+    },
+    {
+      "particiones": 200,
+      "repeticion": 2,
+      "segundos": 31.853
+    },
+    {
+      "particiones": 200,
+      "repeticion": 3,
+      "segundos": 32.94
+    }
+  ],
+  "balanceo_resumen": [
+    {
+      "particiones": 2,
+      "media_s": 2.038,
+      "desv_estandar_s": 0.716
+    },
+    {
+      "particiones": 8,
+      "media_s": 2.264,
+      "desv_estandar_s": 0.098
+    },
+    {
+      "particiones": 32,
+      "media_s": 4.635,
+      "desv_estandar_s": 0.234
+    },
+    {
+      "particiones": 200,
+      "media_s": 32.084,
+      "desv_estandar_s": 0.768
+    }
+  ],
+  "distribucion_particiones": [
+    {
+      "reparto": "sin_clave",
+      "min": 24752,
+      "max": 24756,
+      "media": 24754.2,
+      "vacias": 0,
+      "max_media": 1.0
+    },
+    {
+      "reparto": "por_ciudad",
+      "min": 0,
+      "max": 305069,
+      "media": 24754.2,
+      "vacias": 1,
+      "max_media": 12.32
+    },
+    {
+      "reparto": "por_categoria",
+      "min": 161,
+      "max": 106082,
+      "media": 24754.2,
+      "vacias": 0,
+      "max_media": 4.29
+    }
+  ]
+}
