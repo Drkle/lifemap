@@ -203,7 +203,7 @@ pipeline {
         stage('Entrega 2: riesgo y streaming aislado') {
             when { expression { env.PRODUCCION == 'true' && params.ENTREGA2 } }
             steps {
-                sh ''''
+                sh '''
                     . jenkins/ci-env.sh
                     docker compose build streaming-job
                     docker compose run --rm --no-deps streaming-job python -m pytest -q tests/test_riesgo.py
@@ -213,7 +213,7 @@ pipeline {
                     docker compose --profile streaming up -d --wait kafka
                     docker compose --profile streaming run --rm kafka-init
                     bash scripts/smoke_streaming.sh
-                ''''
+                '''
             }
         }
 
