@@ -172,7 +172,9 @@ la entrega exige su ejecución en el servidor externo con Yelp y URL pública.
 
 **Corrección de Dask:** al actualizar un entorno existente, cambiar también
 `DASK_SCHEDULER_MEM=1g` en su `.env`. Un valor antiguo de 512m tiene prioridad sobre Compose.
-El diccionario de negocios se comparte como un solo objeto con `scatter([info])[0]`.
+El diccionario de negocios viaja como argumento reconstruible del grafo Dask, sin depender de un Future de scatter que se pierda al reiniciar workers.
+Jenkins limita la ingesta a dos tareas activas, bloques de 16 MB y un hilo por worker.
+Si falla, el post del pipeline recoge estados, reinicios y logs de Dask automáticamente.
 
 **Alcance del rollback:** el despliegue restaura la imagen anterior de API cuando falla su
 verificación. No es un rollback transaccional de los datos o los modelos compartidos.

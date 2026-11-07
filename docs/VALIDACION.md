@@ -8,7 +8,7 @@ desde este entorno. Las comprobaciones locales no sustituyen ese build.
 ## Comprobado
 
 - API: 30 pruebas aprobadas; 1 prueba de fallo intencionado omitida por defecto.
-- Ingesta: 11 pruebas aprobadas, incluida ejecución real de `scatter` con dos workers Dask.
+- Ingesta: 12 pruebas aprobadas, incluida recuperación tras terminar un worker real y envío acotado a dos tareas por bloque.
 - Regresión adicional con MongoDB real: escritura parcial, reintentos y duplicados de origen, con agregados persistidos completos. Jenkins la ejecuta antes de la carga Yelp.
 - Spark: 9 pruebas aprobadas, incluyendo entrenamiento/predicción y equivalencia RDD/groupBy.
 - Modelo portable de riesgo: igualdad numérica entre la probabilidad JSON y scikit-learn.

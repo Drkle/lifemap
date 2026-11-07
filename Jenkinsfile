@@ -56,6 +56,9 @@ pipeline {
         KAGGLE_DATASET = 'yelp-dataset/yelp-dataset'
         INFRA          = 'mongodb spark-master spark-worker dask-scheduler dask-worker-1 dask-worker-2'
         DOCKER_BUILDKIT = '1'
+        DASK_WORKER_THREADS = '1'
+        REVIEW_BLOCKSIZE = '16MB'
+        INGEST_MAX_EN_VUELO = '2'
     }
 
     stages {
@@ -269,6 +272,18 @@ pipeline {
             echo "OK: build ${env.BUILD_NUMBER} (${env.PRODUCCION == 'true' ? 'desplegado' : 'validado sin tocar producción'})."
         }
         failure {
+            sh '''
+                # Solo metadatos de estado y logs: nunca imprimir .env ni docker inspect completo.
+                . jenkins/ci-env.sh
+                docker compose ps || true
+                for servicio in dask-scheduler dask-worker-1 dask-worker-2; do
+                    cid=$(docker compose ps -aq "$servicio")
+                    if [ -n "$cid" ]; then
+                        docker inspect --format '{{.Name}} estado={{.State.Status}} oom={{.State.OOMKilled}} reinicios={{.RestartCount}} salida={{.State.ExitCode}}' "$cid" || true
+                    fi
+                done
+                docker compose logs --no-color --tail=100 dask-scheduler dask-worker-1 dask-worker-2 || true
+            '''
             echo "FALLO: el pipeline se detuvo y NO se desplegó la versión ${env.BUILD_NUMBER}. Revisar logs: no se completó el despliegue; deploy_api restaura la imagen previa si falla su smoke."
         }
     }
