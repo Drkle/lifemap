@@ -22,7 +22,7 @@ def tabla(headers, rows, clase=''):
 
 
 def pagina(numero, titulo, contenido):
-    return f'<section class="pagina"><div class="ceja">BIG DATA · IUE · 2026-2 · ENTREGA 1</div><h1>{titulo}</h1>{contenido}<footer>LifeMap · Juan Echeverrri · Sebastian Botero <span>{numero} / 6</span></footer></section>'
+    return f'<section class="pagina"><div class="ceja">BIG DATA · IUE · 2026-2 · ENTREGA 1</div><h1>{titulo}</h1>{contenido}<footer>LifeMap · Santiago Villamizar Mejía · Juan Echeverri · Sebastián Botero <span>{numero} / 6</span></footer></section>'
 
 
 def matrix(nombre):
@@ -36,7 +36,7 @@ estados=tabla(['Componente', 'Evidencia observada'], [
     ['Máquina de presentación', 'El mismo portátil de desarrollo, por decisión del equipo']])
 arquitectura='''<svg viewBox="0 0 680 150" aria-label="Arquitectura batch"><defs><marker id="flecha" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8" fill="#13756f"/></marker></defs><g fill="#edf5f4" stroke="#13756f"><rect x="5" y="15" width="135" height="70" rx="8"/><rect x="180" y="15" width="135" height="70" rx="8"/><rect x="355" y="15" width="135" height="70" rx="8"/><rect x="530" y="15" width="145" height="70" rx="8"/></g><g font-family="Arial" font-size="13" text-anchor="middle" fill="#153a42"><text x="72" y="43">Kaggle / Yelp</text><text x="72" y="64">Dask · limpieza</text><text x="247" y="43">MongoDB</text><text x="247" y="64">GeoJSON · índices</text><text x="422" y="43">Spark</text><text x="422" y="64">ML · RDD · tasas</text><text x="602" y="43">Flask + ngrok</text><text x="602" y="64">API pública</text><text x="340" y="125">Jenkins + GitHub: build → pruebas → staging → despliegue</text></g><g stroke="#13756f" stroke-width="2" marker-end="url(#flecha)"><path d="M140 50H175"/><path d="M315 50H350"/><path d="M490 50H525"/></g></svg>'''
 p1=pagina(1,'LifeMap: reputación, ubicación<br>y supervivencia de negocios',f'''
-<p class="autores"><b>Juan Echeverrri · Sebastian Botero</b><br>Institución Universitaria de Envigado · Ingeniería · 7 de noviembre de 2026</p>
+<p class="autores"><b>Santiago Villamizar Mejía · Juan Echeverri · Sebastián Botero</b><br>Institución Universitaria de Envigado · Ingeniería · 7 de noviembre de 2026</p>
 <h2>Propósito y alcance</h2><p>Integrar ubicación, reputación textual y exposición temporal para consultar negocios y comparar tasas de cierre en el área de Yelp identificada por Florida (FL), familia <b>Restaurants</b>. El recorte usa el estado; no se aplicó una caja geográfica adicional. La vida se aproxima por las fechas de reseñas, pues Yelp no contiene apertura ni cierre reales.</p>
 <h2>Arquitectura y operación</h2>{arquitectura}<p>Un Compose orquesta MongoDB, Spark maestro/worker, Dask scheduler/dos workers, Flask y Jenkins. La ingesta descarga y limpia; Spark entrena y agrega; Flask consulta MongoDB y carga el modelo compartido para inferencia. GitHub dispara Jenkins por webhook, con polling cada dos minutos como respaldo. Código en imágenes; datos y modelos en volúmenes; credenciales fuera de Git.</p>
 <h2>Resultado de la ejecución</h2>{estados}

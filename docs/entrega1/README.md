@@ -1,6 +1,6 @@
 # Informe de la primera entrega
 
-**Integrantes:** Juan Echeverrri y Sebastian Botero, escritos según los nombres proporcionados por el equipo.
+**Integrantes:** Santiago Villamizar Mejía, Juan Echeverri y Sebastián Botero.
 
 - [Informe PDF de seis páginas](informe_e1.pdf).
 - [Versión HTML editable/imprimible](informe_e1.html).
