@@ -7,7 +7,7 @@ from time import perf_counter
 from typing import Any
 
 from bson import ObjectId
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, jsonify, request, render_template
 
 from . import config
 from .consultas import (ORDENES_STATS, PROYECCION_NEGOCIO, filtro_near, filtro_stats,
@@ -139,3 +139,8 @@ def predict():
     except ModeloNoDisponible as exc:
         return jsonify(error=str(exc)), 503
     return jsonify(texto=texto, tiempo_ms=round((perf_counter() - inicio) * 1000, 3), **resultado)
+
+
+@bp.get("/dashboard")
+def dashboard():
+    return render_template("dashboard.html")

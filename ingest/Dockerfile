@@ -4,6 +4,7 @@ WORKDIR /opt/ingest
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
+RUN python -m compileall -q /opt/ingest
 # Los datos de Kaggle viven en un volumen con nombre montado aquí (caché de descarga).
 RUN mkdir -p /data
 

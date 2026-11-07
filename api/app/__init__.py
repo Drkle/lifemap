@@ -7,6 +7,7 @@ from flask import Flask, jsonify
 
 from . import config
 from .rutas import bp as lifemap_bp
+from .rutas_live import bp as live_bp
 from .validacion import ErrorValidacion
 
 
@@ -33,6 +34,7 @@ def create_app(db=None, predictor=None, sondas=None):
     app.config["PREDICTOR"] = predictor
     app.config["SONDAS"] = sondas
     app.register_blueprint(lifemap_bp)
+    app.register_blueprint(live_bp)
 
     @app.get("/health")
     def health():
@@ -49,7 +51,11 @@ def create_app(db=None, predictor=None, sondas=None):
             servicios["mongodb"] = {"estado": "error", "detalle": type(exc).__name__}
         for nombre, sonda in app.config["SONDAS"].items():
             servicios[nombre] = sonda()
-        servicios["kafka"] = {"estado": "no_aplica", "detalle": "se agrega en la Entrega 2"}
+        if config.STREAMING_ENABLED:
+            from .salud import sonda_kafka
+            servicios["kafka"] = sonda_kafka(app.config["DB"])
+        else:
+            servicios["kafka"] = {"estado": "no_aplica", "detalle": "streaming desactivado"}
 
         mongo_ok = servicios["mongodb"]["estado"] == "ok"
         todos_ok = all(s["estado"] in ("ok", "no_aplica") for s in servicios.values())

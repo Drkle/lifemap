@@ -8,6 +8,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY app ./app
+RUN python -m compileall -q /app/app
 
 # Etapa de pruebas: la usa Jenkins con  docker build --target test
 FROM base AS test
