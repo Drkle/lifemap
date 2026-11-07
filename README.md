@@ -2,7 +2,7 @@
 
 Curso Big Data · Institución Universitaria de Envigado · 2026-2
 
-**URL pública del sistema:** `https://REEMPLAZAR.ngrok-free.app` ← *actualizar al desplegar*
+**URL pública del sistema:** `https://aviation-decrease-hunger.ngrok-free.dev`
 (`/health` muestra el estado de cada servicio y el commit desplegado)
 
 Sistema que mide cuánto viven los negocios de un área metropolitana del Yelp Open Dataset,
@@ -105,7 +105,7 @@ Spark real → API candidata en staging + smoke → **despliegue** → verificac
 | `POST /predict` | `{"texto": "..."}` (también `GET ?texto=`) | modelo de Spark guardado |
 
 ```bash
-URL=https://REEMPLAZAR.ngrok-free.app
+URL=https://aviation-decrease-hunger.ngrok-free.dev
 curl "$URL/health"
 curl "$URL/businesses/near?lat=27.9506&lon=-82.4572&radio=1000&categoria=Pizza&limit=5"
 curl -X POST "$URL/businesses/within?limit=20" -H 'Content-Type: application/json' \
