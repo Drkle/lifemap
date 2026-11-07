@@ -1,10 +1,40 @@
 {
-  "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0}",
+  "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0, \"themeCollection\": {\"baseTheme\": {\"name\": \"CY23SU04\", \"version\": \"5.43\", \"type\": 2}, \"customTheme\": {\"name\": \"LifeMap.json\", \"version\": \"5.43\", \"type\": 1}}}",
+  "theme": "LifeMap.json",
   "filters": "[]",
   "layoutOptimization": 0,
   "pods": [],
   "publicCustomVisuals": [],
-  "resourcePackages": [],
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "name": "SharedResources",
+        "type": 2,
+        "items": [
+          {
+            "name": "CY23SU04",
+            "path": "BaseThemes/CY23SU04.json",
+            "type": 202
+          }
+        ]
+      }
+    },
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "name": "RegisteredResources",
+        "type": 1,
+        "items": [
+          {
+            "name": "LifeMap.json",
+            "path": "LifeMap.json",
+            "type": 201
+          }
+        ]
+      }
+    }
+  ],
   "sections": [
     {
       "name": "ReportSectionLifeMap",

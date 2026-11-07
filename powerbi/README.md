@@ -65,4 +65,18 @@ manual; no se necesita para abrir el nuevo PBIP.
 
 Referencia del formato: ejemplo oficial Microsoft Analysis-Services,
 `pbidevmode/fabricps-pbip/SamplePBIP` (PBIR-Legacy y modelo BIM). El generador es propio;
-no incluye recursos, datos ni visualizaciones copiadas del informe de ejemplo.
+incluye el tema base CY23SU04 del ejemplo Microsoft, con licencia en `temas/MICROSOFT-LICENSE.txt`; el tema LifeMap es propio.
+
+## Corrección del error customTheme
+
+El error `Cannot read properties of undefined (reading 'customTheme')` de Desktop
+2.150.2102.0 se debía a la ausencia de `themeCollection` en el informe generado.
+El proyecto ahora registra tema base, tema LifeMap y sus archivos StaticResources.
+Cerrar Power BI **sin guardar** la sesión con error, actualizar el repositorio y
+volver a abrir el PBIP. No hace falta actualizar Power BI para corregir esta omisión.
+La prueba de regresión valida ambas referencias y la existencia/lectura de sus recursos;
+la comprobación final del renderizado sigue requiriendo Desktop.
+
+El tema base `temas/CY23SU04.json` procede del ejemplo oficial Microsoft enlazado arriba
+(`Sales.Report/StaticResources/SharedResources/BaseThemes/CY23SU04.json`), distribuido
+con licencia MIT incluida en `temas/MICROSOFT-LICENSE.txt`.
