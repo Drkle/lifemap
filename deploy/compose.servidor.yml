@@ -1,0 +1,11 @@
+# Requiere Docker Compose >=2.24.4 por !override.
+# Usar JUNTO a docker-compose.yml; no reemplaza servicios ni volúmenes.
+services:
+  api:
+    ports: !override ["127.0.0.1:5000:5000"]
+  spark-master:
+    ports: !override ["127.0.0.1:8081:8080"]
+  dask-scheduler:
+    ports: !override ["127.0.0.1:8787:8787"]
+  jenkins:
+    ports: !override ["127.0.0.1:8080:8080"]

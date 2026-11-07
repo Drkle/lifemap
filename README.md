@@ -190,3 +190,12 @@ docker compose cp dask-worker-1:/data/evidencias ./docs/evidencias
 
 Revisar la interpretación y maquetar el informe a un máximo de 6 páginas. La exportación
 no sustituye el historial de builds, la URL disponible ni la sustentación del equipo.
+
+## Informe de la primera entrega y evidencia del build #8
+
+[PDF de seis páginas y fuentes](docs/entrega1/README.md), con limpieza, comparación NB/LR,
+tasas, balanceo y comprobación pública de los seis endpoints. El documento identifica lo
+pendiente: prueba controlada de bloqueo, servidor distinto del portátil y disponibilidad.
+El parámetro FORZAR_FALLO captura ahora la identidad de la API antes/después y publica
+artefactos del build. La [guía de traslado](deploy/SERVIDOR.md) incluye un override para que
+los puertos administrativos se limiten a loopback y un preflight sin cambios en el host.

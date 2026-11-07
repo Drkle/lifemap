@@ -71,6 +71,11 @@ pipeline {
                     env.GIT_COMMIT = sh(returnStdout: true, script: 'git rev-parse HEAD').trim()
                 }
                 sh 'git log -1 --pretty="Commit %H de %an: %s"'
+                script {
+                    if (params.FORZAR_FALLO) {
+                        sh 'bash scripts/evidencia_bloqueo.sh antes'
+                    }
+                }
             }
         }
 
@@ -259,6 +264,7 @@ pipeline {
 
     post {
         always {
+            archiveArtifacts artifacts: '.ci-evidencias/**', allowEmptyArchive: true
             sh '''
                 docker rm -f ${STAGING} >/dev/null 2>&1 || true
                 docker image rm lifemap-api-test:${API_TAG} lifemap-ingest-test:${API_TAG} >/dev/null 2>&1 || true
@@ -272,6 +278,15 @@ pipeline {
             echo "OK: build ${env.BUILD_NUMBER} (${env.PRODUCCION == 'true' ? 'desplegado' : 'validado sin tocar producción'})."
         }
         failure {
+            script {
+                if (params.FORZAR_FALLO) {
+                    def estadoBloqueo = sh(returnStatus: true, script: 'bash scripts/evidencia_bloqueo.sh despues')
+                    archiveArtifacts artifacts: '.ci-evidencias/**', allowEmptyArchive: true
+                    if (estadoBloqueo != 0) {
+                        echo 'No se confirmó conservación de la API: revisar los artefactos y la consola.'
+                    }
+                }
+            }
             sh '''
                 # Solo metadatos de estado y logs: nunca imprimir .env ni docker inspect completo.
                 . jenkins/ci-env.sh
