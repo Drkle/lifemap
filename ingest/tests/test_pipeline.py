@@ -29,3 +29,15 @@ def test_scatter_diccionario_como_objeto_unico():
             resultado = client.compute(delayed(lambda valor: (len(valor), valor['5']['geohash']))(futuro)).result()
             assert resultado == (100, 'dhvru7')
             assert len(client.who_has()) == 2  # un objeto compartido y una tarea, no 100 objetos
+
+
+def test_reporte_duplicados_globales_no_cuenta_reintentos():
+    reportes = [{'total_inicial': 3, 'total_final': 3}, {'total_inicial': 2, 'total_final': 2}]
+    r = pipeline_ingesta.finalizar_reporte_resenas(reportes, 3)
+    assert r['R5_duplicado'] == 2 and r['total_final'] == 3
+
+
+def test_reporte_rechaza_datos_ajenos_a_las_tareas():
+    import pytest
+    with pytest.raises(RuntimeError, match='concurrentes'):
+        pipeline_ingesta.finalizar_reporte_resenas([{'total_final': 2}], 3)

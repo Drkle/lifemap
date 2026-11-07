@@ -5,8 +5,8 @@ Pasos:
   2. Lee business.json particionado con Dask y aplica N1–N6.
   3. Lee review.json particionado (bloques de REVIEW_BLOCKSIZE) y, partición por partición,
      aplica R1–R4, carga las reseñas por lotes en MongoDB (R5 lo mide el índice _id) y
-     devuelve un agregado parcial por negocio. Así el texto nunca se acumula en memoria.
-  4. Combina los agregados: vida de cada negocio (primera/última reseña, días-negocio,
+     devuelve conteos de limpieza. Los agregados por negocio salen de los documentos únicos en MongoDB.
+  4. Agrega las reseñas únicas persistidas en MongoDB: vida de cada negocio (primera/última reseña, días-negocio,
      evento, censura), sentimiento medio y % de negativas; aplica N7.
   5. Carga los negocios como GeoJSON por lotes y crea los índices (2dsphere incluido).
   6. Guarda el reporte con los conteos antes/después de cada regla.
@@ -29,7 +29,7 @@ import dask.dataframe as dd
 import pandas as pd
 from dask import delayed
 from distributed import Client
-from pymongo import ASCENDING, GEOSPHERE, MongoClient
+from pymongo import ASCENDING, GEOSPHERE, MongoClient, UpdateOne
 from pymongo.errors import BulkWriteError
 
 import limpieza
@@ -74,35 +74,61 @@ def procesar_particion_resenas(
     base: str,
     coleccion: str,
     tamano_lote: int,
-) -> tuple[pd.DataFrame, dict]:
-    """Limpia una partición, la carga en MongoDB y devuelve (agregado parcial, reporte)."""
+) -> dict:
+    """Carga idempotente: repetir una tarea no cambia sus conteos ni elimina reseñas.
 
+    El reporte cuenta filas de entrada limpias. R5 se calcula globalmente al terminar,
+    comparando esas filas con los review_id únicos realmente persistidos en MongoDB.
+    """
     limpio, reporte = limpieza.limpiar_resenas(particion, info_negocios)
-    duplicadas: set[str] = set()
     if not limpio.empty:
         cliente = MongoClient(uri)
         destino = cliente[base][coleccion]
         try:
-            registros = limpio.to_dict("records")
+            registros = limpio.drop_duplicates("review_id", keep="first").to_dict("records")
             for inicio in range(0, len(registros), tamano_lote):
-                lote = registros[inicio : inicio + tamano_lote]
-                documentos = [
-                    limpieza.documento_resena(r, info_negocios[r["business_id"]]) for r in lote
-                ]
+                documentos = [limpieza.documento_resena(r, info_negocios[r["business_id"]])
+                              for r in registros[inicio:inicio + tamano_lote]]
+                operaciones = [UpdateOne({"_id": d["_id"]}, {"$setOnInsert": d}, upsert=True)
+                               for d in documentos]
                 try:
-                    destino.insert_many(documentos, ordered=False)
+                    destino.bulk_write(operaciones, ordered=False)
                 except BulkWriteError as error:
-                    otros = [e for e in error.details["writeErrors"] if e.get("code") != 11000]
-                    if otros:
+                    # Dos tareas pueden intentar crear el mismo _id simultáneamente.
+                    detalles = error.details
+                    if detalles.get("writeConcernErrors") or any(e.get("code") != 11000 for e in detalles.get("writeErrors", [])):
                         raise
-                    duplicadas.update(e["op"]["_id"] for e in error.details["writeErrors"])
+                    for fallo in detalles.get("writeErrors", []):
+                        d = documentos[fallo["index"]]
+                        destino.update_one({"_id": d["_id"]}, {"$setOnInsert": d}, upsert=True)
         finally:
             cliente.close()
-    reporte["R5_duplicado"] = len(duplicadas)
-    if duplicadas:
-        limpio = limpio.loc[~limpio["review_id"].isin(duplicadas)]
-    reporte["total_final"] = int(len(limpio))
-    return limpieza.agregar_por_negocio(limpio), reporte
+    return reporte
+
+
+def agregar_resenas_persistidas(coleccion) -> tuple[pd.DataFrame, int]:
+    """Una sola fuente de verdad para vida/conteos, incluso si Dask repite tareas."""
+    filas = list(coleccion.aggregate([
+        {"$group": {"_id": "$business_id", "primera": {"$min": "$fecha"},
+                    "ultima": {"$max": "$fecha"}, "n": {"$sum": 1},
+                    "negativas": {"$sum": "$negativa"},
+                    "suma_puntaje": {"$sum": {"$subtract": ["$etiqueta", 1]}}}},
+        {"$project": {"_id": 0, "business_id": "$_id", "primera": 1, "ultima": 1,
+                      "n": 1, "negativas": 1, "suma_puntaje": 1}},
+    ], allowDiskUse=True))
+    agregado = pd.DataFrame(filas, columns=["business_id", "primera", "ultima", "n", "negativas", "suma_puntaje"])
+    total = int(agregado["n"].sum()) if filas else 0
+    return agregado, total
+
+
+def finalizar_reporte_resenas(reportes, total_persistido):
+    reporte = _sumar(reportes, limpieza.REGLAS_RESENAS)
+    duplicadas = reporte["total_final"] - total_persistido
+    if duplicadas < 0:
+        raise RuntimeError("MongoDB contiene más reseñas que las procesadas: revisar ejecuciones concurrentes.")
+    reporte["R5_duplicado"] = duplicadas
+    reporte["total_final"] = total_persistido
+    return reporte
 
 
 def _insertar_lotes(destino, documentos: list[dict], tamano_lote: int) -> int:
@@ -137,7 +163,7 @@ def ejecutar() -> None:
         meta
         and not forzar
         and db[col_negocios].count_documents({}) == meta.get("negocios", {}).get("total_final")
-        and db[col_resenas].estimated_document_count() == meta.get("resenas", {}).get("total_final")
+        and db[col_resenas].count_documents({}) == meta.get("resenas", {}).get("total_final")
     ):
         print(f"[ingesta] Ingesta omitida: los datos ya corresponden a {clave_meta}.")
         mongo.close()
@@ -195,13 +221,15 @@ def ejecutar() -> None:
             particiones = particiones[:max_particiones]
         print(f"[ingesta] review.json en {raw_res.npartitions} particiones (se procesan {len(particiones)})")
         tareas = [
-            delayed(procesar_particion_resenas, nout=2)(p, info_futuro, uri, base, col_resenas, tamano_lote)
+            delayed(procesar_particion_resenas)(p, info_futuro, uri, base, col_resenas, tamano_lote)
             for p in particiones
         ]
-        resultados = dask.compute(*tareas)
-        agregados = limpieza.combinar_agregados([r[0] for r in resultados])
-        reportes_res = [r[1] for r in resultados]
-        rep_res = _sumar(reportes_res, limpieza.REGLAS_RESENAS)
+        reportes_res = list(dask.compute(*tareas))
+        agregados, total_persistido = agregar_resenas_persistidas(db[col_resenas])
+        rep_res = finalizar_reporte_resenas(reportes_res, total_persistido)
+        if total_persistido == 0:
+            raise RuntimeError("No se guardaron reseñas válidas para el área seleccionada.")
+        print(f"[ingesta] reseñas únicas persistidas: {total_persistido:,}; duplicados de origen: {rep_res['R5_duplicado']:,}")
         por_etiqueta: dict[str, int] = {}
         for reporte in reportes_res:
             for clave, valor in reporte.get("por_etiqueta", {}).items():
@@ -228,7 +256,7 @@ def ejecutar() -> None:
         resenas.create_index([("fecha", ASCENDING)], name="fecha_1")
         resenas.create_index([("geohash", ASCENDING)], name="geohash_1")
 
-        total_resenas = resenas.estimated_document_count()
+        total_resenas = resenas.count_documents({})
         if insertados != rep_neg["total_final"] or total_resenas != rep_res["total_final"]:
             raise RuntimeError(
                 f"Conteos inconsistentes: negocios {insertados}/{rep_neg['total_final']}, "

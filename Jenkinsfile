@@ -125,6 +125,7 @@ pipeline {
                 withCredentials([string(credentialsId: 'kaggle-api-token', variable: 'KAGGLE_API_TOKEN')]) {
                     sh '''
                         . jenkins/ci-env.sh
+                        docker compose run --rm dask-job python prueba_reintentos.py
                         FORCE_RELOAD=${FORCE_RELOAD} docker compose run --rm \
                             -e KAGGLE_API_TOKEN dask-job python pipeline_ingesta.py
                     '''
