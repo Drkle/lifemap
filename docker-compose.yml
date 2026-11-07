@@ -114,7 +114,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: ${DASK_SCHEDULER_MEM:-512m}
+          memory: ${DASK_SCHEDULER_MEM:-1g}
     networks: [lifemap]
     restart: unless-stopped
 
