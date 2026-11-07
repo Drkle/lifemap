@@ -24,6 +24,7 @@ def main():
         raise SystemExit('Smoke exige topic y base ci_ para no contaminar producción.')
     client, db = conectar()
     version = json.loads(Path(os.getenv('MODELO_PATH', '/models/sentimiento_v1'), 'lifemap_metadata.json').read_text())['version']
+    version_esperada = version + '-invalida-intencional' if os.getenv('FORZAR_FALLO_STREAMING','false').lower() == 'true' else version
     negocio_id = 'ci_business'
     db.negocios.create_index([('location', '2dsphere')])
     db.negocios.replace_one({'_id': negocio_id}, {'_id': negocio_id,
@@ -54,7 +55,9 @@ def main():
                 docs = list(db.reviews_live.find({'_id': {'$in': ids}}))
                 progreso = (db.streaming_meta.find_one({'_id': 'progreso'}) or {}).get('offsets', {})
                 completos = all(int(progreso.get(str(tp.partition), 0)) >= fin for tp, fin in finales.items())
-                if completos and len(docs) == 100 and all(d.get('modelo_version') == version and len(d.get('probabilidades', [])) == 3 for d in docs):
+                if completos and len(docs) == 100:
+                    if not all(d.get('modelo_version') == version_esperada and len(d.get('probabilidades', [])) == 3 for d in docs):
+                        raise AssertionError('Versión o probabilidades incorrectas; FORZAR_FALLO_STREAMING exige una versión inválida para demostrar el bloqueo.')
                     break
                 time.sleep(2)
             else:

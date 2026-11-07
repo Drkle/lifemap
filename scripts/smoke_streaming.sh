@@ -7,6 +7,10 @@ export KAFKA_TOPIC="ci_reviews_${BUILD_NUMBER}"
 export KAFKA_CLASSIFIED_TOPIC="ci_classified_${BUILD_NUMBER}"
 export MONGO_DB="ci_lifemap_${BUILD_NUMBER}"
 export FECHA_CORTE="${FECHA_CORTE:-2019-01-01}"
+export MODELO_PATH="${MODELO_PATH:-/models/sentimiento_v1}"
+export RIESGO_PATH="${RIESGO_PATH:-/models/riesgo_v1.json}"
+export MANIFEST_PATH="${MANIFEST_PATH:-}"
+export FORZAR_FALLO_STREAMING="${FORZAR_FALLO_STREAMING:-false}"
 container="lifemap-streaming-smoke-${BUILD_NUMBER}"
 cleanup() {
     docker logs --tail 100 "$container" || true
@@ -24,8 +28,8 @@ done
 docker run -d --name "$container" --network lifemap-net --memory 2g \
     -e MONGO_ROOT_USER -e MONGO_ROOT_PASSWORD -e MONGO_DB \
     -e KAFKA_TOPIC -e KAFKA_CLASSIFIED_TOPIC -e FECHA_CORTE \
-    -e MODELO_PATH=/models/sentimiento_v1 \
+    -e MODELO_PATH -e RIESGO_PATH -e MANIFEST_PATH \
     --tmpfs /checkpoints -v lifemap_modelos:/models:ro lifemap-streaming:latest
 docker run --rm --network lifemap-net \
     -e MONGO_ROOT_USER -e MONGO_ROOT_PASSWORD -e MONGO_DB \
-    -e KAFKA_TOPIC -e FECHA_CORTE -v lifemap_modelos:/models:ro lifemap-streaming:latest python smoke.py
+    -e KAFKA_TOPIC -e FECHA_CORTE -e MODELO_PATH -e FORZAR_FALLO_STREAMING -v lifemap_modelos:/models:ro lifemap-streaming:latest python smoke.py

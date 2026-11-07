@@ -205,3 +205,11 @@ los puertos administrativos se limiten a loopback y un preflight sin cambios en 
 portátil con Docker/Jenkins/ngrok. No hay traslado de máquina en el plan activo. El informe
 explica la diferencia con el enunciado. El build #10 demostró bloqueo del despliegue ante el
 fallo intencional, conservando la API versión 9; ver `docs/evidencias/bloqueo_build10.json`.
+
+## Inicio de la segunda entrega con datos reales
+
+Seguir [PREPARAR_ENTREGA2](docs/PREPARAR_ENTREGA2.md): activar únicamente el modo preparación
+para auditar los cortes y entrenar candidatos independientes del modelo E1. El pipeline
+archiva cantidades, métricas, hashes y resultado del smoke. La activación y el productor
+se hacen después de revisar esos resultados. FORZAR_FALLO_STREAMING prueba el rechazo de
+una versión incorrecta y mantiene el despliegue bloqueado.

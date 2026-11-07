@@ -49,3 +49,17 @@ Las recargas deben hacerse en mantenimiento. Cambiar modelos exige una nueva rev
 checkpoints y revisar la reproducción del topic clasificado para evitar mezclar resultados.
 Power BI Import se actualiza con Actualizar; el dashboard web sí consulta automáticamente.
 Los polígonos del mapa requieren tiles de OpenStreetMap, aunque Leaflet se sirve localmente.
+
+## Preparación de la segunda entrega
+
+Se añadió PREPARAR_ENTREGA2 para auditar Yelp y entrenar en carpetas/registros diferentes
+del modelo E1, sin recrear la API ni iniciar el consumidor productivo. Los manifiestos
+validan cortes, versiones y hashes de pesos. Se comprobaron seis pruebas de streaming/modelos,
+el smoke positivo con 100 reseñas únicas y el rechazo real de una versión incorrecta usando
+Kafka/Spark/MongoDB locales y datos sintéticos. Las 30 pruebas API, 12 de ingesta y 9 de Spark
+continúan pasando. La auditoría también se ejecutó contra una cohorte MongoDB sintética.
+
+Falta ejecutar este modo en Jenkins con el Yelp del equipo y revisar los artefactos por build.
+No se declaran obtenidas métricas E2 reales ni streaming público activo por estas pruebas.
+Seguir docs/PREPARAR_ENTREGA2.md. El corte inicial propuesto sigue siendo T=2019-01-01,
+con entrenamiento de riesgo al 2018-01-01; la auditoría falla si faltan clases o seguimiento.
