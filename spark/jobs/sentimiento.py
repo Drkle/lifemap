@@ -72,18 +72,22 @@ def main():
     p.add_argument("--salida", default="/models")
     p.add_argument("--balancear", default="true")
     p.add_argument("--semilla", type=int, default=42)
-    p.add_argument("--fecha-corte", default=os.getenv("FECHA_CORTE", ""))
+    p.add_argument("--fecha-corte", default="")
+    p.add_argument("--nombre-modelo", choices=["sentimiento_v1", "sentimiento_e2_v1"], default="sentimiento_v1")
     args = p.parse_args()
     balancear = args.balancear.lower() == "true"
     prefijo = prefijo_semilla(args.coleccion)
     salida = Path(args.salida)
-    nombre_activo = f"{prefijo}sentimiento_v1"
+    nombre_activo = f"{prefijo}{args.nombre_modelo}"
 
     spark = crear_sesion("lifemap-sentimiento")
     pipeline_lectura = []
     fecha_corte = None
     if args.fecha_corte and not prefijo:
-        fecha_corte = datetime.fromisoformat(args.fecha_corte).isoformat()
+        corte_dt = datetime.fromisoformat(args.fecha_corte.replace("Z", "+00:00"))
+        if corte_dt.tzinfo is not None:
+            corte_dt = corte_dt.astimezone(timezone.utc).replace(tzinfo=None)
+        fecha_corte = corte_dt.isoformat()
         pipeline_lectura.append({"$match": {"fecha": {"$lte": {"$date": fecha_corte + "Z"}}}})
     pipeline_lectura.append({"$project": {"_id": 0, "business_id": 1, "texto": 1, "etiqueta": 1}})
     df = leer(spark, args.coleccion, pipeline_lectura)

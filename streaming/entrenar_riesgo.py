@@ -42,7 +42,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument('--corte', default=os.getenv('FECHA_CORTE', '2019-01-01'))
     p.add_argument('--entrenamiento', default=os.getenv('CORTE_ENTRENAMIENTO', '2018-01-01'))
-    p.add_argument('--salida', default='/models/riesgo_v1.json')
+    p.add_argument('--salida', default=os.getenv('RIESGO_PATH','/models/riesgo_v1.json'))
+    p.add_argument('--sin-publicar-scores', action='store_true')
     args = p.parse_args()
     corte, anterior = fecha_utc(args.corte), fecha_utc(args.entrenamiento)
     if fin_horizonte(anterior) > corte:
@@ -85,7 +86,7 @@ def main():
         temporal.replace(destino)
         db.modelo_riesgo.replace_one({'_id': 'riesgo_v1'}, {'_id': 'riesgo_v1', **modelo}, upsert=True)
         # Publica únicamente puntuaciones con features al corte de evaluación.
-        for negocio in db.negocios.find({'primera_resena': {'$lte': corte}}):
+        for negocio in ([] if args.sin_publicar_scores else db.negocios.find({'primera_resena': {'$lte': corte}})):
             historia = historial(db, negocio['_id'], corte)
             if historia:
                 from analitica import probabilidad

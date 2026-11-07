@@ -182,7 +182,7 @@ services:
       APP_VERSION: ${API_TAG:-latest}
       SPARK_UI_URL: http://spark-master:8080
       DASK_DASHBOARD_URL: http://dask-scheduler:8787
-      MODELO_PATH: /models/sentimiento_v1
+      MODELO_PATH: ${MODELO_PATH:-/models/sentimiento_v1}
       STREAMING_ENABLED: ${STREAMING_ENABLED:-false}
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     ports:
@@ -298,11 +298,13 @@ services:
     profiles: [streaming]
     depends_on:
       kafka: {condition: service_healthy}
+    environment:
+      KAFKA_CLASSIFIED_TOPIC: ${KAFKA_CLASSIFIED_TOPIC:-reviews_classified}
     entrypoint: [/bin/bash, -ec]
     command:
       - |
         /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic reviews --partitions 3 --replication-factor 1
-        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic reviews_classified --partitions 3 --replication-factor 1
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic "$$KAFKA_CLASSIFIED_TOPIC" --partitions 3 --replication-factor 1
     networks: [lifemap]
 
   streaming-job: &streaming-job
@@ -316,10 +318,13 @@ services:
       KAFKA_BOOTSTRAP_SERVERS: kafka:9092
       FECHA_CORTE: ${FECHA_CORTE:-2019-01-01}
       CORTE_ENTRENAMIENTO: ${CORTE_ENTRENAMIENTO:-2018-01-01}
-      MODELO_PATH: /models/sentimiento_v1
+      MODELO_PATH: ${MODELO_PATH:-/models/sentimiento_v1}
       HOTSPOT_UMBRAL_PP: ${HOTSPOT_UMBRAL_PP:-15}
       HOTSPOT_MIN_RESENAS: ${HOTSPOT_MIN_RESENAS:-20}
       CHECKPOINT_DIR: ${CHECKPOINT_DIR:-/checkpoints/v1}
+      RIESGO_PATH: ${RIESGO_PATH:-/models/riesgo_v1.json}
+      MANIFEST_PATH: ${MANIFEST_PATH:-}
+      KAFKA_CLASSIFIED_TOPIC: ${KAFKA_CLASSIFIED_TOPIC:-reviews_classified}
     volumes:
       - modelos:/models
       - checkpoints:/checkpoints

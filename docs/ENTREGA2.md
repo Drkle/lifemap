@@ -1,5 +1,7 @@
 # LifeMap: operación de la segunda entrega
 
+**Comenzar por [PREPARAR_ENTREGA2.md](PREPARAR_ENTREGA2.md).** El modo preparación audita Yelp, entrena candidatos en carpetas separadas y ejecuta el smoke sin sustituir la API. Los comandos históricos de abajo son referencias de diagnóstico; no usarlos para sobrescribir modelos activos.
+
 La primera entrega sigue funcionando por defecto. La segunda añade servicios del perfil
 `streaming` al mismo Compose, MongoDB y URL. Se necesitan aproximadamente 3 GB adicionales
 para Kafka y el consumidor; no basta con que la suma de límites quepa en la RAM del host:

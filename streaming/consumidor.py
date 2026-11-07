@@ -53,6 +53,11 @@ def main():
         raise ValueError('El modelo de sentimiento debe entrenarse con el mismo FECHA_CORTE antes del streaming.')
     version = metadata['version']
     riesgo = json.loads(Path(os.getenv('RIESGO_PATH', '/models/riesgo_v1.json')).read_text())
+    if os.getenv('MANIFEST_PATH'):
+        from versionado import comprobar_manifest
+        manifest = comprobar_manifest(os.environ['MANIFEST_PATH'])
+        if manifest['sentimiento']['ruta'] != str(modelo_path) or manifest['riesgo']['ruta'] != os.getenv('RIESGO_PATH', '/models/riesgo_v1.json'):
+            raise ValueError('Las rutas no corresponden al manifiesto verificado')
     Path(checkpoint).mkdir(parents=True, exist_ok=True)
     archivo_version = Path(checkpoint) / 'model_versions.json'
     versiones = {'sentimiento': version, 'riesgo': riesgo['version'], 'corte': corte.isoformat()}

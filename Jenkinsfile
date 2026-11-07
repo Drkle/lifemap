@@ -28,6 +28,10 @@ pipeline {
     parameters {
         string(name: 'FECHA_CORTE', defaultValue: '2019-01-01', description: 'Corte UTC para reservar reseñas de streaming')
         string(name: 'CORTE_ENTRENAMIENTO', defaultValue: '2018-01-01', description: 'Corte anterior para entrenar riesgo sin fuga temporal')
+        booleanParam(name: 'PREPARAR_ENTREGA2', defaultValue: false,
+            description: 'Audita Yelp, entrena modelos separados y prueba streaming sin desplegar la API')
+        booleanParam(name: 'FORZAR_FALLO_STREAMING', defaultValue: false,
+            description: 'Exige una versión inválida en la prueba de streaming y bloquea el despliegue')
         booleanParam(name: 'ENTREGA2', defaultValue: false,
             description: 'Entrena con corte temporal y valida Kafka/streaming antes de desplegar')
         booleanParam(name: 'ENTRENAR_RIESGO', defaultValue: false,
@@ -59,6 +63,10 @@ pipeline {
         DASK_WORKER_THREADS = '1'
         REVIEW_BLOCKSIZE = '16MB'
         INGEST_MAX_EN_VUELO = '2'
+        EJECUTAR_ENTREGA2 = 'false'
+        MODELO_PATH = '/models/sentimiento_v1'
+        RIESGO_PATH = '/models/entrega2/riesgo_v1.json'
+        MANIFEST_PATH = ''
     }
 
     stages {
@@ -72,7 +80,22 @@ pipeline {
                 }
                 sh 'git log -1 --pretty="Commit %H de %an: %s"'
                 script {
-                    if (params.FORZAR_FALLO) {
+                    env.EJECUTAR_ENTREGA2 = params.ENTREGA2 ? 'true' : 'false'
+                    // Un build SCM posterior conserva la E2 ya activa.
+                    if (!params.PREPARAR_ENTREGA2) {
+                        def activa = sh(returnStdout: true, script: "docker inspect --format '{{range .Config.Env}}{{if eq . \"STREAMING_ENABLED=true\"}}true{{end}}{{end}}' lifemap-api-1 2>/dev/null || true").trim()
+                        if (activa == 'true') { env.EJECUTAR_ENTREGA2 = 'true' }
+                    }
+                    if (env.EJECUTAR_ENTREGA2 == 'true') {
+                        env.MODELO_PATH = '/models/entrega2/sentimiento_e2_v1'
+                        env.MANIFEST_PATH = '/models/entrega2/manifest.json'
+                    }
+                    if (params.FORZAR_FALLO_STREAMING && !params.PREPARAR_ENTREGA2 && env.EJECUTAR_ENTREGA2 != 'true') {
+                        error('FORZAR_FALLO_STREAMING requiere PREPARAR_ENTREGA2 o ENTREGA2.')
+                    }
+                }
+                script {
+                    if (params.FORZAR_FALLO || params.FORZAR_FALLO_STREAMING) {
                         sh 'bash scripts/evidencia_bloqueo.sh antes'
                     }
                 }
@@ -184,19 +207,11 @@ pipeline {
                         echo "Tasas ya calculadas (RECALCULAR_TASAS para repetir)."
                     fi
 
-                    requiere_modelo=false
-                    if [ "${ENTREGA2}" = "true" ]; then
-                        docker compose exec -T -e FECHA_CORTE="${FECHA_CORTE:-2019-01-01}" spark-master python3 -c 'import json,os; from datetime import datetime; from pathlib import Path; p=Path("/models/sentimiento_v1/lifemap_metadata.json"); assert p.exists() and json.loads(p.read_text()).get("fecha_corte")==datetime.fromisoformat(os.environ["FECHA_CORTE"]).isoformat()' || requiere_modelo=true
-                    fi
-                    if [ "${ENTRENAR_MODELO}" = "true" ] || [ "$requiere_modelo" = "true" ] || ! docker compose exec -T spark-master test -f /models/sentimiento_v1/lifemap_metadata.json; then
-                        echo "== Entrenamiento del modelo de sentimiento =="
-                        if [ "${ENTREGA2}" = "true" ]; then
-                            $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas --fecha-corte "${FECHA_CORTE:-2019-01-01}"
-                        else
-                            $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas
-                        fi
+                    # La E2 se entrena aparte; el modelo histórico de E1 no se sobrescribe.
+                    if { [ "${ENTRENAR_MODELO}" = "true" ] && [ "${PREPARAR_ENTREGA2}" != "true" ] && [ "${EJECUTAR_ENTREGA2}" != "true" ]; } || ! docker compose exec -T spark-master test -f /models/sentimiento_v1/lifemap_metadata.json; then
+                        $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas
                     else
-                        echo "Modelo ya entrenado (ENTRENAR_MODELO para repetir)."
+                        echo "Modelo histórico E1 conservado."
                     fi
 
                     if [ "${EJECUTAR_BALANCEO}" = "true" ] || [ "$(contar balanceo_resumen)" = "0" ]; then
@@ -209,20 +224,10 @@ pipeline {
             }
         }
 
-        stage('Entrega 2: riesgo y streaming aislado') {
-            when { expression { env.PRODUCCION == 'true' && params.ENTREGA2 } }
+        stage('Entrega 2: preparar modelos y probar streaming') {
+            when { expression { env.PRODUCCION == 'true' && (params.PREPARAR_ENTREGA2 || env.EJECUTAR_ENTREGA2 == 'true') } }
             steps {
-                sh '''
-                    . jenkins/ci-env.sh
-                    docker compose build streaming-job
-                    docker compose run --rm --no-deps streaming-job python -m pytest -q tests/test_riesgo.py
-                    if [ "${ENTRENAR_RIESGO}" = "true" ] || ! docker compose run --rm --no-deps streaming-job python -c 'import json,os; from datetime import datetime; from pathlib import Path; p=Path("/models/riesgo_v1.json"); assert p.exists() and json.loads(p.read_text()).get("corte_evaluacion")==datetime.fromisoformat(os.getenv("FECHA_CORTE", "2019-01-01")).isoformat()'; then
-                        docker compose run --rm streaming-job python entrenar_riesgo.py
-                    fi
-                    docker compose --profile streaming up -d --wait kafka
-                    docker compose --profile streaming run --rm kafka-init
-                    bash scripts/smoke_streaming.sh
-                '''
+                sh 'bash scripts/preparar_entrega2.sh'
             }
         }
 
@@ -248,11 +253,17 @@ pipeline {
         }
 
         stage('Despliegue') {
-            when { expression { env.PRODUCCION == 'true' } }
+            when { expression { env.PRODUCCION == 'true' && !params.PREPARAR_ENTREGA2 } }
             steps {
                 sh '''
                     . jenkins/ci-env.sh
-                    if [ "${ENTREGA2}" = "true" ]; then
+                    if [ "${EJECUTAR_ENTREGA2}" = "true" ]; then
+                        revision=$(docker compose run --rm --no-deps streaming-job python versionado.py --comprobar --revision)
+                        case "$revision" in *[!a-f0-9]*|'') echo 'Revisión de modelo inválida'; exit 1;; esac
+                        export CHECKPOINT_DIR="/checkpoints/e2-${revision}"
+                        export KAFKA_CLASSIFIED_TOPIC="reviews_classified_${revision}"
+                        docker compose run --rm --no-deps streaming-job python preparar_indices.py
+                        docker compose --profile streaming run --rm kafka-init
                         docker compose --profile streaming up -d --no-build streaming
                         export STREAMING_ENABLED=true
                     fi
@@ -275,11 +286,11 @@ pipeline {
                 docker images lifemap-api --format '{{.Tag}}' | grep -E '^[0-9]+$' | sort -n | head -n -5 \
                   | xargs -r -I{} docker image rm lifemap-api:{} >/dev/null 2>&1 || true
             '''
-            echo "OK: build ${env.BUILD_NUMBER} (${env.PRODUCCION == 'true' ? 'desplegado' : 'validado sin tocar producción'})."
+            echo "OK: build ${env.BUILD_NUMBER} (${params.PREPARAR_ENTREGA2 ? 'E2 preparada y probada; API conservada' : (env.PRODUCCION == 'true' ? 'desplegado' : 'validado sin tocar producción')})."
         }
         failure {
             script {
-                if (params.FORZAR_FALLO) {
+                if (params.FORZAR_FALLO || params.FORZAR_FALLO_STREAMING) {
                     def estadoBloqueo = sh(returnStatus: true, script: 'bash scripts/evidencia_bloqueo.sh despues')
                     archiveArtifacts artifacts: '.ci-evidencias/**', allowEmptyArchive: true
                     if (estadoBloqueo != 0) {
