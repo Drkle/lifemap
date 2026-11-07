@@ -1,0 +1,58 @@
+{
+  "config": "{\"version\": \"5.43\", \"activeSectionIndex\": 0}",
+  "filters": "[]",
+  "layoutOptimization": 0,
+  "pods": [],
+  "publicCustomVisuals": [],
+  "resourcePackages": [],
+  "sections": [
+    {
+      "name": "ReportSectionLifeMap",
+      "displayName": "LifeMap | Entrega 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "ordinal": 0,
+      "config": "{}",
+      "visualContainers": [
+        {
+          "config": "{\"name\": \"mapa_celdas\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 20, \"z\": 1000, \"width\": 610, \"height\": 330, \"tabOrder\": 1000}}], \"singleVisual\": {\"visualType\": \"map\", \"projections\": {\"Category\": [{\"queryRef\": \"Ventanas.geohash\"}], \"Series\": [{\"queryRef\": \"Ventanas.estado\"}], \"Latitude\": [{\"queryRef\": \"Ventanas.Latitud centro\"}], \"Longitude\": [{\"queryRef\": \"Ventanas.Longitud centro\"}], \"Size\": [{\"queryRef\": \"Ventanas.Resenas\"}], \"Tooltips\": [{\"queryRef\": \"Ventanas.Negativas ponderadas\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"Ventanas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"geohash\"}, \"Name\": \"Ventanas.geohash\", \"NativeReferenceName\": \"geohash\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"estado\"}, \"Name\": \"Ventanas.estado\", \"NativeReferenceName\": \"estado\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Latitud centro\"}, \"Name\": \"Ventanas.Latitud centro\", \"NativeReferenceName\": \"Latitud centro\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Longitud centro\"}, \"Name\": \"Ventanas.Longitud centro\", \"NativeReferenceName\": \"Longitud centro\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Resenas\"}, \"Name\": \"Ventanas.Resenas\", \"NativeReferenceName\": \"Resenas\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Negativas ponderadas\"}, \"Name\": \"Ventanas.Negativas ponderadas\", \"NativeReferenceName\": \"Negativas ponderadas\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"geohash\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Celdas y hotspots: volumen y sentimiento'\"}}}}}]}}}",
+          "filters": "[]",
+          "x": 20,
+          "y": 20,
+          "z": 1000,
+          "width": 610,
+          "height": 330
+        },
+        {
+          "config": "{\"name\": \"tabla_alertas\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 20, \"z\": 2000, \"width\": 610, \"height\": 330, \"tabOrder\": 2000}}], \"singleVisual\": {\"visualType\": \"tableEx\", \"projections\": {\"Values\": [{\"queryRef\": \"Alertas._id\"}, {\"queryRef\": \"Alertas.probabilidad\"}, {\"queryRef\": \"Alertas.umbral\"}, {\"queryRef\": \"Alertas.fecha\"}, {\"queryRef\": \"Alertas.modelo_version\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"Alertas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"_id\"}, \"Name\": \"Alertas._id\", \"NativeReferenceName\": \"_id\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"probabilidad\"}, \"Name\": \"Alertas.probabilidad\", \"NativeReferenceName\": \"probabilidad\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"umbral\"}, \"Name\": \"Alertas.umbral\", \"NativeReferenceName\": \"umbral\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"fecha\"}, \"Name\": \"Alertas.fecha\", \"NativeReferenceName\": \"fecha\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"modelo_version\"}, \"Name\": \"Alertas.modelo_version\", \"NativeReferenceName\": \"modelo_version\"}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Alertas activas: riesgo de cierre (proxy)'\"}}}}}]}}}",
+          "filters": "[]",
+          "x": 650,
+          "y": 20,
+          "z": 2000,
+          "width": 610,
+          "height": 330
+        },
+        {
+          "config": "{\"name\": \"curva_km\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 20, \"y\": 370, \"z\": 3000, \"width\": 610, \"height\": 330, \"tabOrder\": 3000}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Supervivencia.dias\"}], \"Y\": [{\"queryRef\": \"Supervivencia.Probabilidad de supervivencia\"}], \"Tooltips\": [{\"queryRef\": \"Supervivencia.en_riesgo\"}, {\"queryRef\": \"Supervivencia.cierres\"}, {\"queryRef\": \"Supervivencia.censuras\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"Supervivencia\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"dias\"}, \"Name\": \"Supervivencia.dias\", \"NativeReferenceName\": \"dias\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Probabilidad de supervivencia\"}, \"Name\": \"Supervivencia.Probabilidad de supervivencia\", \"NativeReferenceName\": \"Probabilidad de supervivencia\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"en_riesgo\"}, \"Name\": \"Supervivencia.en_riesgo\", \"NativeReferenceName\": \"en_riesgo\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"cierres\"}, \"Name\": \"Supervivencia.cierres\", \"NativeReferenceName\": \"cierres\"}, {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"censuras\"}, \"Name\": \"Supervivencia.censuras\", \"NativeReferenceName\": \"censuras\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"dias\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Supervivencia Kaplan-Meier: categoría seleccionada'\"}}}}}]}}}",
+          "filters": "[]",
+          "x": 20,
+          "y": 370,
+          "z": 3000,
+          "width": 610,
+          "height": 330
+        },
+        {
+          "config": "{\"name\": \"evolucion\", \"layouts\": [{\"id\": 0, \"position\": {\"x\": 650, \"y\": 370, \"z\": 4000, \"width\": 610, \"height\": 330, \"tabOrder\": 4000}}], \"singleVisual\": {\"visualType\": \"lineChart\", \"projections\": {\"Category\": [{\"queryRef\": \"Ventanas.inicio\"}], \"Y\": [{\"queryRef\": \"Ventanas.Negativas ponderadas\"}]}, \"prototypeQuery\": {\"Version\": 2, \"From\": [{\"Name\": \"t\", \"Entity\": \"Ventanas\", \"Type\": 0}], \"Select\": [{\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"inicio\"}, \"Name\": \"Ventanas.inicio\", \"NativeReferenceName\": \"inicio\"}, {\"Measure\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"Negativas ponderadas\"}, \"Name\": \"Ventanas.Negativas ponderadas\", \"NativeReferenceName\": \"Negativas ponderadas\"}], \"OrderBy\": [{\"Direction\": 1, \"Expression\": {\"Column\": {\"Expression\": {\"SourceRef\": {\"Source\": \"t\"}}, \"Property\": \"inicio\"}}}]}, \"drillFilterOtherVisuals\": true, \"vcObjects\": {\"title\": [{\"properties\": {\"show\": {\"expr\": {\"Literal\": {\"Value\": \"true\"}}}, \"text\": {\"expr\": {\"Literal\": {\"Value\": \"'Evolución: reseñas negativas ponderadas'\"}}}}}]}}}",
+          "filters": "[]",
+          "x": 650,
+          "y": 370,
+          "z": 4000,
+          "width": 610,
+          "height": 330
+        }
+      ]
+    }
+  ]
+}
