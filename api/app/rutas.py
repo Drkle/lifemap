@@ -144,3 +144,8 @@ def predict():
 @bp.get("/dashboard")
 def dashboard():
     return render_template("dashboard.html")
+
+
+@bp.get("/dashboard/entrega1")
+def dashboard_entrega1():
+    return render_template("dashboard_e1.html")
