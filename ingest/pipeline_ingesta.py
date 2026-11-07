@@ -184,7 +184,7 @@ def ejecutar() -> None:
             }
             for fila in negocios.itertuples()
         }
-                info_futuro = cliente_dask.scatter([info], broadcast=True)[0]
+        info_futuro = cliente_dask.scatter([info], broadcast=True)[0]
 
         # ---- 2. Reseñas: lectura particionada, limpieza y carga por lotes en un solo paso
         for coleccion in (col_resenas, col_negocios):

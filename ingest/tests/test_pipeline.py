@@ -16,3 +16,16 @@ def test_caja_desde_entorno(monkeypatch):
     assert pipeline_ingesta._caja() == (27.5, 28.3, -82.9, -82.2)
     monkeypatch.setenv("LIFEMAP_CAJA", "")
     assert pipeline_ingesta._caja() is None
+
+
+def test_scatter_diccionario_como_objeto_unico():
+    """Regresión del grafo de miles de futuros que derribaba el scheduler."""
+    from distributed import Client, LocalCluster
+    from dask import delayed
+    with LocalCluster(n_workers=2, threads_per_worker=1, processes=False, dashboard_address=None) as cluster:
+        with Client(cluster) as client:
+            info = {str(i): {'geohash': 'dhvru7'} for i in range(100)}
+            futuro = client.scatter([info], broadcast=True)[0]
+            resultado = client.compute(delayed(lambda valor: (len(valor), valor['5']['geohash']))(futuro)).result()
+            assert resultado == (100, 'dhvru7')
+            assert len(client.who_has()) == 2  # un objeto compartido y una tarea, no 100 objetos
