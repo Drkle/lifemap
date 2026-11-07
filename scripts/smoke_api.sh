@@ -19,17 +19,29 @@ valor() { jq -r "$1" "$TMP/r.json"; }
 es() { jq -e "$1" "$TMP/r.json" > /dev/null || falla "$2"; }
 
 echo "[smoke] esperando a ${BASE}/health ..."
+listo=false
 for i in $(seq 1 "$INTENTOS"); do
-  if curl -fsS "${BASE}/health" > "$TMP/health.json" 2>/dev/null; then break; fi
-  [ "$i" -eq "$INTENTOS" ] && falla "la API no respondió"
-  sleep 3
+  # /health puede responder 200 degradado mientras arranca el consumidor E2.
+  if curl -fsS --connect-timeout 3 --max-time 12 "${BASE}/health" > "$TMP/health.json" 2>/dev/null \
+     && jq -e '.status == "ok"' "$TMP/health.json" >/dev/null 2>&1; then
+    listo=true
+    break
+  fi
+  if [ "$i" -eq 1 ] || [ "$((i % 5))" -eq 0 ]; then
+    echo "[smoke] servicios todavía no listos (${i}/${INTENTOS}); esperando..."
+  fi
+  sleep "${SMOKE_ESPERA_S:-3}"
 done
+[ "$listo" = true ] || { cat "$TMP/health.json"; falla "los servicios no alcanzaron estado ok"; }
 echo "[smoke] /health -> $(cat "$TMP/health.json")"
 [ "$(jq -r .servicios.mongodb.estado "$TMP/health.json")" = "ok" ] || falla "MongoDB no conectado"
 for s in spark dask; do
   [ "$(jq -r .servicios.$s.estado "$TMP/health.json")" = "ok" ] || falla "/health: $s no está ok"
 done
 [ "$(jq -r .status "$TMP/health.json")" = "ok" ] || falla "status != ok"
+if [ "${SMOKE_ENTREGA2:-false}" = true ]; then
+  [ "$(jq -r .servicios.kafka.estado "$TMP/health.json")" = "ok" ] || falla "Kafka/consumidor no está listo"
+fi
 if [ -n "${SMOKE_COMMIT:-}" ]; then
   [ "$(jq -r .commit "$TMP/health.json")" = "$SMOKE_COMMIT" ] || falla "/health no informa el commit ${SMOKE_COMMIT}"
 fi
@@ -81,6 +93,17 @@ if [ "${SMOKE_SEMILLA:-false}" = "true" ]; then
   es '[.resultados[].cierres] | add == 30' "suma de cierres por celda != 30"
   [ "$(valor '.resultados[0].geometry.type')" = "Polygon" ] || falla "celda sin geometría"
   echo "[smoke] semilla: near 100/50, within 100, zona 100/30/10 %, Pizza 13,333 %, celdas suman 30 OK"
+fi
+
+if [ "${SMOKE_ENTREGA2:-false}" = true ]; then
+  C="lat=27.9505&lon=-82.4575&radio=5000"
+  for ruta in "/live/hotspots?${C}" "/alerts?${C}" "/risk/near?${C}"; do
+    get "$ruta"
+    es '(.resultados | type) == "array"' "$ruta sin resultados válidos"
+  done
+  get "/survival/Pizza"
+  es '(.curva | type) == "array" and (.n | type) == "number"' "curva de supervivencia inválida"
+  echo '[smoke] E2: Kafka/consumidor y los cuatro endpoints nuevos OK'
 fi
 
 echo "[smoke] OK"

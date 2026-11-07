@@ -125,6 +125,7 @@ pipeline {
         stage('Pruebas unitarias (pytest)') {
             steps {
                 sh 'docker run --rm -e FORZAR_FALLO=${FORZAR_FALLO} lifemap-api-test:${API_TAG}'
+                sh 'bash scripts/pruebas_deploy.sh'
                 sh 'docker run --rm lifemap-ingest-test:${API_TAG}'
                 sh 'docker run --rm -e SPARK_LOCAL_IP=127.0.0.1 --entrypoint /opt/spark/bin/spark-submit lifemap-spark:latest --master local[2] /opt/tests/test_spark.py'
             }
@@ -309,6 +310,7 @@ pipeline {
                     fi
                 done
                 docker compose logs --no-color --tail=100 dask-scheduler dask-worker-1 dask-worker-2 || true
+                docker compose logs --no-color --tail=100 kafka streaming api || true
             '''
             echo "FALLO: el pipeline se detuvo y NO se desplegó la versión ${env.BUILD_NUMBER}. Revisar logs: no se completó el despliegue; deploy_api restaura la imagen previa si falla su smoke."
         }

@@ -7,7 +7,7 @@ presentar en el mismo portátil; no hay traslado en el plan activo ni acceso rem
 
 ## Comprobado
 
-- API: 30 pruebas aprobadas; 1 prueba de fallo intencionado omitida por defecto.
+- API: 31 pruebas aprobadas; 1 prueba de fallo intencionado omitida por defecto.
 - Ingesta: 12 pruebas aprobadas, incluida recuperación tras terminar un worker real y envío acotado a dos tareas por bloque.
 - Regresión adicional con MongoDB real: escritura parcial, reintentos y duplicados de origen, con agregados persistidos completos. Jenkins la ejecuta antes de la carga Yelp.
 - Spark: 9 pruebas aprobadas, incluyendo entrenamiento/predicción y equivalencia RDD/groupBy.
@@ -43,7 +43,7 @@ La comprobación Groovy solo valida sintaxis: no sustituye una ejecución del pi
 
 ## Límites operativos
 
-El rollback restaura la imagen API cuando falla su smoke. Ingesta, tasas y modelos usan
+El rollback restaura imagen, ruta de modelo y modo streaming de la API cuando falla su smoke. Ingesta, tasas y modelos usan
 colecciones/volúmenes compartidos: no existe un rollback transaccional de toda la plataforma.
 Las recargas deben hacerse en mantenimiento. Cambiar modelos exige una nueva revisión de
 checkpoints y revisar la reproducción del topic clasificado para evitar mezclar resultados.
@@ -56,10 +56,22 @@ Se añadió PREPARAR_ENTREGA2 para auditar Yelp y entrenar en carpetas/registros
 del modelo E1, sin recrear la API ni iniciar el consumidor productivo. Los manifiestos
 validan cortes, versiones y hashes de pesos. Se comprobaron seis pruebas de streaming/modelos,
 el smoke positivo con 100 reseñas únicas y el rechazo real de una versión incorrecta usando
-Kafka/Spark/MongoDB locales y datos sintéticos. Las 30 pruebas API, 12 de ingesta y 9 de Spark
-continúan pasando. La auditoría también se ejecutó contra una cohorte MongoDB sintética.
+Kafka/Spark/MongoDB locales y datos sintéticos. Las pruebas API, ingesta y Spark continúan pasando. La auditoría también se ejecutó contra una cohorte MongoDB sintética.
 
-Falta ejecutar este modo en Jenkins con el Yelp del equipo y revisar los artefactos por build.
-No se declaran obtenidas métricas E2 reales ni streaming público activo por estas pruebas.
-Seguir docs/PREPARAR_ENTREGA2.md. El corte inicial propuesto sigue siendo T=2019-01-01,
-con entrenamiento de riesgo al 2018-01-01; la auditoría falla si faltan clases o seguimiento.
+La preparación real con Yelp y el bloqueo específico ya se ejecutaron en los builds #13 y #14,
+detallados abajo. Falta la activación pública y el productor. Los cortes usados son
+T=2019-01-01 y entrenamiento de riesgo al 2018-01-01.
+
+## Evidencia real de preparación y bloqueo E2
+
+Build #13: preparación SUCCESS con Yelp; 510.850 reseñas hasta T y 281.283 reservadas.
+Sentimiento E2: regresión logística con accuracy 0,8093 y F1 macro 0,6988. Riesgo: AUC-ROC
+0,5763, AUC-PR 0,0942 frente a prevalencia 0,0792 y recall 0,3176; la capacidad es limitada.
+Build #14: fallo controlado de versión en el smoke, despliegue omitido y API versión 12
+conservada. Los JSON revisados están en docs/evidencias; los artefactos originales en Jenkins.
+
+Se validó además la sonda de salud con Kafka 3.9.1/MongoDB reales (tres particiones y lag cero),
+el rechazo de latido vencido, la espera ante HTTP 200 degradado y dos regresiones de despliegue
+que comprueban conservación/restauración de imagen, ruta de modelo y modo. Las 31 pruebas API
+pasan. Falta ejecutar la activación real indicada en docs/ACTIVAR_ENTREGA2.md y revisar /health;
+el productor real todavía no se ha iniciado en el portátil del equipo.

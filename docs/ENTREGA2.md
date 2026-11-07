@@ -80,7 +80,7 @@ nueva revisión de `CHECKPOINT_DIR`; el consumidor rechaza mezclar versiones.
 
 `/health` consulta los offsets finales Kafka y los compara con el último progreso
 completado de Spark. Devuelve retraso en mensajes y tiempo desde el progreso observado.
-Un consumidor sin progreso reciente se informa como error.
+Un consumidor sin latido reciente o con queries inactivas se informa como error; falta de mensajes no implica caída. El tiempo desde el último progreso se muestra por separado.
 
 ## API adicional
 
@@ -102,7 +102,7 @@ Los objetos CI se eliminan al terminar, incluso si falla. Un fallo bloquea el de
 Los modelos sintéticos de `streaming/tests/fixture_modelos.py` son exclusivamente fixtures
 de integración. No se entregan como modelo entrenado con Yelp ni como resultados propios.
 
-El rollback de `scripts/deploy_api.sh` restaura la imagen API si falla su smoke. No revierte
+El rollback de `scripts/deploy_api.sh` restaura imagen, ruta de modelo y modo streaming de la API si falla su smoke. No revierte
 mutaciones históricas de MongoDB ni modelos reentrenados. Las cargas de esta versión siguen
 usando colecciones compartidas: requiere ventana de mantenimiento para recargas y una
 futura migración por revisiones si se exige continuidad de datos durante el entrenamiento.

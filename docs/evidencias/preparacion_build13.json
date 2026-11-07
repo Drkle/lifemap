@@ -1,0 +1,135 @@
+{
+  "build": 13,
+  "resultado": "SUCCESS",
+  "sha256_log_aportado": "e8a46cf59ce2921d6ef6d4fcece3816d2491626a26a8f3f7593230a57ea8f42e",
+  "fuente": "Consola aportada por el equipo",
+  "auditoria": {
+    "auditado_en": "2026-11-07T06:14:37.775320+00:00",
+    "fecha_corte": "2019-01-01T00:00:00",
+    "corte_entrenamiento": "2018-01-01T00:00:00",
+    "fecha_corte_dataset": "2022-01-19T19:48:45",
+    "resenas_historicas": 510850,
+    "resenas_reservadas_streaming": 281283,
+    "clases_sentimiento_historico": {
+      "2": 350544,
+      "1": 58960,
+      "0": 101346
+    },
+    "cohortes_riesgo": {
+      "entrenamiento": {
+        "0": 3126,
+        "1": 196
+      },
+      "validacion": {
+        "0": 984,
+        "1": 67
+      },
+      "prueba": {
+        "0": 988,
+        "1": 85
+      }
+    },
+    "advertencias": [],
+    "mutaciones_mongodb": false
+  },
+  "sentimiento": {
+    "accuracy": 0.8093,
+    "f1_macro": 0.6988,
+    "modelo": "regresion_logistica",
+    "version": "20261107061724",
+    "matriz_confusion": [
+      [
+        8610,
+        1965,
+        505
+      ],
+      [
+        1547,
+        3332,
+        1489
+      ],
+      [
+        1077,
+        4136,
+        33549
+      ]
+    ],
+    "soportes": [
+      11080,
+      6368,
+      38762
+    ]
+  },
+  "riesgo": {
+    "version": "20261107061751",
+    "features": [
+      "sentimiento_medio",
+      "tendencia_negativa",
+      "estrellas",
+      "n_resenas",
+      "edad_dias",
+      "competidores_500m"
+    ],
+    "media": [
+      0.35180556570604676,
+      -0.0018790494881402106,
+      3.561695064977821,
+      66.62168674698795,
+      1878.3753012048194,
+      0.4891566265060241
+    ],
+    "escala": [
+      0.45711049241827745,
+      0.39720505335042183,
+      0.8245044994730272,
+      114.45058758942446,
+      1100.5916462519654,
+      1.0745704715651376
+    ],
+    "coeficientes": [
+      0.001193495332222789,
+      -0.08570817938707814,
+      0.18259694308790492,
+      -0.10533453728270677,
+      -0.33807382957237203,
+      0.11442362892923108
+    ],
+    "intercepto": -0.08473855132361828,
+    "umbral": 0.5655835363141644,
+    "corte_entrenamiento": "2018-01-01T00:00:00",
+    "corte_evaluacion": "2019-01-01T00:00:00",
+    "seleccion_umbral": "máximo F1 en validación por negocio del periodo anterior",
+    "negocios_entrenamiento": 3320,
+    "negocios_validacion": 1051,
+    "negocios_prueba": 1073,
+    "negocios_cruzados": 0,
+    "auc_roc": 0.576339604667778,
+    "auc_pr": 0.09418845968872344,
+    "base_auc_pr": 0.07921714818266543,
+    "recall": 0.3176470588235294,
+    "limitacion": "Estado final y última reseña aproximan el cierre; no se observan fechas reales. Estrellas y conteos se calculan desde reseñas hasta cada corte."
+  },
+  "manifest": {
+    "fecha_corte": "2019-01-01T00:00:00",
+    "corte_entrenamiento": "2018-01-01T00:00:00",
+    "sentimiento": {
+      "ruta": "/models/entrega2/sentimiento_e2_v1",
+      "version": "20261107061724",
+      "sha256": "c8da0ecaef853a9a8b9efe196fc9eebd5c84489befdaeffe935777827661c268"
+    },
+    "riesgo": {
+      "ruta": "/models/entrega2/riesgo_v1.json",
+      "version": "20261107061751",
+      "sha256": "deb85fc1d1cb8ed925753a66c1e5a4d8a7548aef6a8cfe8bc88a2dcf14cb9eb3"
+    },
+    "revision": "ede7975d3b8d8a35"
+  },
+  "smoke": {
+    "mensajes_unicos": 100,
+    "publicados": 201,
+    "estado": "ok",
+    "version": "20261107061724"
+  },
+  "despliegue_api_omitido": true,
+  "nota": "Auditoría preselecciona por primera reseña normalizada; el entrenamiento verifica además historia exacta hasta el corte. Por eso usa 3320 negocios de entrenamiento frente a 3322 preseleccionados."
+}
