@@ -22,10 +22,16 @@ pipeline {
 
     triggers {
         githubPush()                     // webhook de GitHub (vía smee)
-        // Si el webhook no llega, descomentar:  pollSCM('H/2 * * * *')
+        pollSCM('H/2 * * * *')           // respaldo documentado si no llega el webhook
     }
 
     parameters {
+        string(name: 'FECHA_CORTE', defaultValue: '2019-01-01', description: 'Corte UTC para reservar reseñas de streaming')
+        string(name: 'CORTE_ENTRENAMIENTO', defaultValue: '2018-01-01', description: 'Corte anterior para entrenar riesgo sin fuga temporal')
+        booleanParam(name: 'ENTREGA2', defaultValue: false,
+            description: 'Entrena con corte temporal y valida Kafka/streaming antes de desplegar')
+        booleanParam(name: 'ENTRENAR_RIESGO', defaultValue: false,
+            description: 'Reentrena riesgo; una nueva versión requiere revisión de checkpoint')
         booleanParam(name: 'FORZAR_FALLO', defaultValue: false,
             description: 'Activa un test que falla a propósito para demostrar que NO se despliega')
         booleanParam(name: 'VERIFICAR_KAGGLE', defaultValue: true,
@@ -158,8 +164,9 @@ pipeline {
                 sh '''
                     . jenkins/ci-env.sh
                     SUBMIT="docker compose exec -T spark-master spark-submit"
-                    MQ='mongosh --quiet -u "$MONGO_INITDB_ROOT_USERNAME" -p "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin "$MONGO_DB" --eval'
-                    contar() { docker compose exec -T mongodb sh -c "$MQ \\"db.$1.countDocuments({})\\"" | tr -d '[:space:]'; }
+                    contar() {
+                        docker compose exec -T -e COLECCION="$1" mongodb sh -c 'mongosh --quiet -u "$MONGO_INITDB_ROOT_USERNAME" -p "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase admin "$MONGO_DB" --eval "db.getCollection(process.env.COLECCION).countDocuments({})"' | tr -d '[:space:]'
+                    }
 
                     if [ "${RECALCULAR_TASAS}" = "true" ] || [ "$(contar tasas_categoria)" = "0" ]; then
                         echo "== MapReduce de tasas de cierre =="
@@ -168,9 +175,17 @@ pipeline {
                         echo "Tasas ya calculadas (RECALCULAR_TASAS para repetir)."
                     fi
 
-                    if [ "${ENTRENAR_MODELO}" = "true" ] || ! docker compose exec -T spark-master test -f /models/sentimiento_v1/lifemap_metadata.json; then
+                    requiere_modelo=false
+                    if [ "${ENTREGA2}" = "true" ]; then
+                        docker compose exec -T -e FECHA_CORTE="${FECHA_CORTE:-2019-01-01}" spark-master python3 -c 'import json,os; from datetime import datetime; from pathlib import Path; p=Path("/models/sentimiento_v1/lifemap_metadata.json"); assert p.exists() and json.loads(p.read_text()).get("fecha_corte")==datetime.fromisoformat(os.environ["FECHA_CORTE"]).isoformat()' || requiere_modelo=true
+                    fi
+                    if [ "${ENTRENAR_MODELO}" = "true" ] || [ "$requiere_modelo" = "true" ] || ! docker compose exec -T spark-master test -f /models/sentimiento_v1/lifemap_metadata.json; then
                         echo "== Entrenamiento del modelo de sentimiento =="
-                        $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas
+                        if [ "${ENTREGA2}" = "true" ]; then
+                            $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas --fecha-corte "${FECHA_CORTE:-2019-01-01}"
+                        else
+                            $SUBMIT /opt/jobs/sentimiento.py --coleccion resenas
+                        fi
                     else
                         echo "Modelo ya entrenado (ENTRENAR_MODELO para repetir)."
                     fi
@@ -182,6 +197,23 @@ pipeline {
                         echo "Balanceo ya medido (EJECUTAR_BALANCEO para repetir)."
                     fi
                 '''
+            }
+        }
+
+        stage('Entrega 2: riesgo y streaming aislado') {
+            when { expression { env.PRODUCCION == 'true' && params.ENTREGA2 } }
+            steps {
+                sh ''''
+                    . jenkins/ci-env.sh
+                    docker compose build streaming-job
+                    docker compose run --rm --no-deps streaming-job python -m pytest -q tests/test_riesgo.py
+                    if [ "${ENTRENAR_RIESGO}" = "true" ] || ! docker compose run --rm --no-deps streaming-job python -c 'import json,os; from datetime import datetime; from pathlib import Path; p=Path("/models/riesgo_v1.json"); assert p.exists() and json.loads(p.read_text()).get("corte_evaluacion")==datetime.fromisoformat(os.getenv("FECHA_CORTE", "2019-01-01")).isoformat()'; then
+                        docker compose run --rm streaming-job python entrenar_riesgo.py
+                    fi
+                    docker compose --profile streaming up -d --wait kafka
+                    docker compose --profile streaming run --rm kafka-init
+                    bash scripts/smoke_streaming.sh
+                ''''
             }
         }
 
@@ -211,9 +243,11 @@ pipeline {
             steps {
                 sh '''
                     . jenkins/ci-env.sh
-                    docker compose up -d --no-deps --no-build api
-                    SMOKE_COMMIT=${GIT_COMMIT} SMOKE_PREDICT_REQUERIDO=true bash scripts/smoke_api.sh http://api:5000
-                    echo "Versión desplegada: ${API_TAG} (commit ${GIT_COMMIT})"
+                    if [ "${ENTREGA2}" = "true" ]; then
+                        docker compose --profile streaming up -d --no-build streaming
+                        export STREAMING_ENABLED=true
+                    fi
+                    bash scripts/deploy_api.sh
                 '''
             }
         }
@@ -234,7 +268,7 @@ pipeline {
             echo "OK: build ${env.BUILD_NUMBER} (${env.PRODUCCION == 'true' ? 'desplegado' : 'validado sin tocar producción'})."
         }
         failure {
-            echo "FALLO: el pipeline se detuvo y NO se desplegó la versión ${env.BUILD_NUMBER}. La versión anterior sigue activa."
+            echo "FALLO: el pipeline se detuvo y NO se desplegó la versión ${env.BUILD_NUMBER}. Revisar logs: no se completó el despliegue; deploy_api restaura la imagen previa si falla su smoke."
         }
     }
 }

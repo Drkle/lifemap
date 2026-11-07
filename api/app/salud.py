@@ -41,3 +41,28 @@ SONDAS_POR_DEFECTO: dict[str, Callable[[], dict[str, Any]]] = {
     "spark": sonda_spark,
     "dask": sonda_dask,
 }
+
+
+def sonda_kafka(db):
+    from kafka import KafkaConsumer, TopicPartition
+    consumidor = None
+    try:
+        consumidor = KafkaConsumer(bootstrap_servers=config.KAFKA_BOOTSTRAP_SERVERS, group_id=None,
+            request_timeout_ms=4000, api_version_auto_timeout_ms=2500)
+        particiones = consumidor.partitions_for_topic("reviews")
+        if not particiones:
+            return {"estado": "error", "detalle": "Topic reviews no disponible"}
+        finales = consumidor.end_offsets([TopicPartition("reviews", p) for p in particiones])
+        meta = db.streaming_meta.find_one({"_id": "progreso"}) or {}
+        procesados = meta.get("offsets", {})
+        lag = sum(max(0, fin - int(procesados.get(str(tp.partition), 0))) for tp, fin in finales.items())
+        from datetime import datetime, timezone
+        actualizado = meta.get("actualizado_en")
+        edad = (datetime.now(timezone.utc).replace(tzinfo=None) - actualizado.replace(tzinfo=None)).total_seconds() if actualizado else None
+        return {"estado": "ok" if edad is not None and edad < 60 else "error", "particiones": len(particiones),
+                "retraso_mensajes": lag, "segundos_desde_progreso": edad}
+    except Exception as exc:
+        return {"estado": "error", "detalle": type(exc).__name__}
+    finally:
+        if consumidor:
+            consumidor.close()

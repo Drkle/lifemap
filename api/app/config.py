@@ -24,3 +24,6 @@ APP_COMMIT = os.getenv("APP_COMMIT", "desconocido")
 SPARK_UI_URL = os.getenv("SPARK_UI_URL", "http://spark-master:8080")
 DASK_DASHBOARD_URL = os.getenv("DASK_DASHBOARD_URL", "http://dask-scheduler:8787")
 MODELO_PATH = os.getenv("MODELO_PATH", "/models/sentimiento_v1")
+
+STREAMING_ENABLED = os.getenv("STREAMING_ENABLED", "false").lower() == "true"
+KAFKA_BOOTSTRAP_SERVERS = os.getenv("KAFKA_BOOTSTRAP_SERVERS", "kafka:9092")

@@ -48,7 +48,7 @@ Requisitos del servidor: Docker con Compose v2, unos **16 GB de RAM** (con 8 GB 
 `.env`), unos **25 GB de disco** (el `review.json` de Yelp pesa ~5 GB) y salida a internet.
 
 ```bash
-git clone https://github.com/<org>/lifemap.git && cd lifemap
+git clone https://github.com/Drkle/lifemap.git && cd lifemap
 cp .env.example .env          # editar: MONGO_ROOT_PASSWORD, KAGGLE_API_TOKEN, NGROK_*, SMEE_URL
 # (opcional) editar config/area.env con el área y la familia asignadas
 
@@ -83,8 +83,8 @@ viven en `.env` (ignorado por git) y en las credenciales de Jenkins.
    Git → este repositorio → rama `*/main` → *Script Path* `Jenkinsfile`; activar
    *GitHub hook trigger for GITScm polling*.
 4. Webhook: crear un canal en <https://smee.io>, ponerlo en `SMEE_URL` y en GitHub
-   (*Settings → Webhooks*, `application/json`, evento *push*). Si no llega, descomentar
-   `pollSCM('H/2 * * * *')` en el `Jenkinsfile` (cada 2 minutos, permitido por el enunciado).
+   (*Settings → Webhooks*, `application/json`, evento *push*). El `Jenkinsfile` incluye también
+   `pollSCM('H/2 * * * *')` como respaldo cada 2 minutos, permitido por el enunciado.
 5. Prueba de bloqueo: lanzar el job con **FORZAR_FALLO = true**. Falla `pytest`, no se ejecuta el
    despliegue y `/health` sigue mostrando el commit anterior. Ese build queda en el historial.
 
@@ -157,3 +157,34 @@ docker run --rm --entrypoint spark-submit lifemap-spark --master local[2] /opt/t
 Fuente de los datos: Yelp Open Dataset (Yelp Inc.), distribuido en Kaggle; se usa según sus
 términos de uso con fines académicos. Partes de la infraestructura provienen de los trabajos
 previos del equipo (Big Data geoespacial y "¿Cuánto viven los discos?").
+
+## Segunda entrega y dashboard
+
+El dashboard web está disponible en `/dashboard` y se actualiza cada 15 segundos.
+La [guía de operación de la segunda entrega](docs/ENTREGA2.md) documenta el perfil Kafka,
+los cortes temporales, los modelos, checkpoints, endpoints y prueba de humo aislada.
+Las [consultas de Power BI](powerbi/README.md) permiten conectar las cuatro visualizaciones.
+
+Para Jenkins de la primera entrega, mantener `ENTREGA2=false`. Para la segunda,
+activar `ENTREGA2=true` después de tener ingesta válida y recursos suficientes. Los cortes
+son parámetros del job. No confundir código implementado con evidencia de un build verde:
+la entrega exige su ejecución en el servidor externo con Yelp y URL pública.
+
+**Corrección de Dask:** al actualizar un entorno existente, cambiar también
+`DASK_SCHEDULER_MEM=1g` en su `.env`. Un valor antiguo de 512m tiene prioridad sobre Compose.
+El diccionario de negocios se comparte como un solo objeto con `scatter([info])[0]`.
+
+**Alcance del rollback:** el despliegue restaura la imagen anterior de API cuando falla su
+verificación. No es un rollback transaccional de los datos o los modelos compartidos.
+La recarga de datos requiere una ventana de mantenimiento; no ejecutar dos jobs sobre los
+mismos contenedores y volúmenes a la vez.
+
+Para generar un informe base con evidencia de las ejecuciones reales (falla si falta alguna):
+
+```bash
+docker compose run --rm -e GIT_COMMIT dask-job python informe.py --url https://aviation-decrease-hunger.ngrok-free.dev
+docker compose cp dask-worker-1:/data/evidencias ./docs/evidencias
+```
+
+Revisar la interpretación y maquetar el informe a un máximo de 6 páginas. La exportación
+no sustituye el historial de builds, la URL disponible ni la sustentación del equipo.

@@ -182,6 +182,8 @@ services:
       SPARK_UI_URL: http://spark-master:8080
       DASK_DASHBOARD_URL: http://dask-scheduler:8787
       MODELO_PATH: /models/sentimiento_v1
+      STREAMING_ENABLED: ${STREAMING_ENABLED:-false}
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
     ports:
       - "${API_PORT:-5000}:5000"
     volumes:
@@ -256,6 +258,85 @@ services:
     networks: [lifemap]
     restart: unless-stopped
 
+
+  # Entrega 2: activar con --profile streaming (requiere modelos entrenados).
+  kafka:
+    image: apache/kafka:3.9.1
+    profiles: [streaming]
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_HEAP_OPTS: -Xmx512m -Xms256m
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      CLUSTER_ID: MkU3OEVBNTcwNTJENDM2Qk
+    volumes: [kafka_data:/var/lib/kafka/data]
+    healthcheck:
+      test: [CMD-SHELL, '/opt/kafka/bin/kafka-topics.sh --bootstrap-server localhost:9092 --list >/dev/null 2>&1']
+      interval: 15s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+    networks: [lifemap]
+    restart: unless-stopped
+
+  kafka-init:
+    image: apache/kafka:3.9.1
+    profiles: [streaming]
+    depends_on:
+      kafka: {condition: service_healthy}
+    entrypoint: [/bin/bash, -ec]
+    command:
+      - |
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic reviews --partitions 3 --replication-factor 1
+        /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 --create --if-not-exists --topic reviews_classified --partitions 3 --replication-factor 1
+    networks: [lifemap]
+
+  streaming-job: &streaming-job
+    build:
+      context: .
+      dockerfile: streaming/Dockerfile
+    image: lifemap-streaming:latest
+    profiles: [jobs]
+    environment:
+      <<: *mongo-env
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+      FECHA_CORTE: ${FECHA_CORTE:-2019-01-01}
+      CORTE_ENTRENAMIENTO: ${CORTE_ENTRENAMIENTO:-2018-01-01}
+      MODELO_PATH: /models/sentimiento_v1
+      HOTSPOT_UMBRAL_PP: ${HOTSPOT_UMBRAL_PP:-15}
+      HOTSPOT_MIN_RESENAS: ${HOTSPOT_MIN_RESENAS:-20}
+      CHECKPOINT_DIR: ${CHECKPOINT_DIR:-/checkpoints/v1}
+    volumes:
+      - modelos:/models
+      - checkpoints:/checkpoints
+    networks: [lifemap]
+
+  streaming:
+    <<: *streaming-job
+    profiles: [streaming]
+    depends_on:
+      kafka-init: {condition: service_completed_successfully}
+      mongodb: {condition: service_healthy}
+    command: [python, consumidor.py]
+    deploy:
+      resources:
+        limits:
+          memory: ${STREAMING_MEM:-2g}
+    restart: on-failure:3
+
 networks:
   lifemap:
     name: lifemap-net
@@ -265,3 +346,5 @@ volumes:
   kaggle_data:
   modelos:
   jenkins_home:
+  kafka_data:
+  checkpoints:

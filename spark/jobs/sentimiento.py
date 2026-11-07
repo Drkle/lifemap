@@ -16,6 +16,7 @@ Uso:
 """
 import argparse
 import json
+import os
 import shutil
 import sys
 from datetime import datetime, timezone
@@ -71,6 +72,7 @@ def main():
     p.add_argument("--salida", default="/models")
     p.add_argument("--balancear", default="true")
     p.add_argument("--semilla", type=int, default=42)
+    p.add_argument("--fecha-corte", default=os.getenv("FECHA_CORTE", ""))
     args = p.parse_args()
     balancear = args.balancear.lower() == "true"
     prefijo = prefijo_semilla(args.coleccion)
@@ -78,7 +80,13 @@ def main():
     nombre_activo = f"{prefijo}sentimiento_v1"
 
     spark = crear_sesion("lifemap-sentimiento")
-    df = leer(spark, args.coleccion, [{"$project": {"_id": 0, "business_id": 1, "texto": 1, "etiqueta": 1}}])
+    pipeline_lectura = []
+    fecha_corte = None
+    if args.fecha_corte and not prefijo:
+        fecha_corte = datetime.fromisoformat(args.fecha_corte).isoformat()
+        pipeline_lectura.append({"$match": {"fecha": {"$lte": {"$date": fecha_corte + "Z"}}}})
+    pipeline_lectura.append({"$project": {"_id": 0, "business_id": 1, "texto": 1, "etiqueta": 1}})
+    df = leer(spark, args.coleccion, pipeline_lectura)
     total = df.count()
     if args.muestra and total > args.muestra:
         df = df.sample(withReplacement=False, fraction=args.muestra / total, seed=args.semilla)
@@ -135,6 +143,7 @@ def main():
     version = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%S")
     resumen = {
         "_id": nombre_activo, "modelo_activo": mejor, "version": version,
+        "fecha_corte": fecha_corte,
         "coleccion": args.coleccion, "resenas_coleccion": total, "resenas_usadas": usadas,
         "entrenamiento": n_tr, "prueba": n_te, "particion": "por negocio: |hash(business_id)| % 10 en {8,9} = prueba",
         "negocios_cruzados": cruzados, "balanceo_pesos": {metricas.NOMBRES[int(k)]: round(v, 4) for k, v in pesos.items()},
