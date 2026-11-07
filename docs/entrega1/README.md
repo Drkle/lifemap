@@ -8,10 +8,14 @@
 - [Resultados extraídos del build #8](../evidencias/build8_resultados.json).
 - [Comprobación puntual de los seis endpoints públicos](../evidencias/api_publica_build8.json).
 
-El informe incorpora resultados reales y señala tres evidencias aún pendientes: el fallo
-controlado en Jenkins, el servidor separado y la ventana de disponibilidad. No sustituir
-esos pendientes por afirmaciones de cumplimiento antes de ejecutarlos. Reemitir la página 6
-cuando existan resultados verificables; actualizar también los JSON de evidencia.
+El informe incorpora los resultados reales del build #8 y la prueba controlada del build #10.
+[La evidencia del bloqueo](../evidencias/bloqueo_build10.json) confirma el fallo intencional,
+despliegue omitido y conservación de la versión 9. La consola confirma artefactos archivados;
+conservarlos en Jenkins junto con la captura de las etapas.
+
+El equipo decidió presentar en el mismo portátil. El traslado queda fuera del plan activo;
+el informe describe esa decisión y la diferencia con el enunciado. La ventana de disponibilidad
+sigue pendiente de acreditación.
 
 ## Prueba controlada en Jenkins
 
@@ -38,11 +42,12 @@ una conexión autenticada accesible sin enviar secretos por chat.
 
 ## Servidor y disponibilidad
 
-La sección 6 del Word exige otra máquina. Un equipo del laboratorio satisface esa condición;
-no es obligatorio pagar nube. Seguir [la guía del servidor](../../deploy/SERVIDOR.md).
-La API pública debe seguir funcionando al apagar el portátil tras mover el túnel.
+La presentación se realizará en el mismo portátil de desarrollo, por decisión del equipo.
+La [guía de traslado](../../deploy/SERVIDOR.md) queda como referencia opcional, no como tarea
+pendiente del plan acordado. El informe no afirma equivalencia con la condición de otra máquina.
 
-Después de validar el servidor, registrar muestras durante 48 horas o más:
+Mantener Docker, Jenkins y ngrok activos y evitar suspensión del portátil. Para registrar
+muestras de disponibilidad durante 48 horas:
 
 ```bash
 python3 scripts/monitorear_disponibilidad.py --horas 48 --intervalo 300
@@ -50,7 +55,7 @@ python3 scripts/monitorear_disponibilidad.py --horas 48 --intervalo 300
 
 El registro queda en `.ci-evidencias/disponibilidad.jsonl`. El monitor muestra la evolución de
 cada muestra y el resumen de fallos; no demuestra continuidad entre muestras. El proceso y
-el servidor deben permanecer en ejecución durante la ventana y la sustentación.
+el portátil deben permanecer en ejecución durante la ventana y la sustentación.
 
 ## Regenerar y exportar
 
