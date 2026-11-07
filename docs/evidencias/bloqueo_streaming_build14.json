@@ -1,0 +1,13 @@
+{
+  "build": 14,
+  "resultado_esperado": "FAILURE",
+  "fuente": "Consola aportada por el equipo",
+  "sha256_log_aportado": "3b1b50acb8aa324abe78d840a3c2ffca61156e421e4b41c27309a5abb25931ea",
+  "forzar_fallo_api": false,
+  "forzar_fallo_streaming": true,
+  "fallo": "Versión o probabilidades incorrectas; FORZAR_FALLO_STREAMING exige una versión inválida para demostrar el bloqueo.",
+  "despliegue_omitido": true,
+  "verificacion": "[bloqueo] OK",
+  "imagen_conservada": "lifemap-api:12",
+  "artefactos": "La consola confirma archivo de artefactos en Jenkins; no se descargaron snapshots privados."
+}

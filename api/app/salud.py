@@ -59,8 +59,12 @@ def sonda_kafka(db):
         from datetime import datetime, timezone
         actualizado = meta.get("actualizado_en")
         edad = (datetime.now(timezone.utc).replace(tzinfo=None) - actualizado.replace(tzinfo=None)).total_seconds() if actualizado else None
-        return {"estado": "ok" if edad is not None and edad < 60 else "error", "particiones": len(particiones),
-                "retraso_mensajes": lag, "segundos_desde_progreso": edad}
+        progreso = meta.get("progreso_en")
+        edad_progreso = (datetime.now(timezone.utc).replace(tzinfo=None) - progreso.replace(tzinfo=None)).total_seconds() if progreso else None
+        listo = meta.get("activo", False) and "offsets" in meta and edad is not None and 0 <= edad < 60
+        return {"estado": "ok" if listo else "error", "particiones": len(particiones),
+                "retraso_mensajes": lag, "segundos_desde_latido": edad,
+                "segundos_desde_progreso": edad_progreso, "consumidor_activo": meta.get("activo", False)}
     except Exception as exc:
         return {"estado": "error", "detalle": type(exc).__name__}
     finally:

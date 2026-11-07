@@ -138,12 +138,16 @@ def main():
         try:
             while not detener.wait(10):
                 p = query.lastProgress
+                estado = {'_id': 'progreso', 'actualizado_en': datetime.now(timezone.utc),
+                    'activo': query.isActive and query_ventanas.isActive,
+                    'modelo_version': version, 'riesgo_version': riesgo['version']}
                 if p and p.get('sources'):
                     offsets = p['sources'][0].get('endOffset') or {}
                     if isinstance(offsets, str):
                         offsets = json.loads(offsets)
-                    db.streaming_meta.replace_one({'_id': 'progreso'}, {'_id': 'progreso',
-                        'offsets': offsets.get(topic, {}), 'actualizado_en': datetime.fromisoformat(p['timestamp'].replace('Z', '+00:00'))}, upsert=True)
+                    estado['offsets'] = offsets.get(topic, {})
+                    estado['progreso_en'] = datetime.fromisoformat(p['timestamp'].replace('Z', '+00:00'))
+                db.streaming_meta.replace_one({'_id': 'progreso'}, estado, upsert=True)
         finally:
             client.close()
     monitor = threading.Thread(target=progreso, daemon=True)

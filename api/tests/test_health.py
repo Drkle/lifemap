@@ -35,3 +35,31 @@ def test_ruta_inexistente_404(client):
 def test_indice_lista_los_endpoints(client):
     cuerpo = client.get("/").get_json()
     assert len(cuerpo["endpoints"]) == 6
+
+
+def test_kafka_inactivo_no_se_confunde_con_caida_por_falta_de_mensajes(monkeypatch):
+    from datetime import datetime, timezone, timedelta
+    from types import SimpleNamespace
+    from app.salud import sonda_kafka
+    import kafka
+    class Consumidor:
+        def __init__(self, **kwargs): pass
+        def partitions_for_topic(self, nombre): return {0, 1, 2}
+        def end_offsets(self, particiones): return {p: 10 for p in particiones}
+        def close(self): pass
+    monkeypatch.setattr(kafka, 'KafkaConsumer', Consumidor)
+    meta={'activo':True,'offsets':{'0':8,'1':9,'2':10},
+          'actualizado_en':datetime.now(timezone.utc),
+          'progreso_en':datetime.now(timezone.utc)-timedelta(hours=1)}
+    db=SimpleNamespace(streaming_meta=SimpleNamespace(find_one=lambda filtro:meta))
+    r=sonda_kafka(db)
+    assert r['estado']=='ok' and r['retraso_mensajes']==3
+    assert r['segundos_desde_progreso']>3500
+    meta['actualizado_en']=datetime.now(timezone.utc)-timedelta(seconds=120)
+    assert sonda_kafka(db)['estado']=='error'
+    meta['actualizado_en']=datetime.now(timezone.utc)
+    meta['activo']=False
+    assert sonda_kafka(db)['estado']=='error'
+    meta['activo']=True
+    del meta['offsets']
+    assert sonda_kafka(db)['estado']=='error'

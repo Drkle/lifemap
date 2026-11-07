@@ -213,3 +213,7 @@ para auditar los cortes y entrenar candidatos independientes del modelo E1. El p
 archiva cantidades, métricas, hashes y resultado del smoke. La activación y el productor
 se hacen después de revisar esos resultados. FORZAR_FALLO_STREAMING prueba el rechazo de
 una versión incorrecta y mantiene el despliegue bloqueado.
+
+La preparación E2 ya fue aprobada en el build #13 y el bloqueo específico en el #14.
+Seguir ahora [ACTIVAR_ENTREGA2](docs/ACTIVAR_ENTREGA2.md): reutilizar modelos, activar el
+consumidor y comprobar los endpoints antes de arrancar el productor real de Yelp.
