@@ -1,0 +1,5231 @@
+{
+  "fuente": "API desplegada; consultas reproducibles GET/POST survival/Pizza",
+  "fecha_utc": "2026-11-07",
+  "resultados": {
+    "Pizza: total": {
+      "poligono": null,
+      "resultado": {
+        "categoria": "Pizza",
+        "muestra_pequena": false,
+        "n": 523,
+        "eventos": 159,
+        "mediana_dias": 5260,
+        "curva": [
+          {
+            "dias": 0,
+            "supervivencia": 1.0,
+            "en_riesgo": 523,
+            "cierres": 0,
+            "censuras": 0
+          },
+          {
+            "dias": 72,
+            "supervivencia": 1.0,
+            "en_riesgo": 523,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 102,
+            "supervivencia": 0.9981,
+            "en_riesgo": 522,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 104,
+            "supervivencia": 0.9962,
+            "en_riesgo": 521,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 109,
+            "supervivencia": 0.9943,
+            "en_riesgo": 520,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 115,
+            "supervivencia": 0.9943,
+            "en_riesgo": 519,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 122,
+            "supervivencia": 0.9923,
+            "en_riesgo": 518,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 136,
+            "supervivencia": 0.9904,
+            "en_riesgo": 517,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 142,
+            "supervivencia": 0.9885,
+            "en_riesgo": 516,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 147,
+            "supervivencia": 0.9866,
+            "en_riesgo": 515,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 153,
+            "supervivencia": 0.9866,
+            "en_riesgo": 514,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 165,
+            "supervivencia": 0.9866,
+            "en_riesgo": 513,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 180,
+            "supervivencia": 0.9846,
+            "en_riesgo": 512,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 185,
+            "supervivencia": 0.9846,
+            "en_riesgo": 511,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 188,
+            "supervivencia": 0.9827,
+            "en_riesgo": 510,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 199,
+            "supervivencia": 0.9827,
+            "en_riesgo": 509,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 205,
+            "supervivencia": 0.9808,
+            "en_riesgo": 508,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 221,
+            "supervivencia": 0.9769,
+            "en_riesgo": 507,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 249,
+            "supervivencia": 0.9769,
+            "en_riesgo": 505,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 267,
+            "supervivencia": 0.975,
+            "en_riesgo": 504,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 282,
+            "supervivencia": 0.973,
+            "en_riesgo": 503,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 293,
+            "supervivencia": 0.9711,
+            "en_riesgo": 502,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 294,
+            "supervivencia": 0.9692,
+            "en_riesgo": 501,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 305,
+            "supervivencia": 0.9672,
+            "en_riesgo": 500,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 308,
+            "supervivencia": 0.9653,
+            "en_riesgo": 499,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 315,
+            "supervivencia": 0.9653,
+            "en_riesgo": 498,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 331,
+            "supervivencia": 0.9653,
+            "en_riesgo": 497,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 339,
+            "supervivencia": 0.9653,
+            "en_riesgo": 495,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 343,
+            "supervivencia": 0.9633,
+            "en_riesgo": 494,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 355,
+            "supervivencia": 0.9633,
+            "en_riesgo": 493,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 361,
+            "supervivencia": 0.9614,
+            "en_riesgo": 491,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 381,
+            "supervivencia": 0.9614,
+            "en_riesgo": 490,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 396,
+            "supervivencia": 0.9574,
+            "en_riesgo": 489,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 401,
+            "supervivencia": 0.9574,
+            "en_riesgo": 487,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 423,
+            "supervivencia": 0.9555,
+            "en_riesgo": 486,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 430,
+            "supervivencia": 0.9555,
+            "en_riesgo": 485,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 432,
+            "supervivencia": 0.9555,
+            "en_riesgo": 484,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 442,
+            "supervivencia": 0.9535,
+            "en_riesgo": 483,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 451,
+            "supervivencia": 0.9515,
+            "en_riesgo": 482,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 463,
+            "supervivencia": 0.9495,
+            "en_riesgo": 481,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 472,
+            "supervivencia": 0.9476,
+            "en_riesgo": 480,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 480,
+            "supervivencia": 0.9476,
+            "en_riesgo": 479,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 489,
+            "supervivencia": 0.9476,
+            "en_riesgo": 478,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 494,
+            "supervivencia": 0.9456,
+            "en_riesgo": 477,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 503,
+            "supervivencia": 0.9436,
+            "en_riesgo": 476,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 536,
+            "supervivencia": 0.9416,
+            "en_riesgo": 475,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 545,
+            "supervivencia": 0.9396,
+            "en_riesgo": 474,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 556,
+            "supervivencia": 0.9396,
+            "en_riesgo": 473,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 559,
+            "supervivencia": 0.9396,
+            "en_riesgo": 472,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 570,
+            "supervivencia": 0.9376,
+            "en_riesgo": 471,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 572,
+            "supervivencia": 0.9356,
+            "en_riesgo": 470,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 577,
+            "supervivencia": 0.9336,
+            "en_riesgo": 469,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 578,
+            "supervivencia": 0.9316,
+            "en_riesgo": 468,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 582,
+            "supervivencia": 0.9296,
+            "en_riesgo": 467,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 586,
+            "supervivencia": 0.9276,
+            "en_riesgo": 466,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 593,
+            "supervivencia": 0.9256,
+            "en_riesgo": 465,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 597,
+            "supervivencia": 0.9236,
+            "en_riesgo": 464,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 598,
+            "supervivencia": 0.9236,
+            "en_riesgo": 463,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 616,
+            "supervivencia": 0.9236,
+            "en_riesgo": 462,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 619,
+            "supervivencia": 0.9236,
+            "en_riesgo": 461,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 651,
+            "supervivencia": 0.9216,
+            "en_riesgo": 460,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 678,
+            "supervivencia": 0.9216,
+            "en_riesgo": 458,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 682,
+            "supervivencia": 0.9196,
+            "en_riesgo": 457,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 688,
+            "supervivencia": 0.9176,
+            "en_riesgo": 456,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 693,
+            "supervivencia": 0.9156,
+            "en_riesgo": 455,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 703,
+            "supervivencia": 0.9156,
+            "en_riesgo": 454,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 709,
+            "supervivencia": 0.9136,
+            "en_riesgo": 453,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 716,
+            "supervivencia": 0.9115,
+            "en_riesgo": 452,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 718,
+            "supervivencia": 0.9115,
+            "en_riesgo": 451,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 735,
+            "supervivencia": 0.9115,
+            "en_riesgo": 450,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 741,
+            "supervivencia": 0.9095,
+            "en_riesgo": 449,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 756,
+            "supervivencia": 0.9095,
+            "en_riesgo": 448,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 760,
+            "supervivencia": 0.9075,
+            "en_riesgo": 447,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 766,
+            "supervivencia": 0.9075,
+            "en_riesgo": 446,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 772,
+            "supervivencia": 0.9054,
+            "en_riesgo": 445,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 789,
+            "supervivencia": 0.9034,
+            "en_riesgo": 444,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 792,
+            "supervivencia": 0.9034,
+            "en_riesgo": 443,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 810,
+            "supervivencia": 0.9014,
+            "en_riesgo": 442,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 813,
+            "supervivencia": 0.8993,
+            "en_riesgo": 441,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 816,
+            "supervivencia": 0.8973,
+            "en_riesgo": 440,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 835,
+            "supervivencia": 0.8973,
+            "en_riesgo": 439,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 837,
+            "supervivencia": 0.8952,
+            "en_riesgo": 438,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 845,
+            "supervivencia": 0.8952,
+            "en_riesgo": 437,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 864,
+            "supervivencia": 0.8952,
+            "en_riesgo": 436,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 885,
+            "supervivencia": 0.8932,
+            "en_riesgo": 435,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 888,
+            "supervivencia": 0.8932,
+            "en_riesgo": 434,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 890,
+            "supervivencia": 0.8911,
+            "en_riesgo": 433,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 893,
+            "supervivencia": 0.889,
+            "en_riesgo": 432,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 907,
+            "supervivencia": 0.887,
+            "en_riesgo": 430,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 930,
+            "supervivencia": 0.8849,
+            "en_riesgo": 429,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 931,
+            "supervivencia": 0.8828,
+            "en_riesgo": 428,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 932,
+            "supervivencia": 0.8808,
+            "en_riesgo": 427,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 942,
+            "supervivencia": 0.8766,
+            "en_riesgo": 426,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 967,
+            "supervivencia": 0.8766,
+            "en_riesgo": 424,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 975,
+            "supervivencia": 0.8766,
+            "en_riesgo": 423,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 977,
+            "supervivencia": 0.8746,
+            "en_riesgo": 422,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 980,
+            "supervivencia": 0.8725,
+            "en_riesgo": 421,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 981,
+            "supervivencia": 0.8704,
+            "en_riesgo": 420,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 985,
+            "supervivencia": 0.8704,
+            "en_riesgo": 419,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 998,
+            "supervivencia": 0.8704,
+            "en_riesgo": 418,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1007,
+            "supervivencia": 0.8704,
+            "en_riesgo": 417,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1008,
+            "supervivencia": 0.8683,
+            "en_riesgo": 416,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1014,
+            "supervivencia": 0.8662,
+            "en_riesgo": 415,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1019,
+            "supervivencia": 0.8641,
+            "en_riesgo": 414,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1023,
+            "supervivencia": 0.8641,
+            "en_riesgo": 413,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1027,
+            "supervivencia": 0.8641,
+            "en_riesgo": 412,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1076,
+            "supervivencia": 0.862,
+            "en_riesgo": 411,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1080,
+            "supervivencia": 0.862,
+            "en_riesgo": 410,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1089,
+            "supervivencia": 0.862,
+            "en_riesgo": 409,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1114,
+            "supervivencia": 0.8599,
+            "en_riesgo": 408,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1128,
+            "supervivencia": 0.8578,
+            "en_riesgo": 407,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1129,
+            "supervivencia": 0.8557,
+            "en_riesgo": 406,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1136,
+            "supervivencia": 0.8536,
+            "en_riesgo": 405,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1148,
+            "supervivencia": 0.8515,
+            "en_riesgo": 404,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 1154,
+            "supervivencia": 0.8493,
+            "en_riesgo": 402,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1177,
+            "supervivencia": 0.8472,
+            "en_riesgo": 401,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1182,
+            "supervivencia": 0.843,
+            "en_riesgo": 400,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 1193,
+            "supervivencia": 0.843,
+            "en_riesgo": 398,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1202,
+            "supervivencia": 0.843,
+            "en_riesgo": 397,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1204,
+            "supervivencia": 0.8409,
+            "en_riesgo": 396,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1207,
+            "supervivencia": 0.8409,
+            "en_riesgo": 395,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1224,
+            "supervivencia": 0.8387,
+            "en_riesgo": 394,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1255,
+            "supervivencia": 0.8366,
+            "en_riesgo": 393,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 1262,
+            "supervivencia": 0.8345,
+            "en_riesgo": 391,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1276,
+            "supervivencia": 0.8323,
+            "en_riesgo": 390,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1297,
+            "supervivencia": 0.8323,
+            "en_riesgo": 389,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1310,
+            "supervivencia": 0.8323,
+            "en_riesgo": 388,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1342,
+            "supervivencia": 0.8302,
+            "en_riesgo": 387,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1358,
+            "supervivencia": 0.8302,
+            "en_riesgo": 386,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1363,
+            "supervivencia": 0.828,
+            "en_riesgo": 385,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1382,
+            "supervivencia": 0.828,
+            "en_riesgo": 384,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1391,
+            "supervivencia": 0.828,
+            "en_riesgo": 383,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1394,
+            "supervivencia": 0.8258,
+            "en_riesgo": 382,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1396,
+            "supervivencia": 0.8237,
+            "en_riesgo": 381,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1399,
+            "supervivencia": 0.8215,
+            "en_riesgo": 380,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1403,
+            "supervivencia": 0.8193,
+            "en_riesgo": 379,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1418,
+            "supervivencia": 0.8193,
+            "en_riesgo": 378,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1430,
+            "supervivencia": 0.8172,
+            "en_riesgo": 377,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1431,
+            "supervivencia": 0.815,
+            "en_riesgo": 376,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1440,
+            "supervivencia": 0.815,
+            "en_riesgo": 375,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1450,
+            "supervivencia": 0.815,
+            "en_riesgo": 374,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1457,
+            "supervivencia": 0.8128,
+            "en_riesgo": 373,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1480,
+            "supervivencia": 0.8128,
+            "en_riesgo": 372,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1495,
+            "supervivencia": 0.8128,
+            "en_riesgo": 371,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1498,
+            "supervivencia": 0.8106,
+            "en_riesgo": 370,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1504,
+            "supervivencia": 0.8106,
+            "en_riesgo": 369,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1522,
+            "supervivencia": 0.8106,
+            "en_riesgo": 368,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1538,
+            "supervivencia": 0.8084,
+            "en_riesgo": 367,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1541,
+            "supervivencia": 0.8062,
+            "en_riesgo": 366,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1572,
+            "supervivencia": 0.804,
+            "en_riesgo": 365,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1574,
+            "supervivencia": 0.804,
+            "en_riesgo": 364,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1605,
+            "supervivencia": 0.8018,
+            "en_riesgo": 363,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1611,
+            "supervivencia": 0.7996,
+            "en_riesgo": 362,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1623,
+            "supervivencia": 0.7973,
+            "en_riesgo": 361,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1626,
+            "supervivencia": 0.7973,
+            "en_riesgo": 360,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1632,
+            "supervivencia": 0.7973,
+            "en_riesgo": 359,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1638,
+            "supervivencia": 0.7973,
+            "en_riesgo": 358,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1657,
+            "supervivencia": 0.7973,
+            "en_riesgo": 357,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 1665,
+            "supervivencia": 0.7951,
+            "en_riesgo": 355,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1691,
+            "supervivencia": 0.7951,
+            "en_riesgo": 354,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1699,
+            "supervivencia": 0.7951,
+            "en_riesgo": 353,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1709,
+            "supervivencia": 0.7928,
+            "en_riesgo": 352,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1710,
+            "supervivencia": 0.7928,
+            "en_riesgo": 351,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1718,
+            "supervivencia": 0.7906,
+            "en_riesgo": 350,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1731,
+            "supervivencia": 0.7883,
+            "en_riesgo": 349,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1736,
+            "supervivencia": 0.7883,
+            "en_riesgo": 348,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1745,
+            "supervivencia": 0.7883,
+            "en_riesgo": 347,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1759,
+            "supervivencia": 0.786,
+            "en_riesgo": 346,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1773,
+            "supervivencia": 0.7837,
+            "en_riesgo": 345,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1784,
+            "supervivencia": 0.7837,
+            "en_riesgo": 344,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1791,
+            "supervivencia": 0.7837,
+            "en_riesgo": 343,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1810,
+            "supervivencia": 0.7837,
+            "en_riesgo": 342,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1813,
+            "supervivencia": 0.7814,
+            "en_riesgo": 341,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1821,
+            "supervivencia": 0.7814,
+            "en_riesgo": 340,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1828,
+            "supervivencia": 0.7814,
+            "en_riesgo": 339,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1859,
+            "supervivencia": 0.7791,
+            "en_riesgo": 338,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1865,
+            "supervivencia": 0.7791,
+            "en_riesgo": 337,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1879,
+            "supervivencia": 0.7768,
+            "en_riesgo": 336,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1892,
+            "supervivencia": 0.7768,
+            "en_riesgo": 335,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1902,
+            "supervivencia": 0.7768,
+            "en_riesgo": 334,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1914,
+            "supervivencia": 0.7768,
+            "en_riesgo": 333,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1917,
+            "supervivencia": 0.7745,
+            "en_riesgo": 332,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1918,
+            "supervivencia": 0.7721,
+            "en_riesgo": 331,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1938,
+            "supervivencia": 0.7698,
+            "en_riesgo": 330,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1943,
+            "supervivencia": 0.7698,
+            "en_riesgo": 329,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1953,
+            "supervivencia": 0.7674,
+            "en_riesgo": 328,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1956,
+            "supervivencia": 0.7651,
+            "en_riesgo": 327,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1959,
+            "supervivencia": 0.7651,
+            "en_riesgo": 326,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1964,
+            "supervivencia": 0.7627,
+            "en_riesgo": 325,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1970,
+            "supervivencia": 0.7627,
+            "en_riesgo": 324,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1973,
+            "supervivencia": 0.7604,
+            "en_riesgo": 323,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2010,
+            "supervivencia": 0.758,
+            "en_riesgo": 322,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2020,
+            "supervivencia": 0.7557,
+            "en_riesgo": 321,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2026,
+            "supervivencia": 0.7557,
+            "en_riesgo": 320,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2048,
+            "supervivencia": 0.7557,
+            "en_riesgo": 319,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2054,
+            "supervivencia": 0.7557,
+            "en_riesgo": 318,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2081,
+            "supervivencia": 0.7557,
+            "en_riesgo": 317,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2096,
+            "supervivencia": 0.7557,
+            "en_riesgo": 316,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2097,
+            "supervivencia": 0.7557,
+            "en_riesgo": 315,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2114,
+            "supervivencia": 0.7557,
+            "en_riesgo": 314,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2118,
+            "supervivencia": 0.7557,
+            "en_riesgo": 313,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2124,
+            "supervivencia": 0.7557,
+            "en_riesgo": 312,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2127,
+            "supervivencia": 0.7557,
+            "en_riesgo": 311,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2129,
+            "supervivencia": 0.7557,
+            "en_riesgo": 310,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2149,
+            "supervivencia": 0.7557,
+            "en_riesgo": 309,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2156,
+            "supervivencia": 0.7557,
+            "en_riesgo": 308,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2179,
+            "supervivencia": 0.7532,
+            "en_riesgo": 307,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2185,
+            "supervivencia": 0.7507,
+            "en_riesgo": 306,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2196,
+            "supervivencia": 0.7483,
+            "en_riesgo": 305,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 2241,
+            "supervivencia": 0.7458,
+            "en_riesgo": 303,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2257,
+            "supervivencia": 0.7433,
+            "en_riesgo": 302,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2261,
+            "supervivencia": 0.7433,
+            "en_riesgo": 301,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2285,
+            "supervivencia": 0.7433,
+            "en_riesgo": 300,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2289,
+            "supervivencia": 0.7433,
+            "en_riesgo": 299,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2291,
+            "supervivencia": 0.7433,
+            "en_riesgo": 298,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2293,
+            "supervivencia": 0.7408,
+            "en_riesgo": 297,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2300,
+            "supervivencia": 0.7408,
+            "en_riesgo": 296,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2322,
+            "supervivencia": 0.7408,
+            "en_riesgo": 295,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2333,
+            "supervivencia": 0.7408,
+            "en_riesgo": 294,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2354,
+            "supervivencia": 0.7408,
+            "en_riesgo": 293,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2365,
+            "supervivencia": 0.7383,
+            "en_riesgo": 292,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2379,
+            "supervivencia": 0.7358,
+            "en_riesgo": 291,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2388,
+            "supervivencia": 0.7358,
+            "en_riesgo": 290,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2393,
+            "supervivencia": 0.7358,
+            "en_riesgo": 289,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2406,
+            "supervivencia": 0.7358,
+            "en_riesgo": 288,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2414,
+            "supervivencia": 0.7358,
+            "en_riesgo": 287,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2415,
+            "supervivencia": 0.7358,
+            "en_riesgo": 286,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2417,
+            "supervivencia": 0.7358,
+            "en_riesgo": 285,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2431,
+            "supervivencia": 0.7358,
+            "en_riesgo": 284,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2441,
+            "supervivencia": 0.7358,
+            "en_riesgo": 283,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2444,
+            "supervivencia": 0.7358,
+            "en_riesgo": 282,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2447,
+            "supervivencia": 0.7358,
+            "en_riesgo": 281,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2479,
+            "supervivencia": 0.7331,
+            "en_riesgo": 280,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2484,
+            "supervivencia": 0.7331,
+            "en_riesgo": 279,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2491,
+            "supervivencia": 0.7331,
+            "en_riesgo": 278,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2495,
+            "supervivencia": 0.7331,
+            "en_riesgo": 277,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2497,
+            "supervivencia": 0.7331,
+            "en_riesgo": 276,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2498,
+            "supervivencia": 0.7331,
+            "en_riesgo": 275,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2501,
+            "supervivencia": 0.7305,
+            "en_riesgo": 274,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2515,
+            "supervivencia": 0.7305,
+            "en_riesgo": 273,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2525,
+            "supervivencia": 0.7305,
+            "en_riesgo": 272,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2529,
+            "supervivencia": 0.7305,
+            "en_riesgo": 271,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2535,
+            "supervivencia": 0.7305,
+            "en_riesgo": 270,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2536,
+            "supervivencia": 0.7305,
+            "en_riesgo": 269,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2538,
+            "supervivencia": 0.7305,
+            "en_riesgo": 268,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2540,
+            "supervivencia": 0.7277,
+            "en_riesgo": 267,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2542,
+            "supervivencia": 0.7277,
+            "en_riesgo": 266,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2543,
+            "supervivencia": 0.725,
+            "en_riesgo": 265,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2548,
+            "supervivencia": 0.725,
+            "en_riesgo": 264,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2577,
+            "supervivencia": 0.7222,
+            "en_riesgo": 263,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2587,
+            "supervivencia": 0.7222,
+            "en_riesgo": 262,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2588,
+            "supervivencia": 0.7222,
+            "en_riesgo": 261,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2590,
+            "supervivencia": 0.7222,
+            "en_riesgo": 260,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2591,
+            "supervivencia": 0.7194,
+            "en_riesgo": 259,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2605,
+            "supervivencia": 0.7194,
+            "en_riesgo": 258,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2615,
+            "supervivencia": 0.7194,
+            "en_riesgo": 257,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2616,
+            "supervivencia": 0.7166,
+            "en_riesgo": 256,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2619,
+            "supervivencia": 0.7166,
+            "en_riesgo": 255,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2630,
+            "supervivencia": 0.7166,
+            "en_riesgo": 254,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2652,
+            "supervivencia": 0.7166,
+            "en_riesgo": 253,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2655,
+            "supervivencia": 0.7166,
+            "en_riesgo": 252,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2666,
+            "supervivencia": 0.7166,
+            "en_riesgo": 251,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2679,
+            "supervivencia": 0.7138,
+            "en_riesgo": 250,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2686,
+            "supervivencia": 0.7138,
+            "en_riesgo": 249,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2698,
+            "supervivencia": 0.7138,
+            "en_riesgo": 248,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2699,
+            "supervivencia": 0.7138,
+            "en_riesgo": 247,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2705,
+            "supervivencia": 0.7138,
+            "en_riesgo": 246,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2710,
+            "supervivencia": 0.7108,
+            "en_riesgo": 245,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2714,
+            "supervivencia": 0.7079,
+            "en_riesgo": 244,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2727,
+            "supervivencia": 0.7079,
+            "en_riesgo": 243,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2728,
+            "supervivencia": 0.705,
+            "en_riesgo": 242,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2731,
+            "supervivencia": 0.705,
+            "en_riesgo": 241,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2738,
+            "supervivencia": 0.7021,
+            "en_riesgo": 240,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2739,
+            "supervivencia": 0.7021,
+            "en_riesgo": 239,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2750,
+            "supervivencia": 0.7021,
+            "en_riesgo": 238,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2753,
+            "supervivencia": 0.7021,
+            "en_riesgo": 237,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2758,
+            "supervivencia": 0.7021,
+            "en_riesgo": 236,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2760,
+            "supervivencia": 0.6991,
+            "en_riesgo": 235,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2782,
+            "supervivencia": 0.6991,
+            "en_riesgo": 234,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2798,
+            "supervivencia": 0.6991,
+            "en_riesgo": 233,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2803,
+            "supervivencia": 0.6991,
+            "en_riesgo": 232,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2805,
+            "supervivencia": 0.6991,
+            "en_riesgo": 231,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2810,
+            "supervivencia": 0.6991,
+            "en_riesgo": 230,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2818,
+            "supervivencia": 0.6991,
+            "en_riesgo": 229,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2821,
+            "supervivencia": 0.6991,
+            "en_riesgo": 228,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2838,
+            "supervivencia": 0.6991,
+            "en_riesgo": 227,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2854,
+            "supervivencia": 0.6991,
+            "en_riesgo": 226,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2860,
+            "supervivencia": 0.6991,
+            "en_riesgo": 225,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2876,
+            "supervivencia": 0.6991,
+            "en_riesgo": 224,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2895,
+            "supervivencia": 0.6991,
+            "en_riesgo": 223,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2908,
+            "supervivencia": 0.6991,
+            "en_riesgo": 222,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2910,
+            "supervivencia": 0.6991,
+            "en_riesgo": 221,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2916,
+            "supervivencia": 0.6959,
+            "en_riesgo": 220,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2924,
+            "supervivencia": 0.6959,
+            "en_riesgo": 219,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2925,
+            "supervivencia": 0.6895,
+            "en_riesgo": 218,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 2926,
+            "supervivencia": 0.6895,
+            "en_riesgo": 216,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2929,
+            "supervivencia": 0.6895,
+            "en_riesgo": 215,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2932,
+            "supervivencia": 0.6863,
+            "en_riesgo": 214,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2959,
+            "supervivencia": 0.6863,
+            "en_riesgo": 213,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 2983,
+            "supervivencia": 0.6863,
+            "en_riesgo": 211,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2985,
+            "supervivencia": 0.683,
+            "en_riesgo": 210,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3003,
+            "supervivencia": 0.683,
+            "en_riesgo": 209,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3004,
+            "supervivencia": 0.683,
+            "en_riesgo": 208,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3009,
+            "supervivencia": 0.6797,
+            "en_riesgo": 207,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3010,
+            "supervivencia": 0.6797,
+            "en_riesgo": 206,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3014,
+            "supervivencia": 0.6797,
+            "en_riesgo": 205,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3024,
+            "supervivencia": 0.6797,
+            "en_riesgo": 204,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3034,
+            "supervivencia": 0.6797,
+            "en_riesgo": 203,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3036,
+            "supervivencia": 0.6764,
+            "en_riesgo": 202,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3057,
+            "supervivencia": 0.6764,
+            "en_riesgo": 201,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3058,
+            "supervivencia": 0.6764,
+            "en_riesgo": 200,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3059,
+            "supervivencia": 0.673,
+            "en_riesgo": 199,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3067,
+            "supervivencia": 0.673,
+            "en_riesgo": 198,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3078,
+            "supervivencia": 0.673,
+            "en_riesgo": 197,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3080,
+            "supervivencia": 0.6695,
+            "en_riesgo": 196,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3082,
+            "supervivencia": 0.6695,
+            "en_riesgo": 195,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3087,
+            "supervivencia": 0.6695,
+            "en_riesgo": 194,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3088,
+            "supervivencia": 0.6695,
+            "en_riesgo": 193,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3099,
+            "supervivencia": 0.6695,
+            "en_riesgo": 192,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3119,
+            "supervivencia": 0.6695,
+            "en_riesgo": 191,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3131,
+            "supervivencia": 0.666,
+            "en_riesgo": 190,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3134,
+            "supervivencia": 0.666,
+            "en_riesgo": 189,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3149,
+            "supervivencia": 0.666,
+            "en_riesgo": 188,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3161,
+            "supervivencia": 0.666,
+            "en_riesgo": 187,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3170,
+            "supervivencia": 0.666,
+            "en_riesgo": 185,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3172,
+            "supervivencia": 0.666,
+            "en_riesgo": 184,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3176,
+            "supervivencia": 0.666,
+            "en_riesgo": 183,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3182,
+            "supervivencia": 0.666,
+            "en_riesgo": 182,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3184,
+            "supervivencia": 0.666,
+            "en_riesgo": 181,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3194,
+            "supervivencia": 0.666,
+            "en_riesgo": 180,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3196,
+            "supervivencia": 0.666,
+            "en_riesgo": 179,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3216,
+            "supervivencia": 0.666,
+            "en_riesgo": 178,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3228,
+            "supervivencia": 0.666,
+            "en_riesgo": 177,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3232,
+            "supervivencia": 0.666,
+            "en_riesgo": 176,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3237,
+            "supervivencia": 0.666,
+            "en_riesgo": 175,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3251,
+            "supervivencia": 0.666,
+            "en_riesgo": 174,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3256,
+            "supervivencia": 0.666,
+            "en_riesgo": 173,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3257,
+            "supervivencia": 0.6621,
+            "en_riesgo": 171,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3260,
+            "supervivencia": 0.6621,
+            "en_riesgo": 170,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3262,
+            "supervivencia": 0.6621,
+            "en_riesgo": 169,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3270,
+            "supervivencia": 0.6621,
+            "en_riesgo": 168,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3276,
+            "supervivencia": 0.6621,
+            "en_riesgo": 167,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3280,
+            "supervivencia": 0.6621,
+            "en_riesgo": 166,
+            "cierres": 0,
+            "censuras": 3
+          },
+          {
+            "dias": 3288,
+            "supervivencia": 0.658,
+            "en_riesgo": 163,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3291,
+            "supervivencia": 0.658,
+            "en_riesgo": 162,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3292,
+            "supervivencia": 0.658,
+            "en_riesgo": 161,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3297,
+            "supervivencia": 0.658,
+            "en_riesgo": 160,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3306,
+            "supervivencia": 0.658,
+            "en_riesgo": 159,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3309,
+            "supervivencia": 0.658,
+            "en_riesgo": 158,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3322,
+            "supervivencia": 0.658,
+            "en_riesgo": 157,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3348,
+            "supervivencia": 0.658,
+            "en_riesgo": 156,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3349,
+            "supervivencia": 0.658,
+            "en_riesgo": 155,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3360,
+            "supervivencia": 0.658,
+            "en_riesgo": 154,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3373,
+            "supervivencia": 0.658,
+            "en_riesgo": 153,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3376,
+            "supervivencia": 0.658,
+            "en_riesgo": 152,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3406,
+            "supervivencia": 0.658,
+            "en_riesgo": 151,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3409,
+            "supervivencia": 0.658,
+            "en_riesgo": 150,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3415,
+            "supervivencia": 0.658,
+            "en_riesgo": 149,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3417,
+            "supervivencia": 0.6536,
+            "en_riesgo": 148,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3421,
+            "supervivencia": 0.6536,
+            "en_riesgo": 147,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3433,
+            "supervivencia": 0.6536,
+            "en_riesgo": 146,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3442,
+            "supervivencia": 0.6536,
+            "en_riesgo": 145,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3443,
+            "supervivencia": 0.6536,
+            "en_riesgo": 144,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3482,
+            "supervivencia": 0.6536,
+            "en_riesgo": 143,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3490,
+            "supervivencia": 0.6536,
+            "en_riesgo": 142,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3503,
+            "supervivencia": 0.649,
+            "en_riesgo": 141,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3509,
+            "supervivencia": 0.649,
+            "en_riesgo": 140,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3517,
+            "supervivencia": 0.649,
+            "en_riesgo": 138,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3521,
+            "supervivencia": 0.649,
+            "en_riesgo": 137,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3526,
+            "supervivencia": 0.649,
+            "en_riesgo": 136,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3540,
+            "supervivencia": 0.649,
+            "en_riesgo": 135,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3560,
+            "supervivencia": 0.649,
+            "en_riesgo": 134,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3573,
+            "supervivencia": 0.649,
+            "en_riesgo": 133,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3574,
+            "supervivencia": 0.649,
+            "en_riesgo": 132,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3575,
+            "supervivencia": 0.649,
+            "en_riesgo": 131,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3591,
+            "supervivencia": 0.649,
+            "en_riesgo": 129,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3601,
+            "supervivencia": 0.649,
+            "en_riesgo": 128,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3609,
+            "supervivencia": 0.649,
+            "en_riesgo": 127,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3644,
+            "supervivencia": 0.649,
+            "en_riesgo": 126,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3653,
+            "supervivencia": 0.649,
+            "en_riesgo": 125,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3667,
+            "supervivencia": 0.649,
+            "en_riesgo": 124,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3713,
+            "supervivencia": 0.649,
+            "en_riesgo": 123,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3723,
+            "supervivencia": 0.649,
+            "en_riesgo": 122,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3737,
+            "supervivencia": 0.6436,
+            "en_riesgo": 121,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 3751,
+            "supervivencia": 0.6436,
+            "en_riesgo": 119,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3758,
+            "supervivencia": 0.6436,
+            "en_riesgo": 118,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3772,
+            "supervivencia": 0.6436,
+            "en_riesgo": 117,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3791,
+            "supervivencia": 0.6436,
+            "en_riesgo": 116,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3805,
+            "supervivencia": 0.6436,
+            "en_riesgo": 115,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3806,
+            "supervivencia": 0.6436,
+            "en_riesgo": 114,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3826,
+            "supervivencia": 0.6436,
+            "en_riesgo": 113,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3829,
+            "supervivencia": 0.6436,
+            "en_riesgo": 112,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3830,
+            "supervivencia": 0.6436,
+            "en_riesgo": 111,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3833,
+            "supervivencia": 0.6436,
+            "en_riesgo": 110,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3850,
+            "supervivencia": 0.6436,
+            "en_riesgo": 109,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3869,
+            "supervivencia": 0.6436,
+            "en_riesgo": 108,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3887,
+            "supervivencia": 0.6376,
+            "en_riesgo": 107,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3889,
+            "supervivencia": 0.6376,
+            "en_riesgo": 106,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3908,
+            "supervivencia": 0.6376,
+            "en_riesgo": 105,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3919,
+            "supervivencia": 0.6376,
+            "en_riesgo": 104,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3922,
+            "supervivencia": 0.6376,
+            "en_riesgo": 103,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3925,
+            "supervivencia": 0.6376,
+            "en_riesgo": 102,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3932,
+            "supervivencia": 0.6376,
+            "en_riesgo": 101,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3962,
+            "supervivencia": 0.6376,
+            "en_riesgo": 100,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3973,
+            "supervivencia": 0.6376,
+            "en_riesgo": 99,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3988,
+            "supervivencia": 0.6376,
+            "en_riesgo": 97,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3994,
+            "supervivencia": 0.6376,
+            "en_riesgo": 96,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4032,
+            "supervivencia": 0.6309,
+            "en_riesgo": 95,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 4037,
+            "supervivencia": 0.6309,
+            "en_riesgo": 94,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4039,
+            "supervivencia": 0.6309,
+            "en_riesgo": 93,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4040,
+            "supervivencia": 0.6309,
+            "en_riesgo": 92,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4062,
+            "supervivencia": 0.6309,
+            "en_riesgo": 91,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4116,
+            "supervivencia": 0.6309,
+            "en_riesgo": 90,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4131,
+            "supervivencia": 0.6309,
+            "en_riesgo": 88,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4135,
+            "supervivencia": 0.6309,
+            "en_riesgo": 87,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4138,
+            "supervivencia": 0.6309,
+            "en_riesgo": 86,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4146,
+            "supervivencia": 0.6309,
+            "en_riesgo": 85,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4177,
+            "supervivencia": 0.6309,
+            "en_riesgo": 84,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4184,
+            "supervivencia": 0.6309,
+            "en_riesgo": 83,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4203,
+            "supervivencia": 0.6309,
+            "en_riesgo": 82,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4204,
+            "supervivencia": 0.6309,
+            "en_riesgo": 81,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4205,
+            "supervivencia": 0.6309,
+            "en_riesgo": 80,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4230,
+            "supervivencia": 0.6309,
+            "en_riesgo": 79,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4237,
+            "supervivencia": 0.6309,
+            "en_riesgo": 78,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4244,
+            "supervivencia": 0.6309,
+            "en_riesgo": 77,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4262,
+            "supervivencia": 0.6309,
+            "en_riesgo": 76,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4291,
+            "supervivencia": 0.6309,
+            "en_riesgo": 75,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4323,
+            "supervivencia": 0.6309,
+            "en_riesgo": 74,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4353,
+            "supervivencia": 0.6309,
+            "en_riesgo": 73,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4357,
+            "supervivencia": 0.6309,
+            "en_riesgo": 72,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4363,
+            "supervivencia": 0.6309,
+            "en_riesgo": 71,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4369,
+            "supervivencia": 0.6309,
+            "en_riesgo": 70,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4370,
+            "supervivencia": 0.6309,
+            "en_riesgo": 69,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4378,
+            "supervivencia": 0.6309,
+            "en_riesgo": 67,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4381,
+            "supervivencia": 0.6213,
+            "en_riesgo": 66,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 4387,
+            "supervivencia": 0.6213,
+            "en_riesgo": 65,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4396,
+            "supervivencia": 0.6213,
+            "en_riesgo": 64,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4405,
+            "supervivencia": 0.6213,
+            "en_riesgo": 63,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4465,
+            "supervivencia": 0.6213,
+            "en_riesgo": 62,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4487,
+            "supervivencia": 0.6213,
+            "en_riesgo": 60,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4490,
+            "supervivencia": 0.6213,
+            "en_riesgo": 59,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4497,
+            "supervivencia": 0.6213,
+            "en_riesgo": 58,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4500,
+            "supervivencia": 0.6213,
+            "en_riesgo": 57,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4503,
+            "supervivencia": 0.6213,
+            "en_riesgo": 56,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4504,
+            "supervivencia": 0.6213,
+            "en_riesgo": 55,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4529,
+            "supervivencia": 0.6213,
+            "en_riesgo": 54,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4531,
+            "supervivencia": 0.6213,
+            "en_riesgo": 53,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4536,
+            "supervivencia": 0.6213,
+            "en_riesgo": 52,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4541,
+            "supervivencia": 0.6213,
+            "en_riesgo": 51,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4550,
+            "supervivencia": 0.6213,
+            "en_riesgo": 50,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4558,
+            "supervivencia": 0.6213,
+            "en_riesgo": 49,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4573,
+            "supervivencia": 0.6213,
+            "en_riesgo": 48,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4576,
+            "supervivencia": 0.6213,
+            "en_riesgo": 47,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4580,
+            "supervivencia": 0.6213,
+            "en_riesgo": 46,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4581,
+            "supervivencia": 0.6213,
+            "en_riesgo": 45,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4594,
+            "supervivencia": 0.6213,
+            "en_riesgo": 43,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4595,
+            "supervivencia": 0.6213,
+            "en_riesgo": 42,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4596,
+            "supervivencia": 0.6213,
+            "en_riesgo": 40,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4598,
+            "supervivencia": 0.6213,
+            "en_riesgo": 39,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4626,
+            "supervivencia": 0.6213,
+            "en_riesgo": 38,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4641,
+            "supervivencia": 0.6213,
+            "en_riesgo": 37,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4652,
+            "supervivencia": 0.6213,
+            "en_riesgo": 36,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4657,
+            "supervivencia": 0.6213,
+            "en_riesgo": 35,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4674,
+            "supervivencia": 0.6213,
+            "en_riesgo": 34,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4693,
+            "supervivencia": 0.6213,
+            "en_riesgo": 33,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4696,
+            "supervivencia": 0.6213,
+            "en_riesgo": 32,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4707,
+            "supervivencia": 0.6213,
+            "en_riesgo": 31,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4732,
+            "supervivencia": 0.6213,
+            "en_riesgo": 30,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4736,
+            "supervivencia": 0.6213,
+            "en_riesgo": 29,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4781,
+            "supervivencia": 0.6213,
+            "en_riesgo": 28,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4788,
+            "supervivencia": 0.6213,
+            "en_riesgo": 27,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4808,
+            "supervivencia": 0.6213,
+            "en_riesgo": 26,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4832,
+            "supervivencia": 0.6213,
+            "en_riesgo": 25,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4863,
+            "supervivencia": 0.6213,
+            "en_riesgo": 24,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4866,
+            "supervivencia": 0.6213,
+            "en_riesgo": 23,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4871,
+            "supervivencia": 0.6213,
+            "en_riesgo": 22,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4889,
+            "supervivencia": 0.6213,
+            "en_riesgo": 21,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4898,
+            "supervivencia": 0.5903,
+            "en_riesgo": 20,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 4907,
+            "supervivencia": 0.5903,
+            "en_riesgo": 19,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4912,
+            "supervivencia": 0.5903,
+            "en_riesgo": 18,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4923,
+            "supervivencia": 0.5903,
+            "en_riesgo": 17,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4933,
+            "supervivencia": 0.5903,
+            "en_riesgo": 16,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4940,
+            "supervivencia": 0.5903,
+            "en_riesgo": 15,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5002,
+            "supervivencia": 0.5481,
+            "en_riesgo": 14,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 5007,
+            "supervivencia": 0.5481,
+            "en_riesgo": 13,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5022,
+            "supervivencia": 0.5481,
+            "en_riesgo": 12,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5172,
+            "supervivencia": 0.5481,
+            "en_riesgo": 11,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5260,
+            "supervivencia": 0.4933,
+            "en_riesgo": 10,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 5493,
+            "supervivencia": 0.4933,
+            "en_riesgo": 9,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5535,
+            "supervivencia": 0.4933,
+            "en_riesgo": 8,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5630,
+            "supervivencia": 0.4933,
+            "en_riesgo": 7,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5655,
+            "supervivencia": 0.4933,
+            "en_riesgo": 6,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5656,
+            "supervivencia": 0.4933,
+            "en_riesgo": 5,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5664,
+            "supervivencia": 0.4933,
+            "en_riesgo": 4,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 5821,
+            "supervivencia": 0.4933,
+            "en_riesgo": 2,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5852,
+            "supervivencia": 0.4933,
+            "en_riesgo": 1,
+            "cierres": 0,
+            "censuras": 1
+          }
+        ],
+        "entrada_tardia_dias": 0,
+        "limitacion": "Yelp no registra apertura/cierre: edad previa es análisis de sensibilidad; con 0 se mide seguimiento desde la primera reseña."
+      }
+    },
+    "Pizza: zona Tampa": {
+      "poligono": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.6,
+              27.8
+            ],
+            [
+              -82.3,
+              27.8
+            ],
+            [
+              -82.3,
+              28.1
+            ],
+            [
+              -82.6,
+              28.1
+            ],
+            [
+              -82.6,
+              27.8
+            ]
+          ]
+        ]
+      },
+      "resultado": {
+        "categoria": "Pizza",
+        "muestra_pequena": false,
+        "n": 164,
+        "eventos": 55,
+        "mediana_dias": null,
+        "curva": [
+          {
+            "dias": 0,
+            "supervivencia": 1.0,
+            "en_riesgo": 164,
+            "cierres": 0,
+            "censuras": 0
+          },
+          {
+            "dias": 136,
+            "supervivencia": 0.9939,
+            "en_riesgo": 164,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 147,
+            "supervivencia": 0.9878,
+            "en_riesgo": 163,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 188,
+            "supervivencia": 0.9817,
+            "en_riesgo": 162,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 199,
+            "supervivencia": 0.9817,
+            "en_riesgo": 161,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 221,
+            "supervivencia": 0.9756,
+            "en_riesgo": 160,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 249,
+            "supervivencia": 0.9756,
+            "en_riesgo": 159,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 308,
+            "supervivencia": 0.9694,
+            "en_riesgo": 158,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 315,
+            "supervivencia": 0.9694,
+            "en_riesgo": 157,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 343,
+            "supervivencia": 0.9632,
+            "en_riesgo": 156,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 355,
+            "supervivencia": 0.9632,
+            "en_riesgo": 155,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 396,
+            "supervivencia": 0.9506,
+            "en_riesgo": 153,
+            "cierres": 2,
+            "censuras": 0
+          },
+          {
+            "dias": 430,
+            "supervivencia": 0.9506,
+            "en_riesgo": 151,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 472,
+            "supervivencia": 0.9443,
+            "en_riesgo": 150,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 480,
+            "supervivencia": 0.9443,
+            "en_riesgo": 149,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 503,
+            "supervivencia": 0.9379,
+            "en_riesgo": 148,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 572,
+            "supervivencia": 0.9315,
+            "en_riesgo": 147,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 582,
+            "supervivencia": 0.9251,
+            "en_riesgo": 146,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 586,
+            "supervivencia": 0.9187,
+            "en_riesgo": 145,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 598,
+            "supervivencia": 0.9187,
+            "en_riesgo": 144,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 651,
+            "supervivencia": 0.9123,
+            "en_riesgo": 143,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 678,
+            "supervivencia": 0.9123,
+            "en_riesgo": 141,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 682,
+            "supervivencia": 0.9058,
+            "en_riesgo": 140,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 688,
+            "supervivencia": 0.8993,
+            "en_riesgo": 139,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 703,
+            "supervivencia": 0.8993,
+            "en_riesgo": 138,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 735,
+            "supervivencia": 0.8993,
+            "en_riesgo": 137,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 741,
+            "supervivencia": 0.8927,
+            "en_riesgo": 136,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 772,
+            "supervivencia": 0.8861,
+            "en_riesgo": 135,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 810,
+            "supervivencia": 0.8794,
+            "en_riesgo": 134,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 813,
+            "supervivencia": 0.8728,
+            "en_riesgo": 133,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 837,
+            "supervivencia": 0.8662,
+            "en_riesgo": 132,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 845,
+            "supervivencia": 0.8662,
+            "en_riesgo": 131,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 893,
+            "supervivencia": 0.8596,
+            "en_riesgo": 130,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 907,
+            "supervivencia": 0.8528,
+            "en_riesgo": 128,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 942,
+            "supervivencia": 0.8461,
+            "en_riesgo": 127,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 967,
+            "supervivencia": 0.8461,
+            "en_riesgo": 126,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 981,
+            "supervivencia": 0.8394,
+            "en_riesgo": 125,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 985,
+            "supervivencia": 0.8394,
+            "en_riesgo": 124,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 998,
+            "supervivencia": 0.8394,
+            "en_riesgo": 123,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1014,
+            "supervivencia": 0.8325,
+            "en_riesgo": 122,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1023,
+            "supervivencia": 0.8325,
+            "en_riesgo": 121,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1076,
+            "supervivencia": 0.8255,
+            "en_riesgo": 120,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1114,
+            "supervivencia": 0.8186,
+            "en_riesgo": 119,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1136,
+            "supervivencia": 0.8117,
+            "en_riesgo": 118,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1148,
+            "supervivencia": 0.8047,
+            "en_riesgo": 117,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 1204,
+            "supervivencia": 0.7977,
+            "en_riesgo": 115,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1255,
+            "supervivencia": 0.7907,
+            "en_riesgo": 114,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1363,
+            "supervivencia": 0.7837,
+            "en_riesgo": 113,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1382,
+            "supervivencia": 0.7837,
+            "en_riesgo": 112,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1391,
+            "supervivencia": 0.7837,
+            "en_riesgo": 111,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1394,
+            "supervivencia": 0.7766,
+            "en_riesgo": 110,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1431,
+            "supervivencia": 0.7695,
+            "en_riesgo": 109,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1450,
+            "supervivencia": 0.7695,
+            "en_riesgo": 108,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1457,
+            "supervivencia": 0.7623,
+            "en_riesgo": 107,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1495,
+            "supervivencia": 0.7623,
+            "en_riesgo": 106,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1541,
+            "supervivencia": 0.755,
+            "en_riesgo": 105,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1574,
+            "supervivencia": 0.755,
+            "en_riesgo": 104,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1623,
+            "supervivencia": 0.7477,
+            "en_riesgo": 103,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1657,
+            "supervivencia": 0.7477,
+            "en_riesgo": 102,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1709,
+            "supervivencia": 0.7403,
+            "en_riesgo": 101,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1745,
+            "supervivencia": 0.7403,
+            "en_riesgo": 100,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1759,
+            "supervivencia": 0.7328,
+            "en_riesgo": 99,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1813,
+            "supervivencia": 0.7253,
+            "en_riesgo": 98,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1859,
+            "supervivencia": 0.7179,
+            "en_riesgo": 97,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1865,
+            "supervivencia": 0.7179,
+            "en_riesgo": 96,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1964,
+            "supervivencia": 0.7103,
+            "en_riesgo": 95,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1973,
+            "supervivencia": 0.7028,
+            "en_riesgo": 94,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2010,
+            "supervivencia": 0.6952,
+            "en_riesgo": 93,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2097,
+            "supervivencia": 0.6952,
+            "en_riesgo": 92,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2114,
+            "supervivencia": 0.6952,
+            "en_riesgo": 91,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2124,
+            "supervivencia": 0.6952,
+            "en_riesgo": 90,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2127,
+            "supervivencia": 0.6952,
+            "en_riesgo": 89,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2156,
+            "supervivencia": 0.6952,
+            "en_riesgo": 88,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2257,
+            "supervivencia": 0.6872,
+            "en_riesgo": 87,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2261,
+            "supervivencia": 0.6872,
+            "en_riesgo": 86,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2291,
+            "supervivencia": 0.6872,
+            "en_riesgo": 85,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2293,
+            "supervivencia": 0.679,
+            "en_riesgo": 84,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2300,
+            "supervivencia": 0.679,
+            "en_riesgo": 83,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2333,
+            "supervivencia": 0.679,
+            "en_riesgo": 82,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2406,
+            "supervivencia": 0.679,
+            "en_riesgo": 81,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2415,
+            "supervivencia": 0.679,
+            "en_riesgo": 80,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2497,
+            "supervivencia": 0.679,
+            "en_riesgo": 79,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2501,
+            "supervivencia": 0.6703,
+            "en_riesgo": 78,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2525,
+            "supervivencia": 0.6703,
+            "en_riesgo": 77,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2538,
+            "supervivencia": 0.6703,
+            "en_riesgo": 76,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2588,
+            "supervivencia": 0.6703,
+            "en_riesgo": 75,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2590,
+            "supervivencia": 0.6703,
+            "en_riesgo": 74,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2616,
+            "supervivencia": 0.6611,
+            "en_riesgo": 73,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2619,
+            "supervivencia": 0.6611,
+            "en_riesgo": 72,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2666,
+            "supervivencia": 0.6611,
+            "en_riesgo": 71,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2686,
+            "supervivencia": 0.6611,
+            "en_riesgo": 70,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2699,
+            "supervivencia": 0.6611,
+            "en_riesgo": 69,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2727,
+            "supervivencia": 0.6611,
+            "en_riesgo": 68,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2731,
+            "supervivencia": 0.6611,
+            "en_riesgo": 67,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2758,
+            "supervivencia": 0.6611,
+            "en_riesgo": 66,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2782,
+            "supervivencia": 0.6611,
+            "en_riesgo": 65,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2798,
+            "supervivencia": 0.6611,
+            "en_riesgo": 64,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2803,
+            "supervivencia": 0.6611,
+            "en_riesgo": 63,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2860,
+            "supervivencia": 0.6611,
+            "en_riesgo": 62,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2876,
+            "supervivencia": 0.6611,
+            "en_riesgo": 61,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2895,
+            "supervivencia": 0.6611,
+            "en_riesgo": 60,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2926,
+            "supervivencia": 0.6611,
+            "en_riesgo": 59,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3003,
+            "supervivencia": 0.6611,
+            "en_riesgo": 58,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3009,
+            "supervivencia": 0.6495,
+            "en_riesgo": 57,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3010,
+            "supervivencia": 0.6495,
+            "en_riesgo": 56,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3014,
+            "supervivencia": 0.6495,
+            "en_riesgo": 55,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3024,
+            "supervivencia": 0.6495,
+            "en_riesgo": 54,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3034,
+            "supervivencia": 0.6495,
+            "en_riesgo": 53,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3080,
+            "supervivencia": 0.637,
+            "en_riesgo": 52,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3082,
+            "supervivencia": 0.637,
+            "en_riesgo": 51,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3087,
+            "supervivencia": 0.637,
+            "en_riesgo": 50,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3088,
+            "supervivencia": 0.637,
+            "en_riesgo": 49,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3099,
+            "supervivencia": 0.637,
+            "en_riesgo": 48,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3161,
+            "supervivencia": 0.637,
+            "en_riesgo": 47,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3194,
+            "supervivencia": 0.637,
+            "en_riesgo": 45,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3237,
+            "supervivencia": 0.637,
+            "en_riesgo": 44,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3256,
+            "supervivencia": 0.637,
+            "en_riesgo": 43,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3260,
+            "supervivencia": 0.637,
+            "en_riesgo": 42,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3280,
+            "supervivencia": 0.637,
+            "en_riesgo": 41,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 3288,
+            "supervivencia": 0.6207,
+            "en_riesgo": 39,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3373,
+            "supervivencia": 0.6207,
+            "en_riesgo": 38,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3409,
+            "supervivencia": 0.6207,
+            "en_riesgo": 37,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3575,
+            "supervivencia": 0.6207,
+            "en_riesgo": 36,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3644,
+            "supervivencia": 0.6207,
+            "en_riesgo": 35,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3653,
+            "supervivencia": 0.6207,
+            "en_riesgo": 34,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3713,
+            "supervivencia": 0.6207,
+            "en_riesgo": 33,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3737,
+            "supervivencia": 0.6013,
+            "en_riesgo": 32,
+            "cierres": 1,
+            "censuras": 1
+          },
+          {
+            "dias": 3758,
+            "supervivencia": 0.6013,
+            "en_riesgo": 30,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3829,
+            "supervivencia": 0.6013,
+            "en_riesgo": 29,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3887,
+            "supervivencia": 0.5798,
+            "en_riesgo": 28,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3932,
+            "supervivencia": 0.5798,
+            "en_riesgo": 27,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3973,
+            "supervivencia": 0.5798,
+            "en_riesgo": 26,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3994,
+            "supervivencia": 0.5798,
+            "en_riesgo": 25,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4032,
+            "supervivencia": 0.5557,
+            "en_riesgo": 24,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 4131,
+            "supervivencia": 0.5557,
+            "en_riesgo": 23,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4135,
+            "supervivencia": 0.5557,
+            "en_riesgo": 22,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4203,
+            "supervivencia": 0.5557,
+            "en_riesgo": 21,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4230,
+            "supervivencia": 0.5557,
+            "en_riesgo": 20,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4323,
+            "supervivencia": 0.5557,
+            "en_riesgo": 19,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4369,
+            "supervivencia": 0.5557,
+            "en_riesgo": 18,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4370,
+            "supervivencia": 0.5557,
+            "en_riesgo": 17,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4465,
+            "supervivencia": 0.5557,
+            "en_riesgo": 15,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4536,
+            "supervivencia": 0.5557,
+            "en_riesgo": 13,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4573,
+            "supervivencia": 0.5557,
+            "en_riesgo": 12,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4595,
+            "supervivencia": 0.5557,
+            "en_riesgo": 11,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4596,
+            "supervivencia": 0.5557,
+            "en_riesgo": 9,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4696,
+            "supervivencia": 0.5557,
+            "en_riesgo": 8,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4707,
+            "supervivencia": 0.5557,
+            "en_riesgo": 7,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4788,
+            "supervivencia": 0.5557,
+            "en_riesgo": 6,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4808,
+            "supervivencia": 0.5557,
+            "en_riesgo": 5,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4889,
+            "supervivencia": 0.5557,
+            "en_riesgo": 4,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5656,
+            "supervivencia": 0.5557,
+            "en_riesgo": 3,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5664,
+            "supervivencia": 0.5557,
+            "en_riesgo": 2,
+            "cierres": 0,
+            "censuras": 2
+          }
+        ],
+        "entrada_tardia_dias": 0,
+        "limitacion": "Yelp no registra apertura/cierre: edad previa es análisis de sensibilidad; con 0 se mide seguimiento desde la primera reseña."
+      }
+    },
+    "Pizza: zona St. Petersburg": {
+      "poligono": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -82.8,
+              27.65
+            ],
+            [
+              -82.55,
+              27.65
+            ],
+            [
+              -82.55,
+              27.9
+            ],
+            [
+              -82.8,
+              27.9
+            ],
+            [
+              -82.8,
+              27.65
+            ]
+          ]
+        ]
+      },
+      "resultado": {
+        "categoria": "Pizza",
+        "muestra_pequena": false,
+        "n": 84,
+        "eventos": 19,
+        "mediana_dias": null,
+        "curva": [
+          {
+            "dias": 0,
+            "supervivencia": 1.0,
+            "en_riesgo": 84,
+            "cierres": 0,
+            "censuras": 0
+          },
+          {
+            "dias": 72,
+            "supervivencia": 1.0,
+            "en_riesgo": 84,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 104,
+            "supervivencia": 0.988,
+            "en_riesgo": 83,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 109,
+            "supervivencia": 0.9759,
+            "en_riesgo": 82,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 153,
+            "supervivencia": 0.9759,
+            "en_riesgo": 81,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 185,
+            "supervivencia": 0.9759,
+            "en_riesgo": 80,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 205,
+            "supervivencia": 0.9636,
+            "en_riesgo": 79,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 463,
+            "supervivencia": 0.9512,
+            "en_riesgo": 78,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 536,
+            "supervivencia": 0.9388,
+            "en_riesgo": 77,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 556,
+            "supervivencia": 0.9388,
+            "en_riesgo": 76,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 559,
+            "supervivencia": 0.9388,
+            "en_riesgo": 75,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 593,
+            "supervivencia": 0.9262,
+            "en_riesgo": 74,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 716,
+            "supervivencia": 0.9135,
+            "en_riesgo": 73,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 789,
+            "supervivencia": 0.9008,
+            "en_riesgo": 72,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 816,
+            "supervivencia": 0.8881,
+            "en_riesgo": 71,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 930,
+            "supervivencia": 0.8754,
+            "en_riesgo": 70,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1089,
+            "supervivencia": 0.8754,
+            "en_riesgo": 69,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1129,
+            "supervivencia": 0.8625,
+            "en_riesgo": 68,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1262,
+            "supervivencia": 0.8497,
+            "en_riesgo": 67,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1297,
+            "supervivencia": 0.8497,
+            "en_riesgo": 66,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1504,
+            "supervivencia": 0.8497,
+            "en_riesgo": 65,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1572,
+            "supervivencia": 0.8364,
+            "en_riesgo": 64,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 1657,
+            "supervivencia": 0.8364,
+            "en_riesgo": 63,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1810,
+            "supervivencia": 0.8364,
+            "en_riesgo": 62,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1821,
+            "supervivencia": 0.8364,
+            "en_riesgo": 61,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 1828,
+            "supervivencia": 0.8364,
+            "en_riesgo": 60,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2048,
+            "supervivencia": 0.8364,
+            "en_riesgo": 59,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2129,
+            "supervivencia": 0.8364,
+            "en_riesgo": 58,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2185,
+            "supervivencia": 0.8217,
+            "en_riesgo": 57,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2196,
+            "supervivencia": 0.8217,
+            "en_riesgo": 56,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2241,
+            "supervivencia": 0.8068,
+            "en_riesgo": 55,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2322,
+            "supervivencia": 0.8068,
+            "en_riesgo": 54,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2365,
+            "supervivencia": 0.7915,
+            "en_riesgo": 53,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2393,
+            "supervivencia": 0.7915,
+            "en_riesgo": 52,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2447,
+            "supervivencia": 0.7915,
+            "en_riesgo": 51,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2615,
+            "supervivencia": 0.7915,
+            "en_riesgo": 50,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2630,
+            "supervivencia": 0.7915,
+            "en_riesgo": 49,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2710,
+            "supervivencia": 0.7751,
+            "en_riesgo": 48,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2739,
+            "supervivencia": 0.7751,
+            "en_riesgo": 47,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2805,
+            "supervivencia": 0.7751,
+            "en_riesgo": 46,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2810,
+            "supervivencia": 0.7751,
+            "en_riesgo": 45,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2821,
+            "supervivencia": 0.7751,
+            "en_riesgo": 44,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2854,
+            "supervivencia": 0.7751,
+            "en_riesgo": 43,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 2932,
+            "supervivencia": 0.7566,
+            "en_riesgo": 42,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 2983,
+            "supervivencia": 0.7566,
+            "en_riesgo": 41,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3119,
+            "supervivencia": 0.7566,
+            "en_riesgo": 40,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3176,
+            "supervivencia": 0.7566,
+            "en_riesgo": 39,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3270,
+            "supervivencia": 0.7566,
+            "en_riesgo": 38,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3280,
+            "supervivencia": 0.7566,
+            "en_riesgo": 37,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3292,
+            "supervivencia": 0.7566,
+            "en_riesgo": 36,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3349,
+            "supervivencia": 0.7566,
+            "en_riesgo": 35,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3417,
+            "supervivencia": 0.7344,
+            "en_riesgo": 34,
+            "cierres": 1,
+            "censuras": 0
+          },
+          {
+            "dias": 3442,
+            "supervivencia": 0.7344,
+            "en_riesgo": 33,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3482,
+            "supervivencia": 0.7344,
+            "en_riesgo": 32,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3517,
+            "supervivencia": 0.7344,
+            "en_riesgo": 31,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3540,
+            "supervivencia": 0.7344,
+            "en_riesgo": 30,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3560,
+            "supervivencia": 0.7344,
+            "en_riesgo": 29,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3573,
+            "supervivencia": 0.7344,
+            "en_riesgo": 28,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3575,
+            "supervivencia": 0.7344,
+            "en_riesgo": 27,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3805,
+            "supervivencia": 0.7344,
+            "en_riesgo": 26,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3830,
+            "supervivencia": 0.7344,
+            "en_riesgo": 25,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3889,
+            "supervivencia": 0.7344,
+            "en_riesgo": 24,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 3925,
+            "supervivencia": 0.7344,
+            "en_riesgo": 23,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4040,
+            "supervivencia": 0.7344,
+            "en_riesgo": 22,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4062,
+            "supervivencia": 0.7344,
+            "en_riesgo": 21,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4116,
+            "supervivencia": 0.7344,
+            "en_riesgo": 20,
+            "cierres": 0,
+            "censuras": 2
+          },
+          {
+            "dias": 4204,
+            "supervivencia": 0.7344,
+            "en_riesgo": 18,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4237,
+            "supervivencia": 0.7344,
+            "en_riesgo": 17,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4262,
+            "supervivencia": 0.7344,
+            "en_riesgo": 16,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4291,
+            "supervivencia": 0.7344,
+            "en_riesgo": 15,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4378,
+            "supervivencia": 0.7344,
+            "en_riesgo": 14,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4490,
+            "supervivencia": 0.7344,
+            "en_riesgo": 13,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4503,
+            "supervivencia": 0.7344,
+            "en_riesgo": 12,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4504,
+            "supervivencia": 0.7344,
+            "en_riesgo": 11,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4529,
+            "supervivencia": 0.7344,
+            "en_riesgo": 10,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4581,
+            "supervivencia": 0.7344,
+            "en_riesgo": 9,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4641,
+            "supervivencia": 0.7344,
+            "en_riesgo": 8,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4732,
+            "supervivencia": 0.7344,
+            "en_riesgo": 7,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4912,
+            "supervivencia": 0.7344,
+            "en_riesgo": 6,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 4940,
+            "supervivencia": 0.7344,
+            "en_riesgo": 5,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5007,
+            "supervivencia": 0.7344,
+            "en_riesgo": 4,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5493,
+            "supervivencia": 0.7344,
+            "en_riesgo": 3,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5535,
+            "supervivencia": 0.7344,
+            "en_riesgo": 2,
+            "cierres": 0,
+            "censuras": 1
+          },
+          {
+            "dias": 5852,
+            "supervivencia": 0.7344,
+            "en_riesgo": 1,
+            "cierres": 0,
+            "censuras": 1
+          }
+        ],
+        "entrada_tardia_dias": 0,
+        "limitacion": "Yelp no registra apertura/cierre: edad previa es análisis de sensibilidad; con 0 se mide seguimiento desde la primera reseña."
+      }
+    }
+  }
+}
