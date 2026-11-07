@@ -1,10 +1,9 @@
 # Estado de validación
 
-Esta revisión se preparó en una rama local `codex/completar-lifemap`, basada en
-`09eed5e`. No se ha publicado ni desplegado en el servidor del equipo: la conexión de
-GitHub devolvió HTTP 403 al intentar escribir y no se proporcionó una URL de Jenkins
-accesible desde este entorno. Una autorización en el chat no cambia los permisos técnicos
-de la conexión.
+Esta revisión se publicó en la rama `codex/completar-lifemap`, basada en
+`09eed5e`. El acceso de escritura de GitHub quedó verificado. Todavía no se ha
+desplegado en el servidor del equipo ni se ha proporcionado una URL de Jenkins accesible
+desde este entorno. Las comprobaciones locales no sustituyen ese build.
 
 ## Comprobado
 
@@ -28,7 +27,7 @@ La comprobación Groovy solo valida sintaxis: no sustituye una ejecución del pi
 
 ## Pendiente de servicios externos y datos del equipo
 
-1. Publicar esta rama con una conexión de GitHub que permita escribir en `Drkle/lifemap`.
+1. Revisar e integrar la propuesta de cambios de `codex/completar-lifemap`.
 2. Ejecutar Jenkins con las credenciales del equipo y verificar la descarga/ingesta de Yelp,
    métricas reales, balanceo y modelo guardado. El dataset completo de reseñas mide 5,34 GB;
    este entorno tiene un disco total de unos 8 GB y no se usó para fingir esa ejecución.
