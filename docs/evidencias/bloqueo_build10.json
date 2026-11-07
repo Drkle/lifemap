@@ -1,0 +1,49 @@
+{
+  "fuente": "Consola Jenkins lifemap-main #10 aportada por el equipo",
+  "sha256_archivo_aportado": "4d6694913caa6a51487795f7a07c5f7a7f6f591c2a71030cc09d5c8b3c74fc3d",
+  "build": 10,
+  "commit_checkout": "56a70311f7fbd3db8f072b39d87a9d5c54cc1e6b",
+  "forzar_fallo": true,
+  "resultado_esperado": "FAILURE",
+  "fallo": "tests/test_trampa.py::test_fallo_intencional",
+  "despliegue_omitido": true,
+  "verificacion_identidad": "[bloqueo] OK: el build falló y la API conserva commit, versión e imagen.",
+  "imagen_observada_despues": "lifemap-api:9",
+  "artefactos": "El log confirma que Jenkins archivó .ci-evidencias; no se descargaron los archivos antes/después a este entorno.",
+  "api_publica_verificada_en": "2026-11-07T00:43:03.213413-05:00",
+  "health_despues": {
+    "status": "ok",
+    "commit": "56a70311f7fbd3db8f072b39d87a9d5c54cc1e6b",
+    "version": "9",
+    "servicios": {
+      "api": {
+        "estado": "ok"
+      },
+      "mongodb": {
+        "estado": "ok"
+      },
+      "spark": {
+        "estado": "ok",
+        "workers": 1
+      },
+      "dask": {
+        "estado": "ok",
+        "workers": 2
+      },
+      "kafka": {
+        "estado": "no_aplica",
+        "detalle": "streaming desactivado"
+      }
+    },
+    "modelo_sentimiento": {
+      "disponible": true,
+      "modelo": "regresion_logistica",
+      "version": "20261107052058"
+    },
+    "colecciones": {
+      "negocios": "negocios",
+      "tasas_prefijo": ""
+    }
+  },
+  "decision_equipo": "Desarrollar y presentar en el mismo portátil. El traslado queda fuera del plan activo; no se declara equivalencia con la condición de otra máquina del enunciado."
+}

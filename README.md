@@ -195,7 +195,13 @@ no sustituye el historial de builds, la URL disponible ni la sustentación del e
 
 [PDF de seis páginas y fuentes](docs/entrega1/README.md), con limpieza, comparación NB/LR,
 tasas, balanceo y comprobación pública de los seis endpoints. El documento identifica lo
-pendiente: prueba controlada de bloqueo, servidor distinto del portátil y disponibilidad.
+estado: bloqueo confirmado en el build #10; presentación acordada en el mismo portátil;
+disponibilidad pendiente de registro.
 El parámetro FORZAR_FALLO captura ahora la identidad de la API antes/después y publica
 artefactos del build. La [guía de traslado](deploy/SERVIDOR.md) incluye un override para que
 los puertos administrativos se limiten a loopback y un preflight sin cambios en el host.
+
+**Plan de presentación acordado:** se seguirá desarrollando y mostrando LifeMap en el mismo
+portátil con Docker/Jenkins/ngrok. No hay traslado de máquina en el plan activo. El informe
+explica la diferencia con el enunciado. El build #10 demostró bloqueo del despliegue ante el
+fallo intencional, conservando la API versión 9; ver `docs/evidencias/bloqueo_build10.json`.

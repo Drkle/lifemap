@@ -2,8 +2,8 @@
 
 Esta revisión se publicó en la rama `codex/completar-lifemap`, basada en
 `09eed5e`. El acceso de escritura de GitHub quedó verificado. Jenkins completó el build #8 con Yelp en el portátil del equipo y desplegó la versión 8.
-Los seis endpoints se comprobaron en la URL pública. Falta trasladar el sistema a otra
-máquina; no se ha proporcionado acceso a Jenkins desde este entorno.
+Los seis endpoints se comprobaron en la URL pública. El build #10 verificó el fallo controlado y conservó la API versión 9. El equipo decidió
+presentar en el mismo portátil; no hay traslado en el plan activo ni acceso remoto a Jenkins.
 
 ## Comprobado
 
@@ -29,17 +29,16 @@ La comprobación Groovy solo valida sintaxis: no sustituye una ejecución del pi
 ## Pendiente de servicios externos y datos del equipo
 
 1. Revisar e integrar la propuesta de cambios de `codex/completar-lifemap`.
-2. Ejecutar la prueba controlada FORZAR_FALLO=true en Jenkins. La ejecución real con Yelp
-   ya está acreditada por el build #8: 8.731 negocios, 792.133 reseñas, modelo y balanceo.
-   Ver el informe y la evidencia en docs/entrega1/ y docs/evidencias/.
-3. Conservar el build verde #8 y añadir el build controlado fallido y sus artefactos de identidad;
-   repetir la comprobación de hash después de mover el servidor.
-4. Desplegar en una VM o equipo de laboratorio, distinto del portátil, con URL pública y la
-   ventana de disponibilidad requerida. No se aprovisionó una VM con costes o cuenta desconocidos.
+2. Primera entrega verificada: build #8 con Yelp (8.731 negocios y 792.133 reseñas); build #10
+   FORZAR_FALLO=true con despliegue bloqueado y versión 9 conservada. Ver docs/entrega1/ y
+   docs/evidencias/bloqueo_build10.json. Conservar los artefactos originales en Jenkins.
+3. Mantener disponible la URL y registrar muestras durante la ventana exigida.
+4. Por decisión del equipo, desarrollo y presentación seguirán en el mismo portátil. No se
+   realizará traslado; la diferencia con la condición de otra máquina se documenta en el informe.
 5. Abrir Power BI Desktop/servicio del equipo, crear/guardar el informe con las consultas
    suministradas y validar los permisos de mapas y actualización del tenant. No hay PBIX validado.
 6. Informe E1: PDF de seis páginas preparado con evidencia real en docs/entrega1/. Actualizar
-   los pendientes tras verificar fallo controlado, servidor y disponibilidad. El informe E2
+   la evidencia de disponibilidad cuando se complete el registro. El informe E2
    queda pendiente de la ejecución de esa entrega. Confirmar la fecha final con el docente.
 
 ## Límites operativos
