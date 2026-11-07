@@ -139,6 +139,22 @@ def _insertar_lotes(destino, documentos: list[dict], tamano_lote: int) -> int:
     return insertados
 
 
+def calcular_por_bloques(cliente, tareas, max_en_vuelo=2):
+    """Acota el grafo activo y la presión de memoria; conserva reportes, no textos."""
+    if max_en_vuelo < 1:
+        raise ValueError("INGEST_MAX_EN_VUELO debe ser al menos 1")
+    resultados = []
+    for inicio in range(0, len(tareas), max_en_vuelo):
+        futuros = cliente.compute(tareas[inicio:inicio + max_en_vuelo], retries=2)
+        try:
+            resultados.extend(cliente.gather(futuros))
+        finally:
+            for futuro in futuros:
+                futuro.release()
+        print(f"[ingesta] progreso: {len(resultados)}/{len(tareas)} particiones completadas", flush=True)
+    return resultados
+
+
 # ----------------------------------------------------------------------------- principal
 def ejecutar() -> None:
     inicio = time.perf_counter()
@@ -148,7 +164,8 @@ def ejecutar() -> None:
     caja = _caja()
     max_particiones = int(os.getenv("INGEST_MAX_PARTICIONES", "0"))
     tamano_lote = int(os.getenv("INGEST_BATCH_SIZE", "5000"))
-    blocksize = os.getenv("REVIEW_BLOCKSIZE", "32MB")
+    blocksize = os.getenv("REVIEW_BLOCKSIZE", "16MB")
+    max_en_vuelo = int(os.getenv("INGEST_MAX_EN_VUELO", "2"))
     forzar = _verdadero("FORCE_RELOAD")
     base = os.getenv("MONGO_DB", "lifemap")
     col_negocios = os.getenv("NEGOCIOS_COLLECTION", "negocios")
@@ -210,7 +227,8 @@ def ejecutar() -> None:
             }
             for fila in negocios.itertuples()
         }
-        info_futuro = cliente_dask.scatter([info], broadcast=True)[0]
+        # El diccionario va como argumento del grafo, no como Future de scatter.
+        # Así Dask puede reconstruir la tarea si se pierden/reinician sus workers.
 
         # ---- 2. Reseñas: lectura particionada, limpieza y carga por lotes en un solo paso
         for coleccion in (col_resenas, col_negocios):
@@ -221,10 +239,10 @@ def ejecutar() -> None:
             particiones = particiones[:max_particiones]
         print(f"[ingesta] review.json en {raw_res.npartitions} particiones (se procesan {len(particiones)})")
         tareas = [
-            delayed(procesar_particion_resenas)(p, info_futuro, uri, base, col_resenas, tamano_lote)
+            delayed(procesar_particion_resenas)(p, info, uri, base, col_resenas, tamano_lote)
             for p in particiones
         ]
-        reportes_res = list(dask.compute(*tareas))
+        reportes_res = calcular_por_bloques(cliente_dask, tareas, max_en_vuelo)
         agregados, total_persistido = agregar_resenas_persistidas(db[col_resenas])
         rep_res = finalizar_reporte_resenas(reportes_res, total_persistido)
         if total_persistido == 0:

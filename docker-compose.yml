@@ -122,7 +122,7 @@ services:
     build: ./ingest
     image: lifemap-dask:latest
     command: ["dask", "worker", "tcp://dask-scheduler:8786", "--name", "dask-worker-1",
-              "--nthreads", "${DASK_WORKER_THREADS:-2}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
+              "--nthreads", "${DASK_WORKER_THREADS:-1}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
     environment:
       <<: *mongo-env
     volumes:
@@ -140,7 +140,7 @@ services:
   dask-worker-2:
     <<: *dask-worker
     command: ["dask", "worker", "tcp://dask-scheduler:8786", "--name", "dask-worker-2",
-              "--nthreads", "${DASK_WORKER_THREADS:-2}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
+              "--nthreads", "${DASK_WORKER_THREADS:-1}", "--memory-limit", "${DASK_WORKER_MEMORY:-1.5GiB}"]
 
   # Contenedor cliente para jobs puntuales de Dask (verificación e ingesta).
   dask-job:
@@ -155,7 +155,8 @@ services:
       KAGGLE_DATASET: ${KAGGLE_DATASET:-yelp-dataset/yelp-dataset}
       INGEST_MAX_PARTICIONES: ${INGEST_MAX_PARTICIONES:-0}
       INGEST_BATCH_SIZE: ${INGEST_BATCH_SIZE:-5000}
-      REVIEW_BLOCKSIZE: ${REVIEW_BLOCKSIZE:-32MB}
+      REVIEW_BLOCKSIZE: ${REVIEW_BLOCKSIZE:-16MB}
+      INGEST_MAX_EN_VUELO: ${INGEST_MAX_EN_VUELO:-2}
       FORCE_RELOAD: ${FORCE_RELOAD:-false}
     volumes:
       - kaggle_data:/data
