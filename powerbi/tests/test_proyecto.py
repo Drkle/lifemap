@@ -35,3 +35,20 @@ def test_generacion_y_referencias(tmp_path):
     assert 'localhost:5000' in expressions['BaseUrl']
     measures={m['name']:m['expression'] for m in tables['Ventanas']['measures']}
     assert 'SUMX' in measures['Negativas ponderadas'] and '/ 100' in measures['Negativas ponderadas']
+
+
+def test_temas_registrados_y_recursos_presentes():
+    carpeta=ROOT/'LifeMap/LifeMap.Report'
+    report=json.loads((carpeta/'report.json').read_text())
+    config=json.loads(report['config'])
+    themes=config['themeCollection']
+    packages={p['resourcePackage']['type']:p['resourcePackage'] for p in report['resourcePackages']}
+    for key in ('baseTheme','customTheme'):
+        theme=themes[key]
+        package=packages[theme['type']]
+        items=[i for i in package['items'] if i['name']==theme['name']]
+        assert len(items)==1
+        recurso=carpeta/'StaticResources'/package['name']/items[0]['path']
+        content=json.loads(recurso.read_text())
+        assert content['name']
+    assert report['theme']==themes['customTheme']['name']

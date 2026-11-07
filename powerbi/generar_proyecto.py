@@ -131,7 +131,20 @@ def generar():
         visual('curva_km','lineChart','Supervivencia',{'Category':[('dias',False)],'Y':[('Probabilidad de supervivencia',True)],
             'Tooltips':[(c,False) for c in ['en_riesgo','cierres','censuras']]},20,370,610,330,3,'Supervivencia Kaplan-Meier: categoría seleccionada'),
         visual('evolucion','lineChart','Ventanas',{'Category':[('inicio',False)],'Y':[('Negativas ponderadas',True)]},650,370,610,330,4,'Evolución: reseñas negativas ponderadas')]
-    guardar('LifeMap.Report/report.json',dict(config=json.dumps(dict(version='5.43',activeSectionIndex=0)),filters='[]',layoutOptimization=0,pods=[],publicCustomVisuals=[],resourcePackages=[],sections=[dict(name='ReportSectionLifeMap',displayName='LifeMap | Entrega 2',displayOption=1,filters='[]',height=720,width=1280,ordinal=0,config='{}',visualContainers=vs)]))
+    # Desktop consulta themeCollection.customTheme al renderizar y al crear la cinta.
+    # Registrar tanto las referencias como los archivos físicos, sin rutas huérfanas.
+    guardar('LifeMap.Report/StaticResources/SharedResources/BaseThemes/CY23SU04.json',
+            json.loads((ROOT/'temas/CY23SU04.json').read_text(encoding='utf-8-sig')))
+    guardar('LifeMap.Report/StaticResources/RegisteredResources/LifeMap.json',dict(
+        name='LifeMap', dataColors=['#087F8C','#E45756','#F2B134','#345995','#6B5B95', '#51A3A3'],
+        background='#FFFFFF',foreground='#172B4D',tableAccent='#087F8C'))
+    themes=dict(baseTheme=dict(name='CY23SU04',version='5.43',type=2),
+                customTheme=dict(name='LifeMap.json',version='5.43',type=1))
+    resources=[dict(resourcePackage=dict(disabled=False,name='SharedResources',type=2,
+                    items=[dict(name='CY23SU04',path='BaseThemes/CY23SU04.json',type=202)])),
+               dict(resourcePackage=dict(disabled=False,name='RegisteredResources',type=1,
+                    items=[dict(name='LifeMap.json',path='LifeMap.json',type=201)]))]
+    guardar('LifeMap.Report/report.json',dict(config=json.dumps(dict(version='5.43',activeSectionIndex=0,themeCollection=themes)),theme='LifeMap.json',filters='[]',layoutOptimization=0,pods=[],publicCustomVisuals=[],resourcePackages=resources,sections=[dict(name='ReportSectionLifeMap',displayName='LifeMap | Entrega 2',displayOption=1,filters='[]',height=720,width=1280,ordinal=0,config='{}',visualContainers=vs)]))
     print('Generado:',OUT/'LifeMap.pbip')
 
 if __name__=='__main__': generar()

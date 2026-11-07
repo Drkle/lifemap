@@ -1,0 +1,14 @@
+{
+  "name": "LifeMap",
+  "dataColors": [
+    "#087F8C",
+    "#E45756",
+    "#F2B134",
+    "#345995",
+    "#6B5B95",
+    "#51A3A3"
+  ],
+  "background": "#FFFFFF",
+  "foreground": "#172B4D",
+  "tableAccent": "#087F8C"
+}
