@@ -1,0 +1,290 @@
+{
+  "name": "LifeMap",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "es-ES",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "tables": [
+      {
+        "name": "Ventanas",
+        "columns": [
+          {
+            "name": "geohash",
+            "dataType": "string",
+            "sourceColumn": "geohash",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "inicio",
+            "dataType": "dateTime",
+            "sourceColumn": "inicio",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "fin",
+            "dataType": "dateTime",
+            "sourceColumn": "fin",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "n",
+            "dataType": "int64",
+            "sourceColumn": "n",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "pct_negativas",
+            "dataType": "double",
+            "sourceColumn": "pct_negativas",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "salto_pp",
+            "dataType": "double",
+            "sourceColumn": "salto_pp",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "hotspot",
+            "dataType": "boolean",
+            "sourceColumn": "hotspot",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "estado",
+            "dataType": "string",
+            "sourceColumn": "estado",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "latitud",
+            "dataType": "double",
+            "sourceColumn": "latitud",
+            "summarizeBy": "none",
+            "dataCategory": "Latitude"
+          },
+          {
+            "name": "longitud",
+            "dataType": "double",
+            "sourceColumn": "longitud",
+            "summarizeBy": "none",
+            "dataCategory": "Longitude"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Ventanas",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Filas = List.Transform(Coordenadas(Consultar(\"live/windows\"), \"centro\"), each Record.AddField(_, \"estado\", if [hotspot] then \"Hotspot\" else \"Sin salto significativo\")),",
+                "    Seleccion = Table.FromRecords(Filas, {\"geohash\", \"inicio\", \"fin\", \"n\", \"pct_negativas\", \"salto_pp\", \"hotspot\", \"estado\", \"latitud\", \"longitud\"}, MissingField.UseNull),",
+                "    Fechas = Table.TransformColumns(Seleccion, {{\"inicio\", each if _ = null then null else DateTimeZone.RemoveZone(DateTimeZone.FromText(Text.From(_))), type datetime}, {\"fin\", each if _ = null then null else DateTimeZone.RemoveZone(DateTimeZone.FromText(Text.From(_))), type datetime}}),",
+                "    Tipada = Table.TransformColumnTypes(Fechas, {{\"geohash\", type text}, {\"inicio\", type datetime}, {\"fin\", type datetime}, {\"n\", Int64.Type}, {\"pct_negativas\", type number}, {\"salto_pp\", type number}, {\"hotspot\", type logical}, {\"estado\", type text}, {\"latitud\", type number}, {\"longitud\", type number}}, \"en-US\")",
+                "in Tipada"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Resenas",
+            "expression": "SUM(Ventanas[n])",
+            "formatString": "#,0"
+          },
+          {
+            "name": "Negativas ponderadas",
+            "expression": "DIVIDE(SUMX(Ventanas, Ventanas[n] * Ventanas[pct_negativas]), SUM(Ventanas[n])) / 100",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Latitud centro",
+            "expression": "MAX(Ventanas[latitud])",
+            "formatString": "0.00000"
+          },
+          {
+            "name": "Longitud centro",
+            "expression": "MAX(Ventanas[longitud])",
+            "formatString": "0.00000"
+          }
+        ]
+      },
+      {
+        "name": "Alertas",
+        "columns": [
+          {
+            "name": "_id",
+            "dataType": "string",
+            "sourceColumn": "_id",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "probabilidad",
+            "dataType": "double",
+            "sourceColumn": "probabilidad",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "umbral",
+            "dataType": "double",
+            "sourceColumn": "umbral",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "fecha",
+            "dataType": "dateTime",
+            "sourceColumn": "fecha",
+            "summarizeBy": "none",
+            "formatString": "yyyy-MM-dd"
+          },
+          {
+            "name": "modelo_version",
+            "dataType": "string",
+            "sourceColumn": "modelo_version",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Alertas",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Filas = Consultar(\"alerts\"),",
+                "    Seleccion = Table.FromRecords(Filas, {\"_id\", \"probabilidad\", \"umbral\", \"fecha\", \"modelo_version\"}, MissingField.UseNull),",
+                "    Fechas = Table.TransformColumns(Seleccion, {{\"fecha\", each if _ = null then null else DateTimeZone.RemoveZone(DateTimeZone.FromText(Text.From(_))), type datetime}}),",
+                "    Tipada = Table.TransformColumnTypes(Fechas, {{\"_id\", type text}, {\"probabilidad\", type number}, {\"umbral\", type number}, {\"fecha\", type datetime}, {\"modelo_version\", type text}}, \"en-US\")",
+                "in Tipada"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "Supervivencia",
+        "columns": [
+          {
+            "name": "dias",
+            "dataType": "int64",
+            "sourceColumn": "dias",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "supervivencia",
+            "dataType": "double",
+            "sourceColumn": "supervivencia",
+            "summarizeBy": "none",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "en_riesgo",
+            "dataType": "int64",
+            "sourceColumn": "en_riesgo",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "cierres",
+            "dataType": "int64",
+            "sourceColumn": "cierres",
+            "summarizeBy": "none"
+          },
+          {
+            "name": "censuras",
+            "dataType": "int64",
+            "sourceColumn": "censuras",
+            "summarizeBy": "none"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Supervivencia",
+            "mode": "import",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Filas = Json.Document(Web.Contents(BaseUrl, [RelativePath=\"survival/\" & Uri.EscapeDataString(Categoria), Timeout=#duration(0,0,2,0)]))[curva],",
+                "    Seleccion = Table.FromRecords(Filas, {\"dias\", \"supervivencia\", \"en_riesgo\", \"cierres\", \"censuras\"}, MissingField.UseNull),",
+                "    Fechas = Seleccion,",
+                "    Tipada = Table.TransformColumnTypes(Fechas, {{\"dias\", Int64.Type}, {\"supervivencia\", type number}, {\"en_riesgo\", Int64.Type}, {\"cierres\", Int64.Type}, {\"censuras\", Int64.Type}}, \"en-US\")",
+                "in Tipada"
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Probabilidad de supervivencia",
+            "expression": "MAX(Supervivencia[supervivencia])",
+            "formatString": "0.0%"
+          }
+        ]
+      }
+    ],
+    "expressions": [
+      {
+        "name": "BaseUrl",
+        "kind": "m",
+        "expression": "\"http://localhost:5000\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "Latitud",
+        "kind": "m",
+        "expression": "\"27.95\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "Longitud",
+        "kind": "m",
+        "expression": "\"-82.45\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "Radio",
+        "kind": "m",
+        "expression": "\"5000\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "Categoria",
+        "kind": "m",
+        "expression": "\"Pizza\" meta [IsParameterQuery=true, Type=\"Text\", IsParameterQueryRequired=true]"
+      },
+      {
+        "name": "Consultar",
+        "kind": "m",
+        "expression": [
+          "(Ruta as text) as list =>",
+          "let",
+          "    Datos = Json.Document(Web.Contents(BaseUrl, [RelativePath=Ruta,",
+          "        Query=[lat=Latitud, lon=Longitud, radio=Radio, limit=\"1000\"],",
+          "        Timeout=#duration(0,0,2,0), Headers=[#\"ngrok-skip-browser-warning\"=\"true\"]])),",
+          "    Filas = Datos[resultados],",
+          "    Completas = if List.Count(Filas) >= 1000 then",
+          "        error \"La consulta alcanzó el límite de 1000 filas: reduzca Radio para evitar un informe truncado.\"",
+          "        else Filas",
+          "in Completas"
+        ]
+      },
+      {
+        "name": "Coordenadas",
+        "kind": "m",
+        "expression": [
+          "(Filas as list, Campo as text) as list =>",
+          "List.Transform(Filas, (R) => Record.Combine({R,",
+          "    [longitud=Record.Field(R,Campo)[coordinates]{0},",
+          "     latitud=Record.Field(R,Campo)[coordinates]{1}]}))"
+        ]
+      }
+    ]
+  }
+}

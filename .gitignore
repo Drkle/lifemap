@@ -45,3 +45,8 @@ Thumbs.db
 
 # Artefactos locales de builds de Jenkins (publicar solo evidencia revisada).
 .ci-evidencias/
+
+# Cachés y estado local de Power BI Desktop
+**/.pbi/
+*.pbix
+*.pbit

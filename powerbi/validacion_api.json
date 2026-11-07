@@ -1,0 +1,52 @@
+{
+  "fecha_utc": "2026-11-07T14:45:23.876747Z",
+  "alcance": "Prueba de contratos HTTP; no ejecución del motor M ni renderizado Desktop",
+  "base_url": "https://aviation-decrease-hunger.ngrok-free.dev/",
+  "resultados": {
+    "Ventanas": {
+      "filas": 91,
+      "contrato": "ok",
+      "campos": [
+        "_id",
+        "geohash",
+        "inicio",
+        "fin",
+        "n",
+        "pct_negativas",
+        "salto_pp",
+        "hotspot",
+        "location",
+        "centro",
+        "umbral_pp",
+        "min_resenas",
+        "batch_id"
+      ]
+    },
+    "Alertas": {
+      "filas": 99,
+      "contrato": "ok",
+      "campos": [
+        "_id",
+        "location",
+        "probabilidad",
+        "fecha",
+        "variables",
+        "modelo_version",
+        "activa",
+        "umbral",
+        "procesado_en"
+      ]
+    },
+    "Supervivencia": {
+      "filas": 496,
+      "contrato": "ok",
+      "campos": [
+        "dias",
+        "supervivencia",
+        "en_riesgo",
+        "cierres",
+        "censuras"
+      ]
+    }
+  }
+}
